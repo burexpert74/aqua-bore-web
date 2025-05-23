@@ -16,21 +16,6 @@ const galleryImages = [
     src: "/lovable-uploads/cc576d1e-a7b2-4b49-bfe9-c6fb3a818ac7.png",
     title: "Буровая установка с синей стрелой",
     description: "Современная техника для глубокого бурения с высокой производительностью"
-  },
-  {
-    src: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&h=400&fit=crop",
-    title: "Готовая скважина",
-    description: "Завершенные работы с установленным оборудованием"
-  },
-  {
-    src: "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=600&h=400&fit=crop",
-    title: "Испытание дебита",
-    description: "Проверка производительности скважины"
-  },
-  {
-    src: "https://images.unsplash.com/photo-1572276596237-5db2c3e16c5d?w=600&h=400&fit=crop",
-    title: "Монтаж насосного оборудования",
-    description: "Установка и настройка водоподъемного оборудования"
   }
 ];
 

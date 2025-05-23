@@ -1,6 +1,5 @@
 
 import React from 'react';
-import { CheckCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const services = [
@@ -66,16 +65,6 @@ const ServicesTable = () => {
                   <div className="text-gray-500 text-sm">Стоимость</div>
                   <div className="text-xl font-semibold text-blue-600">{service.price}</div>
                 </div>
-              </div>
-
-              <div className="space-y-3">
-                <div className="text-gray-700 font-medium">Включено в стоимость:</div>
-                {service.features.map((feature, featureIndex) => (
-                  <div key={featureIndex} className="flex items-center space-x-3">
-                    <CheckCircle className="h-5 w-5 text-green-500" />
-                    <span className="text-gray-600">{feature}</span>
-                  </div>
-                ))}
               </div>
 
               <button className="w-full mt-6 bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
