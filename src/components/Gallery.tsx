@@ -3,19 +3,19 @@ import React from 'react';
 
 const galleryImages = [
   {
-    src: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=600&h=400&fit=crop",
-    title: "Роторная буровая установка",
-    description: "Современное оборудование для глубокого бурения"
+    src: "/lovable-uploads/47aafadc-fbcf-458a-98b5-43d7589cd135.png",
+    title: "Мобильная буровая установка на базе ISUZU",
+    description: "Компактное и мощное оборудование для бурения на ограниченных площадках"
   },
   {
-    src: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&h=400&fit=crop",
-    title: "Процесс бурения",
-    description: "Контролируемое бурение с постоянным мониторингом"
+    src: "/lovable-uploads/86b211ae-9f5b-4d2c-a26d-54301d00b90e.png",
+    title: "Процесс бурения скважины",
+    description: "Рабочий процесс с применением профессионального оборудования"
   },
   {
-    src: "https://images.unsplash.com/photo-1533422902779-aff35862e462?w=600&h=400&fit=crop",
-    title: "Установка обсадных труб",
-    description: "Профессиональная установка защитной обсадки"
+    src: "/lovable-uploads/cc576d1e-a7b2-4b49-bfe9-c6fb3a818ac7.png",
+    title: "Буровая установка с синей стрелой",
+    description: "Современная техника для глубокого бурения с высокой производительностью"
   },
   {
     src: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&h=400&fit=crop",
@@ -40,10 +40,10 @@ const Gallery = () => {
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold text-gray-900 mb-4">
-            Наши работы
+            Наши работы и оборудование
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Фотогалерея выполненных проектов и используемого профессионального оборудования
+            Современное оборудование и профессиональные буровые установки для всех типов работ
           </p>
         </div>
 
