@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Button } from '@/components/ui/button';
 
 const services = [
   {
@@ -46,9 +47,9 @@ const ServicesTable = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
           {services.map((service, index) => (
-            <div key={index} className="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-shadow duration-300">
+            <div key={index} className="bg-white rounded-xl shadow-lg p-8 hover:shadow-xl transition-shadow duration-300 border-t-4 border-blue-600">
               <div className="flex justify-between items-start mb-6">
                 <h3 className="text-2xl font-bold text-gray-900">{service.type}</h3>
                 <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">
@@ -57,32 +58,39 @@ const ServicesTable = () => {
               </div>
 
               <div className="grid grid-cols-2 gap-4 mb-6">
-                <div>
+                <div className="bg-gray-50 p-4 rounded-lg">
                   <div className="text-gray-500 text-sm">Глубина</div>
                   <div className="text-xl font-semibold text-gray-900">{service.depth}</div>
                 </div>
-                <div>
+                <div className="bg-blue-50 p-4 rounded-lg">
                   <div className="text-gray-500 text-sm">Стоимость</div>
                   <div className="text-xl font-semibold text-blue-600">{service.price}</div>
                 </div>
               </div>
 
-              <button className="w-full mt-6 bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
+              <Button 
+                className="w-full mt-6 bg-blue-600 hover:bg-blue-700" 
+                variant="default"
+              >
                 Заказать консультацию
-              </button>
+              </Button>
             </div>
           ))}
         </div>
 
-        <div className="mt-12 bg-blue-900 text-white rounded-xl p-8 text-center">
+        <div className="mt-12 bg-blue-900 text-white rounded-xl p-8 text-center max-w-5xl mx-auto shadow-xl">
           <h3 className="text-2xl font-bold mb-4">Нужен полный прайс-лист?</h3>
           <p className="text-blue-100 mb-6">
             Ознакомьтесь с подробным прайс-листом всех наших услуг с указанием цен для разных диаметров и глубин
           </p>
           <Link to="/price">
-            <button className="bg-white text-blue-900 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors">
+            <Button 
+              className="bg-white text-blue-900 hover:bg-blue-50" 
+              variant="outline"
+              size="lg"
+            >
               Смотреть полный прайс-лист
-            </button>
+            </Button>
           </Link>
         </div>
       </div>
