@@ -1,13 +1,10 @@
 
 import React, { useState } from 'react';
-import { MessageSquare, Send, X, Bot, User } from 'lucide-react';
+import { MessageSquare } from 'lucide-react';
 import { useToast } from "@/hooks/use-toast";
-
-interface Message {
-  text: string;
-  isBot: boolean;
-  timestamp: Date;
-}
+import { Message } from '@/types/chat';
+import ChatWindow from './chat/ChatWindow';
+import { sendMessageToWebhook } from '@/utils/webhookService';
 
 const ChatBot = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -22,9 +19,6 @@ const ChatBot = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
 
-  // Fixed webhook URL - replace with your actual n8n webhook URL
-  const WEBHOOK_URL = 'https://your-n8n-instance.com/webhook/chatbot';
-
   const handleSendMessage = async () => {
     if (!inputText.trim()) return;
 
@@ -38,41 +32,8 @@ const ChatBot = () => {
     setIsLoading(true);
 
     try {
-      console.log("Отправка сообщения на n8n webhook:", WEBHOOK_URL);
+      const botResponseText = await sendMessageToWebhook(inputText);
       
-      const response = await fetch(WEBHOOK_URL, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          message: inputText,
-          timestamp: new Date().toISOString(),
-          source: "БурЭксперт_ChatBot"
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      const data = await response.json();
-      console.log("Получен ответ от n8n:", data);
-
-      // Извлекаем ответ из разных возможных форматов ответа n8n
-      let botResponseText = '';
-      if (data.response) {
-        botResponseText = data.response;
-      } else if (data.message) {
-        botResponseText = data.message;
-      } else if (data.text) {
-        botResponseText = data.text;
-      } else if (typeof data === 'string') {
-        botResponseText = data;
-      } else {
-        botResponseText = "Получен ответ от сервера, но формат неизвестен.";
-      }
-
       const botMessage: Message = {
         text: botResponseText,
         isBot: true,
@@ -104,13 +65,6 @@ const ChatBot = () => {
     setInputText('');
   };
 
-  const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
-      e.preventDefault();
-      handleSendMessage();
-    }
-  };
-
   return (
     <>
       {/* Chat Button */}
@@ -122,82 +76,15 @@ const ChatBot = () => {
       </button>
 
       {/* Chat Window */}
-      {isOpen && (
-        <div className="fixed bottom-6 right-6 w-96 h-96 bg-white rounded-lg shadow-2xl z-50 flex flex-col">
-          {/* Header */}
-          <div className="bg-blue-600 text-white p-4 rounded-t-lg flex justify-between items-center">
-            <div className="flex items-center space-x-2">
-              <Bot className="h-5 w-5" />
-              <span className="font-semibold">Помощник БурЭксперт</span>
-            </div>
-            <button
-              onClick={() => setIsOpen(false)}
-              className="text-white hover:text-gray-200"
-            >
-              <X className="h-5 w-5" />
-            </button>
-          </div>
-
-          {/* Messages */}
-          <div className="flex-1 p-4 overflow-y-auto space-y-4">
-            {messages.map((message, index) => (
-              <div
-                key={index}
-                className={`flex ${message.isBot ? 'justify-start' : 'justify-end'}`}
-              >
-                <div
-                  className={`max-w-[80%] p-3 rounded-lg ${
-                    message.isBot
-                      ? 'bg-gray-100 text-gray-800'
-                      : 'bg-blue-600 text-white'
-                  }`}
-                >
-                  <div className="flex items-start space-x-2">
-                    {message.isBot ? (
-                      <Bot className="h-4 w-4 mt-0.5 text-blue-600" />
-                    ) : (
-                      <User className="h-4 w-4 mt-0.5" />
-                    )}
-                    <span className="text-sm whitespace-pre-line">{message.text}</span>
-                  </div>
-                </div>
-              </div>
-            ))}
-            {isLoading && (
-              <div className="flex justify-start">
-                <div className="bg-gray-100 text-gray-800 p-3 rounded-lg max-w-[80%]">
-                  <div className="flex items-center space-x-2">
-                    <Bot className="h-4 w-4 text-blue-600" />
-                    <span className="text-sm">Печатаю...</span>
-                  </div>
-                </div>
-              </div>
-            )}
-          </div>
-
-          {/* Input */}
-          <div className="p-4 border-t">
-            <div className="flex space-x-2">
-              <input
-                type="text"
-                value={inputText}
-                onChange={(e) => setInputText(e.target.value)}
-                onKeyPress={handleKeyPress}
-                placeholder="Напишите ваш вопрос..."
-                className="flex-1 border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:border-blue-600"
-                disabled={isLoading}
-              />
-              <button
-                onClick={handleSendMessage}
-                disabled={isLoading || !inputText.trim()}
-                className="bg-blue-600 text-white p-2 rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                <Send className="h-4 w-4" />
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+      <ChatWindow
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+        messages={messages}
+        inputText={inputText}
+        setInputText={setInputText}
+        onSendMessage={handleSendMessage}
+        isLoading={isLoading}
+      />
     </>
   );
 };
