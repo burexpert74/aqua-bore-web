@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { MessageSquare, Send, X, Bot, User, Settings } from 'lucide-react';
+import { MessageSquare, Send, X, Bot, User } from 'lucide-react';
 import { useToast } from "@/hooks/use-toast";
 
 interface Message {
@@ -11,7 +11,6 @@ interface Message {
 
 const ChatBot = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
     {
       text: "Здравствуйте! Я помощник БурЭксперт. Расскажу о наших услугах бурения скважин. Какие вопросы вас интересуют?",
@@ -20,22 +19,14 @@ const ChatBot = () => {
     }
   ]);
   const [inputText, setInputText] = useState('');
-  const [webhookUrl, setWebhookUrl] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
 
+  // Fixed webhook URL - replace with your actual n8n webhook URL
+  const WEBHOOK_URL = 'https://your-n8n-instance.com/webhook/chatbot';
+
   const handleSendMessage = async () => {
     if (!inputText.trim()) return;
-
-    if (!webhookUrl) {
-      toast({
-        title: "Ошибка",
-        description: "Пожалуйста, настройте URL вебхука n8n в настройках",
-        variant: "destructive",
-      });
-      setIsSettingsOpen(true);
-      return;
-    }
 
     const userMessage: Message = {
       text: inputText,
@@ -47,9 +38,9 @@ const ChatBot = () => {
     setIsLoading(true);
 
     try {
-      console.log("Отправка сообщения на n8n webhook:", webhookUrl);
+      console.log("Отправка сообщения на n8n webhook:", WEBHOOK_URL);
       
-      const response = await fetch(webhookUrl, {
+      const response = await fetch(WEBHOOK_URL, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -94,7 +85,7 @@ const ChatBot = () => {
       console.error("Ошибка при отправке на webhook:", error);
       
       const errorMessage: Message = {
-        text: "Извините, произошла ошибка при обработке вашего сообщения. Проверьте настройки вебхука или попробуйте позже.",
+        text: "Извините, произошла ошибка при обработке вашего сообщения. Попробуйте позже.",
         isBot: true,
         timestamp: new Date()
       };
@@ -103,7 +94,7 @@ const ChatBot = () => {
 
       toast({
         title: "Ошибка",
-        description: "Не удалось получить ответ от сервера. Проверьте URL вебхука.",
+        description: "Не удалось получить ответ от сервера.",
         variant: "destructive",
       });
     } finally {
@@ -120,23 +111,6 @@ const ChatBot = () => {
     }
   };
 
-  const saveWebhookUrl = () => {
-    localStorage.setItem('n8n_webhook_url', webhookUrl);
-    setIsSettingsOpen(false);
-    toast({
-      title: "Настройки сохранены",
-      description: "URL вебхука n8n успешно сохранен",
-    });
-  };
-
-  // Загружаем сохраненный URL при инициализации
-  React.useEffect(() => {
-    const savedUrl = localStorage.getItem('n8n_webhook_url');
-    if (savedUrl) {
-      setWebhookUrl(savedUrl);
-    }
-  }, []);
-
   return (
     <>
       {/* Chat Button */}
@@ -147,54 +121,6 @@ const ChatBot = () => {
         <MessageSquare className="h-6 w-6" />
       </button>
 
-      {/* Settings Modal */}
-      {isSettingsOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 z-60 flex items-center justify-center p-4">
-          <div className="bg-white rounded-lg p-6 w-full max-w-md">
-            <div className="flex justify-between items-center mb-4">
-              <h3 className="text-lg font-semibold">Настройки n8n</h3>
-              <button
-                onClick={() => setIsSettingsOpen(false)}
-                className="text-gray-400 hover:text-gray-600"
-              >
-                <X className="h-5 w-5" />
-              </button>
-            </div>
-            <div className="space-y-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  URL вебхука n8n
-                </label>
-                <input
-                  type="url"
-                  value={webhookUrl}
-                  onChange={(e) => setWebhookUrl(e.target.value)}
-                  placeholder="https://your-n8n-instance.com/webhook/chatbot"
-                  className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:border-blue-600"
-                />
-                <p className="text-xs text-gray-500 mt-1">
-                  Введите URL вашего n8n вебхука для получения ответов
-                </p>
-              </div>
-              <div className="flex space-x-3">
-                <button
-                  onClick={saveWebhookUrl}
-                  className="flex-1 bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors"
-                >
-                  Сохранить
-                </button>
-                <button
-                  onClick={() => setIsSettingsOpen(false)}
-                  className="flex-1 bg-gray-300 text-gray-700 py-2 px-4 rounded-lg hover:bg-gray-400 transition-colors"
-                >
-                  Отмена
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-
       {/* Chat Window */}
       {isOpen && (
         <div className="fixed bottom-6 right-6 w-96 h-96 bg-white rounded-lg shadow-2xl z-50 flex flex-col">
@@ -204,21 +130,12 @@ const ChatBot = () => {
               <Bot className="h-5 w-5" />
               <span className="font-semibold">Помощник БурЭксперт</span>
             </div>
-            <div className="flex items-center space-x-2">
-              <button
-                onClick={() => setIsSettingsOpen(true)}
-                className="text-white hover:text-gray-200"
-                title="Настройки n8n"
-              >
-                <Settings className="h-4 w-4" />
-              </button>
-              <button
-                onClick={() => setIsOpen(false)}
-                className="text-white hover:text-gray-200"
-              >
-                <X className="h-5 w-5" />
-              </button>
-            </div>
+            <button
+              onClick={() => setIsOpen(false)}
+              className="text-white hover:text-gray-200"
+            >
+              <X className="h-5 w-5" />
+            </button>
           </div>
 
           {/* Messages */}
