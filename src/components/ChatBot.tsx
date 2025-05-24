@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
-import { MessageSquare, Send, X, Bot, User } from 'lucide-react';
+import { MessageSquare, Send, X, Bot, User, Settings } from 'lucide-react';
+import { useToast } from "@/hooks/use-toast";
 
 interface Message {
   text: string;
@@ -10,6 +11,7 @@ interface Message {
 
 const ChatBot = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
     {
       text: "Здравствуйте! Я помощник БурЭксперт. Расскажу о наших услугах бурения скважин. Какие вопросы вас интересуют?",
@@ -18,20 +20,22 @@ const ChatBot = () => {
     }
   ]);
   const [inputText, setInputText] = useState('');
-  const [userEmail, setUserEmail] = useState('');
-  const [isCollectingEmail, setIsCollectingEmail] = useState(false);
+  const [webhookUrl, setWebhookUrl] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const { toast } = useToast();
 
-  const botResponses = {
-    greeting: "Здравствуйте! Я помощник БурЭксперт. Чем могу помочь?",
-    price: "Стоимость бурения зависит от глубины и типа скважины:\n• Скважина на песок (15-50м): от 3,000 ₽/м\n• Артезианская (50-150м): от 4,500 ₽/м\n• Глубокая артезианская (150м+): от 5,500 ₽/м\n\nХотите точный расчет для вашего участка?",
-    depth: "Глубина скважины зависит от геологии участка:\n• Песчаные водоносные слои: 15-50 м\n• Известняк (артезианские): 50-150 м\n• Глубокие горизонты: 150+ м\n\nДля точного определения нужна разведка.",
-    time: "Сроки бурения:\n• Разведочное бурение: 1-2 дня\n• Скважина на песок: 2-3 дня\n• Артезианская: 3-5 дней\n• Глубокая артезианская: 5-7 дней",
-    equipment: "Используем современное оборудование:\n• Роторные буровые установки\n• Пневмоударные системы\n• Современные обсадные трубы\n• Профессиональные насосы",
-    default: "Спасибо за вопрос! Для подробной консультации рекомендую связаться с нашим специалистом. Оставьте email для связи?"
-  };
-
-  const handleSendMessage = () => {
+  const handleSendMessage = async () => {
     if (!inputText.trim()) return;
+
+    if (!webhookUrl) {
+      toast({
+        title: "Ошибка",
+        description: "Пожалуйста, настройте URL вебхука n8n в настройках",
+        variant: "destructive",
+      });
+      setIsSettingsOpen(true);
+      return;
+    }
 
     const userMessage: Message = {
       text: inputText,
@@ -40,53 +44,98 @@ const ChatBot = () => {
     };
 
     setMessages(prev => [...prev, userMessage]);
+    setIsLoading(true);
 
-    // Simulate bot response
-    setTimeout(() => {
-      let botResponse = botResponses.default;
+    try {
+      console.log("Отправка сообщения на n8n webhook:", webhookUrl);
+      
+      const response = await fetch(webhookUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          message: inputText,
+          timestamp: new Date().toISOString(),
+          source: "БурЭксперт_ChatBot"
+        }),
+      });
 
-      if (isCollectingEmail) {
-        if (inputText.includes('@')) {
-          setUserEmail(inputText);
-          botResponse = `Спасибо! Ваш email ${inputText} сохранен. Наш специалист свяжется с вами в ближайшее время для подробной консультации.`;
-          setIsCollectingEmail(false);
-        } else {
-          botResponse = "Пожалуйста, укажите корректный email адрес для связи.";
-        }
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      console.log("Получен ответ от n8n:", data);
+
+      // Извлекаем ответ из разных возможных форматов ответа n8n
+      let botResponseText = '';
+      if (data.response) {
+        botResponseText = data.response;
+      } else if (data.message) {
+        botResponseText = data.message;
+      } else if (data.text) {
+        botResponseText = data.text;
+      } else if (typeof data === 'string') {
+        botResponseText = data;
       } else {
-        const text = inputText.toLowerCase();
-        if (text.includes('цена') || text.includes('стоимость') || text.includes('сколько')) {
-          botResponse = botResponses.price;
-        } else if (text.includes('глубина') || text.includes('глубокая')) {
-          botResponse = botResponses.depth;
-        } else if (text.includes('время') || text.includes('срок') || text.includes('быстро')) {
-          botResponse = botResponses.time;
-        } else if (text.includes('оборудование') || text.includes('установка')) {
-          botResponse = botResponses.equipment;
-        } else if (text.includes('привет') || text.includes('здравствуй')) {
-          botResponse = botResponses.greeting;
-        } else {
-          setIsCollectingEmail(true);
-        }
+        botResponseText = "Получен ответ от сервера, но формат неизвестен.";
       }
 
       const botMessage: Message = {
-        text: botResponse,
+        text: botResponseText,
         isBot: true,
         timestamp: new Date()
       };
 
       setMessages(prev => [...prev, botMessage]);
-    }, 1000);
+
+    } catch (error) {
+      console.error("Ошибка при отправке на webhook:", error);
+      
+      const errorMessage: Message = {
+        text: "Извините, произошла ошибка при обработке вашего сообщения. Проверьте настройки вебхука или попробуйте позже.",
+        isBot: true,
+        timestamp: new Date()
+      };
+
+      setMessages(prev => [...prev, errorMessage]);
+
+      toast({
+        title: "Ошибка",
+        description: "Не удалось получить ответ от сервера. Проверьте URL вебхука.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
 
     setInputText('');
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter') {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
       handleSendMessage();
     }
   };
+
+  const saveWebhookUrl = () => {
+    localStorage.setItem('n8n_webhook_url', webhookUrl);
+    setIsSettingsOpen(false);
+    toast({
+      title: "Настройки сохранены",
+      description: "URL вебхука n8n успешно сохранен",
+    });
+  };
+
+  // Загружаем сохраненный URL при инициализации
+  React.useEffect(() => {
+    const savedUrl = localStorage.getItem('n8n_webhook_url');
+    if (savedUrl) {
+      setWebhookUrl(savedUrl);
+    }
+  }, []);
 
   return (
     <>
@@ -98,6 +147,54 @@ const ChatBot = () => {
         <MessageSquare className="h-6 w-6" />
       </button>
 
+      {/* Settings Modal */}
+      {isSettingsOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-60 flex items-center justify-center p-4">
+          <div className="bg-white rounded-lg p-6 w-full max-w-md">
+            <div className="flex justify-between items-center mb-4">
+              <h3 className="text-lg font-semibold">Настройки n8n</h3>
+              <button
+                onClick={() => setIsSettingsOpen(false)}
+                className="text-gray-400 hover:text-gray-600"
+              >
+                <X className="h-5 w-5" />
+              </button>
+            </div>
+            <div className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  URL вебхука n8n
+                </label>
+                <input
+                  type="url"
+                  value={webhookUrl}
+                  onChange={(e) => setWebhookUrl(e.target.value)}
+                  placeholder="https://your-n8n-instance.com/webhook/chatbot"
+                  className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:border-blue-600"
+                />
+                <p className="text-xs text-gray-500 mt-1">
+                  Введите URL вашего n8n вебхука для получения ответов
+                </p>
+              </div>
+              <div className="flex space-x-3">
+                <button
+                  onClick={saveWebhookUrl}
+                  className="flex-1 bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors"
+                >
+                  Сохранить
+                </button>
+                <button
+                  onClick={() => setIsSettingsOpen(false)}
+                  className="flex-1 bg-gray-300 text-gray-700 py-2 px-4 rounded-lg hover:bg-gray-400 transition-colors"
+                >
+                  Отмена
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Chat Window */}
       {isOpen && (
         <div className="fixed bottom-6 right-6 w-96 h-96 bg-white rounded-lg shadow-2xl z-50 flex flex-col">
@@ -107,12 +204,21 @@ const ChatBot = () => {
               <Bot className="h-5 w-5" />
               <span className="font-semibold">Помощник БурЭксперт</span>
             </div>
-            <button
-              onClick={() => setIsOpen(false)}
-              className="text-white hover:text-gray-200"
-            >
-              <X className="h-5 w-5" />
-            </button>
+            <div className="flex items-center space-x-2">
+              <button
+                onClick={() => setIsSettingsOpen(true)}
+                className="text-white hover:text-gray-200"
+                title="Настройки n8n"
+              >
+                <Settings className="h-4 w-4" />
+              </button>
+              <button
+                onClick={() => setIsOpen(false)}
+                className="text-white hover:text-gray-200"
+              >
+                <X className="h-5 w-5" />
+              </button>
+            </div>
           </div>
 
           {/* Messages */}
@@ -140,6 +246,16 @@ const ChatBot = () => {
                 </div>
               </div>
             ))}
+            {isLoading && (
+              <div className="flex justify-start">
+                <div className="bg-gray-100 text-gray-800 p-3 rounded-lg max-w-[80%]">
+                  <div className="flex items-center space-x-2">
+                    <Bot className="h-4 w-4 text-blue-600" />
+                    <span className="text-sm">Печатаю...</span>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
 
           {/* Input */}
@@ -152,10 +268,12 @@ const ChatBot = () => {
                 onKeyPress={handleKeyPress}
                 placeholder="Напишите ваш вопрос..."
                 className="flex-1 border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:border-blue-600"
+                disabled={isLoading}
               />
               <button
                 onClick={handleSendMessage}
-                className="bg-blue-600 text-white p-2 rounded-lg hover:bg-blue-700 transition-colors"
+                disabled={isLoading || !inputText.trim()}
+                className="bg-blue-600 text-white p-2 rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <Send className="h-4 w-4" />
               </button>
