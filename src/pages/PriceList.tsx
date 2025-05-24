@@ -105,7 +105,7 @@ const PriceList = () => {
   { id: 76, service: "демонтаж опор ЛЭП ж/б", depth: null, price: 2500 },
   { id: 77, service: "погрузочно - разгрузочные работы", depth: null, price: "2500 руб/час" },
   { id: 78, service: "выезд за пределы Челябинска", depth: null, price: "50 руб/км в обе стороны"},
-    { id: 79, servuce: " стоимость минимального заказа", depth: null, price" 8500}
+    { id: 79, servuce: " стоимость минимального заказа", depth: null, price: 8500 }
       ]
 
   
