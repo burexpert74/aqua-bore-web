@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -17,7 +18,7 @@ import { Search, Filter } from 'lucide-react';
 type PriceItem = {
   id: number;
   service: string;
-  depth: string | number;
+  depth: string | number | null;
   price: string | number;
 };
 
@@ -107,13 +108,17 @@ const PriceList = () => {
   { id: 79, service: "стоимость минимального заказа", depth: null, price: 8500 }
   ];
 
-  // Get unique depths for filter
-  const uniqueDepths = Array.from(new Set(priceItems.map(item => item.depth)));
+  // Filter out null values before collecting unique depths
+  const uniqueDepths = Array.from(new Set(priceItems
+    .filter(item => item.depth !== null)
+    .map(item => item.depth)));
   
   // Filter function
   const filteredItems = priceItems.filter(item => {
     const matchesSearch = item.service.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesDepth = filterDepth === "all" || item.depth?.toString() === filterDepth;
+    const matchesDepth = filterDepth === "all" || 
+                          (item.depth !== null && 
+                           item.depth.toString() === filterDepth);
     return matchesSearch && matchesDepth;
   });
 
@@ -151,8 +156,8 @@ const PriceList = () => {
               >
                 <option value="all">Все глубины</option>
                 {uniqueDepths.map((depth, idx) => (
-                  <option key={idx} value={depth.toString()}>
-                    {depth === "-" ? "Без глубины" : `${depth} м`}
+                  <option key={idx} value={depth?.toString()}>
+                    {depth === null ? "Без глубины" : `${depth} м`}
                   </option>
                 ))}
               </select>

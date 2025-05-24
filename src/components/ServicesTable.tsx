@@ -49,9 +49,6 @@ const ServicesTable = () => {
               <div className="p-6">
                 <div className="flex justify-between items-start mb-6">
                   <h3 className="text-2xl font-bold text-gray-900">{service.type}</h3>
-                  <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">
-                    {service.timeframe}
-                  </span>
                 </div>
 
                 <div className="grid grid-cols-2 gap-4 mb-6">
