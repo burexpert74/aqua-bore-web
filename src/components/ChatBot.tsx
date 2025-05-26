@@ -4,8 +4,7 @@ import { MessageSquare } from 'lucide-react';
 
 const ChatBot = () => {
   const handleTelegramClick = () => {
-    // Replace with your actual Telegram bot username
-    window.open('https://t.me/your_bot_username', '_blank');
+    window.open('https://t.me/gpt_noway_bot', '_blank');
   };
 
   return (

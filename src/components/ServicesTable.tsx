@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 
@@ -31,8 +30,7 @@ const services = [
 
 const ServicesTable = () => {
   const handleTelegramClick = () => {
-    // Replace with your actual Telegram bot username
-    window.open('https://t.me/your_bot_username', '_blank');
+    window.open('https://t.me/gpt_noway_bot', '_blank');
   };
 
   return (
