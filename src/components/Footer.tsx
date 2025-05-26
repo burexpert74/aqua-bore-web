@@ -3,6 +3,18 @@ import React from 'react';
 import { Drill, Phone, Mail, MapPin, Clock } from 'lucide-react';
 
 const Footer = () => {
+  const scrollToServices = () => {
+    const servicesSection = document.getElementById('services');
+    if (servicesSection) {
+      servicesSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const handleTelegramClick = () => {
+    // Replace with your actual Telegram bot username
+    window.open('https://t.me/your_bot_username', '_blank');
+  };
+
   return (
     <footer id="contact" className="bg-gray-900 text-white">
       <div className="container mx-auto px-6 py-12">
@@ -54,12 +66,38 @@ const Footer = () => {
           <div>
             <h3 className="text-xl font-bold mb-4">Услуги</h3>
             <ul className="space-y-2 text-gray-300">
-              <li>Бурение скважин разного диаметра</li>
-              <li>Монтаж винтовых свай</li>
-              <li>Монтаж опор ЛЭП</li>
-              <li>Демонтаж опор ЛЭП</li>
-              <li>Погрузочно-разгрузочные работы</li>
-              <li>Выезд за пределы Челябинска</li>
+              <li>
+                <button 
+                  onClick={scrollToServices}
+                  className="hover:text-blue-400 transition-colors text-left"
+                >
+                  Бурение скважин разного диаметра
+                </button>
+              </li>
+              <li>
+                <button 
+                  onClick={scrollToServices}
+                  className="hover:text-blue-400 transition-colors text-left"
+                >
+                  Монтаж винтовых свай
+                </button>
+              </li>
+              <li>
+                <button 
+                  onClick={scrollToServices}
+                  className="hover:text-blue-400 transition-colors text-left"
+                >
+                  Монтаж опор ЛЭП
+                </button>
+              </li>
+              <li>
+                <button 
+                  onClick={scrollToServices}
+                  className="hover:text-blue-400 transition-colors text-left"
+                >
+                  Демонтаж опор ЛЭП
+                </button>
+              </li>
             </ul>
           </div>
         </div>

@@ -1,6 +1,5 @@
 
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 
 const services = [
@@ -31,6 +30,11 @@ const services = [
 ];
 
 const ServicesTable = () => {
+  const handleTelegramClick = () => {
+    // Replace with your actual Telegram bot username
+    window.open('https://t.me/your_bot_username', '_blank');
+  };
+
   return (
     <section id="services" className="py-20 bg-gray-50">
       <div className="container mx-auto px-4">
@@ -74,6 +78,7 @@ const ServicesTable = () => {
               
               <div className="p-6 pt-0 mt-auto">
                 <Button 
+                  onClick={handleTelegramClick}
                   className="w-full bg-blue-600 hover:bg-blue-700" 
                   variant="default"
                 >
@@ -85,19 +90,18 @@ const ServicesTable = () => {
         </div>
 
         <div className="mt-12 bg-blue-900 text-white rounded-xl p-8 text-center max-w-5xl mx-auto shadow-xl">
-          <h3 className="text-2xl font-bold mb-4">Нужен полный прайс-лист?</h3>
+          <h3 className="text-2xl font-bold mb-4">Есть вопросы по услугам?</h3>
           <p className="text-blue-100 mb-6">
-            Ознакомьтесь с подробным прайс-листом всех наших услуг с указанием цен для разных диаметров и глубин
+            Свяжитесь с нашими специалистами в Telegram для получения подробной консультации и расчета стоимости работ
           </p>
-          <Link to="/price">
-            <Button 
-              className="bg-white text-blue-900 hover:bg-blue-50" 
-              variant="outline"
-              size="lg"
-            >
-              Смотреть полный прайс-лист
-            </Button>
-          </Link>
+          <Button 
+            onClick={handleTelegramClick}
+            className="bg-white text-blue-900 hover:bg-blue-50" 
+            variant="outline"
+            size="lg"
+          >
+            Написать в Telegram
+          </Button>
         </div>
       </div>
     </section>

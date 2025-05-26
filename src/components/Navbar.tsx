@@ -19,9 +19,6 @@ const Navbar = () => {
             <Link to="/" className="text-gray-700 hover:text-blue-600 transition-colors">
               Главная
             </Link>
-            <Link to="/price" className="text-gray-700 hover:text-blue-600 transition-colors">
-              Прайс-лист
-            </Link>
             <Link to="/blog" className="text-gray-700 hover:text-blue-600 transition-colors">
               Блог
             </Link>
@@ -45,9 +42,6 @@ const Navbar = () => {
           <div className="md:hidden py-4">
             <Link to="/" className="block py-2 text-gray-700 hover:text-blue-600">
               Главная
-            </Link>
-            <Link to="/price" className="block py-2 text-gray-700 hover:text-blue-600">
-              Прайс-лист
             </Link>
             <Link to="/blog" className="block py-2 text-gray-700 hover:text-blue-600">
               Блог
