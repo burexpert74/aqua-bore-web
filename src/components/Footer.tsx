@@ -13,9 +13,9 @@ const Footer = () => {
   return (
     <footer id="contact" className="bg-gray-900 text-white">
       <div className="container mx-auto px-4 sm:px-6 py-8 sm:py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {/* Company Info */}
-          <div className="md:col-span-2 lg:col-span-2">
+          <div>
             <div className="flex items-center space-x-2 mb-4">
               <Drill className="h-7 w-7 sm:h-8 sm:w-8 text-blue-400" />
               <span className="text-xl sm:text-2xl font-bold">БурЭксперт</span>
@@ -24,14 +24,6 @@ const Footer = () => {
               Профессиональное бурение скважин с 15-летним опытом. 
               Гарантируем качество работ и надежное водоснабжение для вашего дома.
             </p>
-            <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4">
-              <div className="bg-blue-600 p-2 rounded text-center">
-                <span className="text-xs sm:text-sm font-semibold">500+ скважин</span>
-              </div>
-              <div className="bg-blue-600 p-2 rounded text-center">
-                <span className="text-xs sm:text-sm font-semibold">15 лет опыта</span>
-              </div>
-            </div>
           </div>
 
           {/* Contact Info */}
