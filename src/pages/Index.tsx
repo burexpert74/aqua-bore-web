@@ -19,8 +19,10 @@ const Index = () => {
         <BlogSidebar isOpen={true} onClose={() => {}} />
       </div>
       
-      {/* Mobile Blog Sidebar */}
-      <BlogSidebar isOpen={isBlogOpen} onClose={() => setIsBlogOpen(false)} />
+      {/* Mobile Blog Sidebar - only shown when opened */}
+      {isBlogOpen && (
+        <BlogSidebar isOpen={isBlogOpen} onClose={() => setIsBlogOpen(false)} />
+      )}
       
       {/* Mobile Blog Toggle */}
       <BlogToggle onClick={() => setIsBlogOpen(true)} />

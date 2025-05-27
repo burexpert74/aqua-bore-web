@@ -3,6 +3,14 @@ import React from 'react';
 import { ArrowDown } from 'lucide-react';
 
 const Hero = () => {
+  const scrollToNext = () => {
+    const heroSection = document.querySelector('section');
+    const nextSection = heroSection?.nextElementSibling;
+    if (nextSection) {
+      nextSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section className="relative bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700 text-white">
       <div className="absolute inset-0 bg-black opacity-20"></div>
@@ -19,9 +27,13 @@ const Hero = () => {
         </div>
       </div>
 
-      <div className="absolute bottom-4 sm:bottom-8 left-1/2 transform -translate-x-1/2">
+      <button 
+        onClick={scrollToNext}
+        className="absolute bottom-4 sm:bottom-8 left-1/2 transform -translate-x-1/2 hover:text-blue-200 transition-colors cursor-pointer"
+        aria-label="Прокрутить к следующей секции"
+      >
         <ArrowDown className="h-6 w-6 sm:h-8 sm:w-8 animate-bounce" />
-      </div>
+      </button>
     </section>
   );
 };
