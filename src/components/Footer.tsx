@@ -11,7 +11,7 @@ const Footer = () => {
   };
 
   return (
-    <footer id="contact" className="bg-gray-900 text-white">
+    <footer id="contact" className="bg-gray-900 text-white w-full">
       <div className="container mx-auto px-4 sm:px-6 py-8 sm:py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {/* Company Info */}
@@ -90,18 +90,10 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-gray-700 mt-8 sm:mt-12 pt-6 sm:pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <p className="text-gray-400 text-sm sm:text-base text-center md:text-left">
+          <div className="text-center">
+            <p className="text-gray-400 text-sm sm:text-base">
               © 2025 БурЭксперт. Все права защищены.
             </p>
-            <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-6 text-sm sm:text-base">
-              <a href="#" className="text-gray-400 hover:text-white transition-colors text-center">
-                Политика конфиденциальности
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors text-center">
-                Условия использования
-              </a>
-            </div>
           </div>
         </div>
       </div>

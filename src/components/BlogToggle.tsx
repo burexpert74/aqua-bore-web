@@ -10,7 +10,7 @@ const BlogToggle: React.FC<BlogToggleProps> = ({ onClick }) => {
   return (
     <button
       onClick={onClick}
-      className="fixed top-20 left-4 sm:left-6 bg-blue-600 text-white p-2 sm:p-3 rounded-full shadow-lg hover:bg-blue-700 transition-colors z-40 lg:hidden"
+      className="fixed top-20 left-4 sm:left-6 bg-blue-600 text-white p-2 sm:p-3 rounded-full shadow-lg hover:bg-blue-700 transition-colors z-40"
       title="Открыть блог"
       aria-label="Открыть блог"
     >

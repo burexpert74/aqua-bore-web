@@ -13,22 +13,17 @@ const Index = () => {
   const [isBlogOpen, setIsBlogOpen] = useState(false);
 
   return (
-    <div className="min-h-screen flex">
-      {/* Blog Sidebar - hidden on mobile, visible on desktop */}
-      <div className="hidden lg:block">
-        <BlogSidebar isOpen={true} onClose={() => {}} />
-      </div>
-      
-      {/* Mobile Blog Sidebar - only shown when opened */}
+    <div className="min-h-screen">
+      {/* Blog Sidebar - floating for both mobile and desktop */}
       {isBlogOpen && (
         <BlogSidebar isOpen={isBlogOpen} onClose={() => setIsBlogOpen(false)} />
       )}
       
-      {/* Mobile Blog Toggle */}
+      {/* Blog Toggle */}
       <BlogToggle onClick={() => setIsBlogOpen(true)} />
       
       {/* Main content */}
-      <div className="flex-1 lg:ml-0">
+      <div className="w-full">
         <Navbar />
         <Hero />
         <Gallery />

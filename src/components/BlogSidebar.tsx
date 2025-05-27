@@ -57,19 +57,18 @@ const BlogSidebar: React.FC<BlogSidebarProps> = ({ isOpen, onClose }) => {
 
   return (
     <>
-      {/* Overlay for mobile */}
+      {/* Overlay */}
       {isOpen && (
         <div 
-          className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
+          className="fixed inset-0 bg-black bg-opacity-50 z-40"
           onClick={onClose}
         />
       )}
       
-      {/* Sidebar */}
+      {/* Sidebar - floating for all screen sizes */}
       <div className={`
         fixed top-0 left-0 h-full w-80 sm:w-96 bg-white shadow-xl z-50 transform transition-transform duration-300 ease-in-out
         ${isOpen ? 'translate-x-0' : '-translate-x-full'}
-        lg:relative lg:translate-x-0 lg:w-80 lg:shadow-lg
       `}>
         <div className="flex flex-col h-full">
           {/* Header */}
@@ -77,7 +76,7 @@ const BlogSidebar: React.FC<BlogSidebarProps> = ({ isOpen, onClose }) => {
             <h2 className="text-lg sm:text-xl font-bold text-gray-900">Новости и статьи</h2>
             <button
               onClick={onClose}
-              className="p-1 hover:bg-gray-100 rounded-full transition-colors lg:hidden"
+              className="p-1 hover:bg-gray-100 rounded-full transition-colors"
             >
               <X className="h-5 w-5 text-gray-500" />
             </button>
