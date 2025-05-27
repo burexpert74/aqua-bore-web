@@ -58,7 +58,7 @@ const Footer = () => {
                   onClick={scrollToServices}
                   className="hover:text-blue-400 transition-colors text-left w-full"
                 >
-                  Бурение скважин разного диаметра
+                  Бурение ям разного диаметра
                 </button>
               </li>
               <li>
