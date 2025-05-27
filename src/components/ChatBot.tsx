@@ -10,10 +10,11 @@ const ChatBot = () => {
   return (
     <button
       onClick={handleTelegramClick}
-      className="fixed bottom-6 right-6 bg-blue-600 text-white p-4 rounded-full shadow-lg hover:bg-blue-700 transition-colors z-50"
+      className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 bg-blue-600 text-white p-3 sm:p-4 rounded-full shadow-lg hover:bg-blue-700 transition-colors z-50 touch-manipulation"
       title="Написать в Telegram"
+      aria-label="Написать в Telegram"
     >
-      <MessageSquare className="h-6 w-6" />
+      <MessageSquare className="h-5 w-5 sm:h-6 sm:w-6" />
     </button>
   );
 };
