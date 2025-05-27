@@ -18,7 +18,7 @@ const Hero = () => {
       <div className="relative container mx-auto px-4 sm:px-6 py-16 sm:py-20 lg:py-24 flex flex-col items-center">
         <div className="max-w-4xl text-center">
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 leading-tight">
-            Профессиональное бурение скважин
+            Профессиональное бурение под фундамент и конструкции
           </h1>
           <p className="text-lg sm:text-xl lg:text-2xl mb-8 sm:mb-12 text-blue-100 px-4 sm:px-0">
             Более 15 лет. Современное оборудование. Гарантированный результат.
