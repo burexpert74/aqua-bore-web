@@ -16,21 +16,6 @@ const Hero = () => {
             Более 15 лет опыта. Современное оборудование. Гарантия качества.
             Обеспечим ваш дом чистой водой быстро и надежно.
           </p>
-
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 text-center mb-6 sm:mb-8 px-4 sm:px-0">
-            <div className="bg-blue-800 bg-opacity-50 p-4 sm:p-6 rounded-lg shadow-lg">
-              <div className="text-2xl sm:text-3xl font-bold mb-2">500+</div>
-              <div className="text-sm sm:text-base text-blue-200">Пробуренных скважин</div>
-            </div>
-            <div className="bg-blue-800 bg-opacity-50 p-4 sm:p-6 rounded-lg shadow-lg">
-              <div className="text-2xl sm:text-3xl font-bold mb-2">15 лет</div>
-              <div className="text-sm sm:text-base text-blue-200">Опыта работы</div>
-            </div>
-            <div className="bg-blue-800 bg-opacity-50 p-4 sm:p-6 rounded-lg shadow-lg">
-              <div className="text-2xl sm:text-3xl font-bold mb-2">99%</div>
-              <div className="text-sm sm:text-base text-blue-200">Довольных клиентов</div>
-            </div>
-          </div>
         </div>
       </div>
 
