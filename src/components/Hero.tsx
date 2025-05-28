@@ -20,9 +20,17 @@ const Hero = () => {
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 leading-tight">
             Услуги бурения под фундамент и монтаж опор ЛЭП, винтовых свай
           </h1>
-          <p className="text-lg sm:text-xl lg:text-2xl mb-8 sm:mb-12 text-blue-100 px-4 sm:px-0">
+          <p className="text-lg sm:text-xl lg:text-2xl mb-6 sm:mb-8 text-blue-100 px-4 sm:px-0">
             Собственный автопарк, индивидуальный подход.
           </p>
+          <div className="bg-blue-800/50 backdrop-blur-sm rounded-lg p-4 sm:p-6 inline-block">
+            <p className="text-base sm:text-lg text-blue-100 font-medium">
+              Работаем в Челябинской области
+            </p>
+            <p className="text-sm sm:text-base text-blue-200 mt-1">
+              Возможен выезд за пределы Челябинска по дополнительной плате
+            </p>
+          </div>
         </div>
       </div>
 

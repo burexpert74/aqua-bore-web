@@ -22,6 +22,14 @@ const Footer = () => {
             <p className="text-gray-300 mb-4 sm:mb-6 max-w-md text-sm sm:text-base">
               Собственный автопарк, индивидуальный подход.
             </p>
+            <div className="bg-gray-800 p-3 sm:p-4 rounded-lg">
+              <p className="text-sm sm:text-base font-medium text-blue-400 mb-1">
+                Работаем в Челябинской области
+              </p>
+              <p className="text-xs sm:text-sm text-gray-300">
+                Возможен выезд за пределы Челябинска по дополнительной плате
+              </p>
+            </div>
           </div>
 
           {/* Contact Info */}
