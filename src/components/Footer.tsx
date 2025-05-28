@@ -17,7 +17,6 @@ const Footer = () => {
           {/* Company Info */}
           <div>
             <div className="flex items-center space-x-2 mb-4">
-              <Drill className="h-7 w-7 sm:h-8 sm:w-8 text-blue-400" />
               <span className="text-xl sm:text-2xl font-bold">БурЭксперт</span>
             </div>
             <p className="text-gray-300 mb-4 sm:mb-6 max-w-md text-sm sm:text-base">
