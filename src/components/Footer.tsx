@@ -21,8 +21,7 @@ const Footer = () => {
               <span className="text-xl sm:text-2xl font-bold">БурЭксперт</span>
             </div>
             <p className="text-gray-300 mb-4 sm:mb-6 max-w-md text-sm sm:text-base">
-              Более 15 лет. Современное оборудование. Гарантированный результат.
-              Серьёзный подход к каждой задаче. 
+              Собственный автопарк, индивидуальный подход.
             </p>
           </div>
 
@@ -92,7 +91,7 @@ const Footer = () => {
         <div className="border-t border-gray-700 mt-8 sm:mt-12 pt-6 sm:pt-8">
           <div className="text-center">
             <p className="text-gray-400 text-sm sm:text-base">
-              © 2025 БурЭксперт. Все права защищены.
+              © 2025 БурЭксперт.
             </p>
           </div>
         </div>
