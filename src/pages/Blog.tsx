@@ -1,12 +1,60 @@
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import BlogCard from '@/components/BlogCard';
 import Footer from '@/components/Footer';
 import { getBlogPosts } from '@/components/getBlogPosts.ts';
 
-const Blog = async() => {
-  const blogPosts = await getBlogPosts();
+const Blog = () => {
+  const [blogPosts, setBlogPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchBlogPosts = async () => {
+      try {
+        setLoading(true);
+        const posts = await getBlogPosts();
+        setBlogPosts(posts);
+      } catch (err) {
+        setError(err);
+        console.error('Error fetching blog posts:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchBlogPosts();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gray-50">
+        <Navbar />
+        <div className="container mx-auto px-4 sm:px-6 py-8 sm:py-12">
+          <div className="text-center">
+            <p className="text-lg text-gray-600">Загрузка статей...</p>
+          </div>
+        </div>
+        <Footer />
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen bg-gray-50">
+        <Navbar />
+        <div className="container mx-auto px-4 sm:px-6 py-8 sm:py-12">
+          <div className="text-center">
+            <p className="text-lg text-red-600">Ошибка загрузки статей. Попробуйте позже.</p>
+          </div>
+        </div>
+        <Footer />
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-gray-50">
       <Navbar />
