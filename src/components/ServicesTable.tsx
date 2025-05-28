@@ -1,30 +1,31 @@
+
 import React from 'react';
 import { Button } from '@/components/ui/button';
 
 const services = [
   {
-    type: "Бурение ям малого диаметра",
-    depth: "До 5 м",
+    type: "Бурение ям разных диаметров",
+    depth: "До 12 м",
     price: "от 300 ₽/м",
-    features: ["Для установки ограждений, навесов и малых строений", "Доступная стоимость"]
-  },
-  {
-    type: "Бурение ям среднего диаметра",
-    depth: "5-10 м",
-    price: "от 400 ₽/м",
-    features: ["Для частного строительства", "Оптимальное соотношение цена/качество"]
-  },
-  {
-    type: "Бурение ям большого диаметра",
-    depth: "10-12 м",
-    price: "от 800 ₽/м",
-    features: ["Для строительства хозяйственных построек", "Высокая производительность"]
+    features: ["Для частного строительства", "Доступная стоимость", "Высокая производительность"]
   },
   {
     type: "Монтаж винтовых свай",
     depth: "До 4 м",
     price: "от 400 ₽",
     features: ["Диаметры от 76 до 108 мм", "Быстрая установка", "Надежное основание"]
+  },
+  {
+    type: "Монтаж опор ЛЭП",
+    depth: "",
+    price: "от 2500 ₽",
+    features: ["Работаем и с деревянными и с ж/б опорами"]
+  },
+  {
+    type: "Демонтаж опор ЛЭП",
+    depth: "",
+    price: "от 2500 ₽",
+    features: ["Работаем и с деревянными и с ж/б опорами"]
   }
 ];
 
@@ -53,11 +54,13 @@ const ServicesTable = () => {
                   <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 leading-tight">{service.type}</h3>
                 </div>
 
-                <div className="grid grid-cols-2 gap-3 sm:gap-4 mb-4 sm:mb-6">
-                  <div className="bg-gray-50 p-3 sm:p-4 rounded-lg text-center">
-                    <div className="text-gray-500 text-xs sm:text-sm">Глубина</div>
-                    <div className="text-lg sm:text-xl font-semibold text-gray-900">{service.depth}</div>
-                  </div>
+                <div className={`grid ${service.depth ? 'grid-cols-2' : 'grid-cols-1'} gap-3 sm:gap-4 mb-4 sm:mb-6`}>
+                  {service.depth && (
+                    <div className="bg-gray-50 p-3 sm:p-4 rounded-lg text-center">
+                      <div className="text-gray-500 text-xs sm:text-sm">Глубина</div>
+                      <div className="text-lg sm:text-xl font-semibold text-gray-900">{service.depth}</div>
+                    </div>
+                  )}
                   <div className="bg-blue-50 p-3 sm:p-4 rounded-lg text-center">
                     <div className="text-gray-500 text-xs sm:text-sm">Стоимость</div>
                     <div className="text-lg sm:text-xl font-semibold text-blue-600">{service.price}</div>
