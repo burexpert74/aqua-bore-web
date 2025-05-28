@@ -1,13 +1,21 @@
 
 import React, { useState } from 'react';
 import { Menu, X, Drill } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
 
   const scrollToServices = () => {
     setIsOpen(false); // Close mobile menu when navigating
+    
+    // If not on the main page, navigate to main page first
+    if (location.pathname !== '/') {
+      window.location.href = '/#services';
+      return;
+    }
+    
     const servicesSection = document.getElementById('services');
     if (servicesSection) {
       servicesSection.scrollIntoView({ behavior: 'smooth' });
@@ -16,6 +24,13 @@ const Navbar = () => {
 
   const scrollToContact = () => {
     setIsOpen(false); // Close mobile menu when navigating
+    
+    // If not on the main page, navigate to main page first
+    if (location.pathname !== '/') {
+      window.location.href = '/#contact';
+      return;
+    }
+    
     const contactSection = document.getElementById('contact');
     if (contactSection) {
       contactSection.scrollIntoView({ behavior: 'smooth' });
