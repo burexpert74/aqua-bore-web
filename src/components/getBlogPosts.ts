@@ -1,9 +1,9 @@
 const fallbackImages = [
-  "public/blog/fallback-1.jpg",
-  "public/blog/fallback-2.jpg",
-  "public/blog/fallback-3.jpg",
-  "public/blog/fallback-4.jpg",
-  "public/blog/fallback-5.jpg",
+  "blog/fallback-1.jpg",
+  "blog/fallback-2.jpg",
+  "blog/fallback-3.jpg",
+  "blog/fallback-4.jpg",
+  "blog/fallback-5.jpg",
 ];
 
 function getRandomFallbackImage() {
@@ -34,7 +34,7 @@ export async function getBlogPosts() {
           id: data.id,
           title: data.title,
           excerpt: data.excerpt,
-          image: data.image,
+          image,
           date: data.date,
           readTime: data.readTime,
           slug: data.slug,
