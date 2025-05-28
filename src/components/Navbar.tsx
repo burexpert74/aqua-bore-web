@@ -27,7 +27,6 @@ const Navbar = () => {
       <div className="container mx-auto px-4 sm:px-6">
         <div className="flex justify-between items-center py-3 sm:py-4">
           <Link to="/" className="flex items-center space-x-2" onClick={() => setIsOpen(false)}>
-            <Drill className="h-7 w-7 sm:h-8 sm:w-8 text-blue-600" />
             <span className="text-xl sm:text-2xl font-bold text-gray-900">БурЭксперт</span>
           </Link>
 
