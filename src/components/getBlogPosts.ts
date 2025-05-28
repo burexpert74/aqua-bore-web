@@ -5,6 +5,7 @@ export async function getBlogPosts() {
   // В будущем это можно заменить на автоматическое сканирование директории
   const slugs = [
     'arenda-yamobura-chelyabinsk-polnoe-rukovodstvo',
+    'arenda-yamobora-chelyabinsk-gid-po-vyboru-i-primeneniyu',
     // добавляй сюда другие слаги по мере публикации
   ];
 
