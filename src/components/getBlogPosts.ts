@@ -1,4 +1,14 @@
+const fallbackImages = [
+  "/blog/fallback-1.jpg",
+  "/blog/fallback-2.jpg",
+  "/blog/fallback-3.jpg",
+  "/blog/fallback-4.jpg",
+];
 
+function getRandomFallbackImage() {
+  const index = Math.floor(Math.random() * fallbackImages.length);
+  return fallbackImages[index];
+}
 // components/getBlogPosts.ts
 export async function getBlogPosts() {
   // Список слагов статей, которые нужно загрузить
@@ -15,6 +25,10 @@ export async function getBlogPosts() {
         const res = await fetch(`/blog/${slug}.json`);
         if (!res.ok) return null;
         const data = await res.json();
+
+        const imageExists = await fetch(data.image).then(r => r.ok).catch(() => false);
+        const image = imageExists ? data.image : getRandomFallbackImage();
+        
         return {
           id: data.id,
           title: data.title,
