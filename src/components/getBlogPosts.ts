@@ -1,8 +1,9 @@
 const fallbackImages = [
-  "/blog/fallback-1.jpg",
-  "/blog/fallback-2.jpg",
-  "/blog/fallback-3.jpg",
-  "/blog/fallback-4.jpg",
+  "public/blog/fallback-1.jpg",
+  "public/blog/fallback-2.jpg",
+  "public/blog/fallback-3.jpg",
+  "public/blog/fallback-4.jpg",
+  "public/blog/fallback-5.jpg",
 ];
 
 function getRandomFallbackImage() {
