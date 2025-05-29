@@ -46,7 +46,7 @@ const Hero = () => {
         <div className="max-w-5xl text-center">
           {/* Разделенные заголовки */}
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 sm:mb-6 leading-tight animate-fade-in text-shadow-lg">
-            Профессиональное бурение
+            Услуги бурения
           </h1>
           <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold mb-6 sm:mb-8 text-blue-100 animate-fade-in text-shadow">
             Фундамент • Опоры ЛЭП • Винтовые сваи
