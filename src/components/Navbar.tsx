@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Menu, X, Drill } from 'lucide-react';
+import { Menu, X, Phone } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
@@ -8,9 +8,8 @@ const Navbar = () => {
   const location = useLocation();
 
   const scrollToServices = () => {
-    setIsOpen(false); // Close mobile menu when navigating
+    setIsOpen(false);
     
-    // If not on the main page, navigate to main page first
     if (location.pathname !== '/') {
       window.location.href = '/#services';
       return;
@@ -23,9 +22,8 @@ const Navbar = () => {
   };
 
   const scrollToContact = () => {
-    setIsOpen(false); // Close mobile menu when navigating
+    setIsOpen(false);
     
-    // If not on the main page, navigate to main page first
     if (location.pathname !== '/') {
       window.location.href = '/#contact';
       return;
@@ -44,6 +42,19 @@ const Navbar = () => {
           <Link to="/" className="flex items-center space-x-2" onClick={() => setIsOpen(false)}>
             <span className="text-xl sm:text-2xl font-bold text-gray-900">БурЭксперт</span>
           </Link>
+
+          {/* Phone numbers - desktop */}
+          <div className="hidden lg:flex items-center space-x-4 text-sm">
+            <a href="tel:+79043041412" className="flex items-center space-x-1 text-blue-600 hover:text-blue-800 transition-colors">
+              <Phone className="h-4 w-4" />
+              <span>+7(904)304-14-12</span>
+            </a>
+            <span className="text-gray-300">|</span>
+            <a href="tel:+73517769990" className="flex items-center space-x-1 text-blue-600 hover:text-blue-800 transition-colors">
+              <Phone className="h-4 w-4" />
+              <span>+7(351)776-99-90</span>
+            </a>
+          </div>
 
           <div className="hidden md:flex space-x-6 lg:space-x-8">
             <Link to="/" className="text-gray-700 hover:text-blue-600 transition-colors py-2">
@@ -72,6 +83,20 @@ const Navbar = () => {
         {isOpen && (
           <div className="md:hidden border-t border-gray-200 bg-white">
             <div className="py-4 space-y-1">
+              {/* Phone numbers - mobile */}
+              <div className="px-4 py-2 border-b border-gray-100">
+                <div className="space-y-2">
+                  <a href="tel:+79043041412" className="flex items-center space-x-2 text-blue-600 hover:text-blue-800 transition-colors">
+                    <Phone className="h-4 w-4" />
+                    <span>+7(904)304-14-12</span>
+                  </a>
+                  <a href="tel:+73517769990" className="flex items-center space-x-2 text-blue-600 hover:text-blue-800 transition-colors">
+                    <Phone className="h-4 w-4" />
+                    <span>+7(351)776-99-90</span>
+                  </a>
+                </div>
+              </div>
+              
               <Link 
                 to="/" 
                 className="block px-4 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-lg transition-colors"

@@ -13,7 +13,7 @@ const Hero = () => {
   };
 
   const handlePhoneClick = () => {
-    window.open('tel:+79001234567', '_self');
+    window.open('tel:+79043041412', '_self');
   };
 
   const handleTelegramClick = () => {
@@ -24,6 +24,15 @@ const Hero = () => {
     <section className="relative bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700 text-white overflow-hidden">
       {/* Декоративный фон */}
       <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%2393c5fd%22%20fill-opacity%3D%220.1%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%222%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-20"></div>
+      
+      {/* Изображение ямобура */}
+      <div className="absolute right-0 top-1/2 transform -translate-y-1/2 opacity-10 hidden lg:block">
+        <img 
+          src="/lovable-uploads/1c898605-8f27-4515-8506-9ed0609f8504.png" 
+          alt="Ямобур" 
+          className="w-96 h-auto"
+        />
+      </div>
       
       {/* Градиентные блобы */}
       <div className="absolute top-0 left-0 w-96 h-96 bg-blue-300 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse"></div>

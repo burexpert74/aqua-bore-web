@@ -29,6 +29,16 @@ function getRandomFallbackImage() {
   return selectedImage;
 }
 
+// Функция для проверки существования изображения
+async function imageExists(url: string): Promise<boolean> {
+  try {
+    const response = await fetch(url, { method: 'HEAD' });
+    return response.ok;
+  } catch {
+    return false;
+  }
+}
+
 // Автоматическое обнаружение доступных статей
 async function getAvailableSlugs(): Promise<string[]> {
   const validSlugs: string[] = [];
@@ -68,8 +78,9 @@ export async function getBlogPosts() {
         if (!res.ok) return null;
         const data = await res.json();
 
-        const imageExists = await fetch(data.image).then(r => r.ok).catch(() => false);
-        const image = imageExists ? data.image : getRandomFallbackImage();
+        // Проверяем существование изображения
+        const imageExistsCheck = await imageExists(data.image);
+        const image = imageExistsCheck ? data.image : getRandomFallbackImage();
         
         return {
           id: data.id,
@@ -96,9 +107,9 @@ export async function getBlogPost(slug: string) {
     if (!res.ok) throw new Error('Post not found');
     const data = await res.json();
     
-    // Добавляем fallback картинку и для отдельной статьи
-    const imageExists = await fetch(data.image).then(r => r.ok).catch(() => false);
-    if (!imageExists) {
+    // Проверяем существование изображения и добавляем fallback для отдельной статьи
+    const imageExistsCheck = await imageExists(data.image);
+    if (!imageExistsCheck) {
       data.image = getRandomFallbackImage();
     }
     
