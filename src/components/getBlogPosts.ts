@@ -1,10 +1,10 @@
 
 const fallbackImages = [
-  "blog/fallback-1.jpg",
-  "blog/fallback-2.jpg", 
-  "blog/fallback-3.jpg",
-  "blog/fallback-4.jpg",
-  "blog/fallback-5.jpg",
+  "blog/img/fallback-1.jpg",
+  "blog/img/fallback-2.jpg", 
+  "blog/img/fallback-3.jpg",
+  "blog/img/fallback-4.jpg",
+  "blog/img/fallback-5.jpg",
 ];
 
 // Хранилище использованных fallback изображений
