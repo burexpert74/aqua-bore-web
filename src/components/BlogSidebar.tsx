@@ -1,7 +1,8 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { X, Calendar, ExternalLink } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { getBlogPosts } from './getBlogPosts';
 
 interface BlogPost {
   id: number;
@@ -9,31 +10,8 @@ interface BlogPost {
   excerpt: string;
   date: string;
   readTime: string;
+  slug: string;
 }
-
-const blogPosts: BlogPost[] = [
-  {
-    id: 1,
-    title: "Как выбрать глубину скважины для частного дома",
-    excerpt: "Подробное руководство по определению оптимальной глубины бурения в зависимости от геологических условий...",
-    date: "2024-05-20",
-    readTime: "5 мин"
-  },
-  {
-    id: 2,
-    title: "Технологии бурения: роторное vs ударно-канатное",
-    excerpt: "Сравнение современных методов бурения скважин, их преимущества и области применения...",
-    date: "2024-05-18",
-    readTime: "7 мин"
-  },
-  {
-    id: 3,
-    title: "Обслуживание скважины: график и рекомендации",
-    excerpt: "Полное руководство по правильному уходу за скважиной для обеспечения долгосрочной работы...",
-    date: "2024-05-15",
-    readTime: "6 мин"
-  }
-];
 
 interface BlogSidebarProps {
   isOpen: boolean;
@@ -42,6 +20,23 @@ interface BlogSidebarProps {
 
 const BlogSidebar: React.FC<BlogSidebarProps> = ({ isOpen, onClose }) => {
   const navigate = useNavigate();
+  const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const posts = await getBlogPosts();
+        // Берем только первые 3 статьи для сайдбара
+        setBlogPosts(posts.slice(0, 3));
+      } catch (error) {
+        console.error('Error fetching blog posts for sidebar:', error);
+      }
+    };
+
+    if (isOpen) {
+      fetchPosts();
+    }
+  }, [isOpen]);
 
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('ru-RU', {
@@ -52,6 +47,11 @@ const BlogSidebar: React.FC<BlogSidebarProps> = ({ isOpen, onClose }) => {
 
   const handleViewAllBlogs = () => {
     navigate('/blog');
+    onClose();
+  };
+
+  const handlePostClick = (slug: string) => {
+    navigate(`/blog/${slug}`);
     onClose();
   };
 
@@ -85,23 +85,33 @@ const BlogSidebar: React.FC<BlogSidebarProps> = ({ isOpen, onClose }) => {
           {/* Content */}
           <div className="flex-1 overflow-y-auto p-4 sm:p-6">
             <div className="space-y-4 sm:space-y-6">
-              {blogPosts.map((post) => (
-                <article key={post.id} className="border-b border-gray-200 pb-4 sm:pb-6 last:border-b-0">
-                  <h3 className="text-sm sm:text-base font-semibold text-gray-900 mb-2 line-clamp-2 hover:text-blue-600 transition-colors cursor-pointer">
-                    {post.title}
-                  </h3>
-                  <p className="text-xs sm:text-sm text-gray-600 mb-3 line-clamp-2">
-                    {post.excerpt}
-                  </p>
-                  <div className="flex items-center justify-between text-xs text-gray-500">
-                    <div className="flex items-center space-x-1">
-                      <Calendar className="h-3 w-3" />
-                      <span>{formatDate(post.date)}</span>
+              {blogPosts.length === 0 ? (
+                <div className="text-center text-gray-500">
+                  <p>Загрузка статей...</p>
+                </div>
+              ) : (
+                blogPosts.map((post) => (
+                  <article 
+                    key={post.id} 
+                    className="border-b border-gray-200 pb-4 sm:pb-6 last:border-b-0 cursor-pointer"
+                    onClick={() => handlePostClick(post.slug)}
+                  >
+                    <h3 className="text-sm sm:text-base font-semibold text-gray-900 mb-2 line-clamp-2 hover:text-blue-600 transition-colors">
+                      {post.title}
+                    </h3>
+                    <p className="text-xs sm:text-sm text-gray-600 mb-3 line-clamp-2">
+                      {post.excerpt}
+                    </p>
+                    <div className="flex items-center justify-between text-xs text-gray-500">
+                      <div className="flex items-center space-x-1">
+                        <Calendar className="h-3 w-3" />
+                        <span>{formatDate(post.date)}</span>
+                      </div>
+                      <span>{post.readTime}</span>
                     </div>
-                    <span>{post.readTime}</span>
-                  </div>
-                </article>
-              ))}
+                  </article>
+                ))
+              )}
             </div>
           </div>
 

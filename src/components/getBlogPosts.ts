@@ -1,7 +1,7 @@
 
 const fallbackImages = [
   "blog/fallback-1.jpg",
-  "blog/fallback-2.jpg",
+  "blog/fallback-2.jpg", 
   "blog/fallback-3.jpg",
   "blog/fallback-4.jpg",
   "blog/fallback-5.jpg",
@@ -31,22 +31,19 @@ function getRandomFallbackImage() {
 
 // Автоматическое обнаружение доступных статей
 async function getAvailableSlugs(): Promise<string[]> {
-  const knownSlugs = [
-    'arenda-yamobura-chelyabinsk-polnoe-rukovodstvo',
-    'arenda-yamobora-chelyabinsk-gid-po-vyboru-i-primeneniyu',
-  ];
-
-  // Проверяем существование известных статей и возможных новых
-  const possibleSlugs = [
-    ...knownSlugs,
-    // Можно добавить логику для поиска новых статей
-    // Пока используем известный список
-  ];
-
   const validSlugs: string[] = [];
   
+  // Список возможных статей для проверки
+  const potentialSlugs = [
+    'arenda-yamobura-chelyabinsk-polnoe-rukovodstvo',
+    'arenda-yamobora-chelyabinsk-gid-po-vyboru-i-primeneniyu',
+    'arenda-yamobura-v-chelyabinske-polnyj-gid',
+    'arenda-yamoburov-chelyabinsk-polnyy-gid',
+  ];
+
+  // Проверяем каждую потенциальную статью
   await Promise.all(
-    possibleSlugs.map(async (slug) => {
+    potentialSlugs.map(async (slug) => {
       try {
         const res = await fetch(`/blog/${slug}.json`);
         if (res.ok) {
@@ -98,6 +95,13 @@ export async function getBlogPost(slug: string) {
     const res = await fetch(`/blog/${slug}.json`);
     if (!res.ok) throw new Error('Post not found');
     const data = await res.json();
+    
+    // Добавляем fallback картинку и для отдельной статьи
+    const imageExists = await fetch(data.image).then(r => r.ok).catch(() => false);
+    if (!imageExists) {
+      data.image = getRandomFallbackImage();
+    }
+    
     return data;
   } catch (error) {
     console.error(`Error loading blog post ${slug}:`, error);
