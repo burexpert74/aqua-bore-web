@@ -6,7 +6,8 @@ export const slugs = [
   "arenda-yamobora-chelyabinsk-gid-po-vyboru-i-primeneniyu",
   "arenda-yamobura-chelyabinsk-polnoe-rukovodstvo",
   "arenda-yamobura-v-chelyabinske-polnyj-gid",
-  "arenda-yamoburov-chelyabinsk-effektivnoe-reshenie-dlya-stroitelstva"
+  "arenda-yamoburov-chelyabinsk-effektivnoe-reshenie-dlya-stroitelstva",
+  "arenda-yamoburov-v-chelyabinske-polnyy-gid-i-preimushchestva"
 ];
 /* END SLUGS */
 
