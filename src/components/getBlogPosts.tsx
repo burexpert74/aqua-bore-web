@@ -101,28 +101,11 @@ export const ImageWithFallback: React.FC<ImageWithFallbackProps> = ({
 };
 
 // ---------- Blog Data Fetching ----------
-const potentialSlugs = [
+const slugs = [
   'arenda-yamobura-chelyabinsk-polnoe-rukovodstvo',
   'arenda-yamobora-chelyabinsk-gid-po-vyboru-i-primeneniyu',
   'arenda-yamoburov-chelyabinsk-polnyy-gid',
 ];
-
-export async function getAvailableSlugs(): Promise<string[]> {
-  const validSlugs: string[] = [];
-
-  await Promise.all(
-    potentialSlugs.map(async (slug) => {
-      try {
-        const res = await fetch(`/blog/${slug}.json`);
-        if (res.ok) validSlugs.push(slug);
-      } catch {
-        // Игнорируем ошибки
-      }
-    })
-  );
-
-  return validSlugs;
-}
 
 export interface BlogPost {
   id: string | number;
@@ -135,8 +118,6 @@ export interface BlogPost {
 }
 
 export async function getBlogPosts(): Promise<BlogPost[]> {
-  const slugs = await getAvailableSlugs();
-
   const posts = await Promise.all(
     slugs.map(async (slug) => {
       try {
