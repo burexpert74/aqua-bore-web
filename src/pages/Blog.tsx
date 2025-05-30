@@ -1,6 +1,5 @@
-
 import React, { useState, useEffect } from 'react';
-import { getBlogPosts } from '@/components/getBlogPosts.ts';
+import { getBlogPosts } from '@/components/getBlogPosts';
 import Navbar from '@/components/Navbar';
 import BlogCard from '@/components/BlogCard';
 import Footer from '@/components/Footer';
