@@ -35,7 +35,7 @@ const Blog = () => {
         <div className="relative container mx-auto px-4 sm:px-6 py-8 sm:py-12">
           <div className="text-center">
             <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mb-4"></div>
-            <p className="text-lg text-gray-600">Загрузка статей...</p>
+            <p className="text-lg text-gray-600">Загрузка статей..</p>
           </div>
         </div>
         <Footer />
