@@ -1,4 +1,4 @@
-
+// blogUtils.tsx (или index.tsx, если всё в одном)
 import React, { useState } from 'react';
 
 // ---------- Fallback Images ----------
@@ -10,14 +10,11 @@ const fallbackImages = [
   '/blog/img/fallback-5.jpg',
 ];
 
+let usedFallbackImages: string[] = [];
+
 function getFallbackImageForSlug(slug: string): string {
   const index = Math.abs(hashCode(slug)) % fallbackImages.length;
   return fallbackImages[index];
-}
-
-function getRandomFallbackImage(): string {
-  const randomIndex = Math.floor(Math.random() * fallbackImages.length);
-  return fallbackImages[randomIndex];
 }
 
 function hashCode(str: string): number {
@@ -25,6 +22,7 @@ function hashCode(str: string): number {
     return ((hash << 5) - hash) + char.charCodeAt(0);
   }, 0);
 }
+
 
 // ---------- Cached Image Existence Check ----------
 const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
