@@ -2,7 +2,11 @@
 import React, { useState } from 'react';
 
 /* START SLUGS */
-export const slugs = [];
+export const slugs = [
+  "arenda-yamobora-chelyabinsk-gid-po-vyboru-i-primeneniyu",
+  "arenda-yamobura-chelyabinsk-polnoe-rukovodstvo",
+  "arenda-yamobura-v-chelyabinske-polnyj-gid"
+];
 /* END SLUGS */
 
 // ---------- Fallback Images ----------
