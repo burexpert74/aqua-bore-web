@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main  # или твоя ветка с публикацией статей
+    paths:
+      - 'public/blog/**'
 
 jobs:
   update-slugs:
