@@ -1,6 +1,10 @@
 
 import React, { useState } from 'react';
 
+/* START SLUGS */
+export const slugs = [];
+/* END SLUGS */
+
 // ---------- Fallback Images ----------
 const fallbackImages = [
   '/blog/img/fallback-1.jpg',
@@ -99,10 +103,6 @@ export const ImageWithFallback: React.FC<ImageWithFallbackProps> = ({
     />
   );
 };
-
-
-/* START SLUGS */ export const slugs = [];/* END SLUGS */
-
 
 export interface BlogPost {
   id: string | number;
