@@ -52,11 +52,20 @@ function updateSlugsFile(slugs) {
   const newSlugsString = JSON.stringify(slugs, null, 2);
   const replacement = `${startMarker}\nexport const slugs = ${newSlugsString};\n${endMarker}`;
 
-  const newContent = content.replace(regex, replacement);
+ const oldContent = fs.readFileSync(slugsFilePath, 'utf-8');
+ const newContent = oldContent.replace(regex, replacement);
 
-  fs.writeFileSync(slugsFilePath, newContent, 'utf-8');
-  console.log('✅ Файл getBlogPosts.tsx обновлён!');
-  console.log('🆕 Новые слаги:\n', slugs);
+ if (oldContent === newContent) {
+   console.log('⚠️ Содержимое getBlogPosts.tsx не изменилось — пропускаем запись и коммит.');
+   return; // или process.exit(0);
+}
+
+ fs.writeFileSync(slugsFilePath, newContent, 'utf-8');
+ console.log('✅ Файл getBlogPosts.tsx обновлён!');
+
+  
+}
+  
 }
 
 // Запуск
