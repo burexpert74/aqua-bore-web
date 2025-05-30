@@ -35,6 +35,15 @@ function updateSlugsFile(slugs) {
     process.exit(1);
   }
 
+  console.log('--- Содержимое файла между маркерами ---');
+  const match = content.match(regex);
+  if (match) {
+    console.log(match[0]);
+  } else {
+    console.error('❌ Регулярка не нашла текст между маркерами');
+    process.exit(1);
+  }
+
   const startMarker = '/* START SLUGS */';
   const endMarker = '/* END SLUGS */';
 
@@ -46,12 +55,16 @@ function updateSlugsFile(slugs) {
   const regex = new RegExp(`${startMarker}[\\s\\S]*?${endMarker}`, 's'); // 👈 ключевое исправление
   const newSlugsString = JSON.stringify(slugs, null, 2);
   const replacement = `${startMarker}\nexport const slugs = ${newSlugsString};\n${endMarker}`;
-  const newContent = content.replace(regex, replacement);
+  console.log('--- Новый блок для вставки ---');
+  console.log(replacement);
 
+  const newContent = content.replace(regex, replacement);
   if (content === newContent) {
-    console.log('⚠️ Содержимое getBlogPosts.tsx не изменилось — пропускаем запись и коммит.');
-    return;
+    console.log('⚠️ Замена не изменила содержимое файла');
+  } else {
+    console.log('✅ Замена прошла успешно');
   }
+
 
   fs.writeFileSync(slugsFilePath, newContent, 'utf-8');
   console.log('✅ Файл getBlogPosts.tsx обновлён!');
