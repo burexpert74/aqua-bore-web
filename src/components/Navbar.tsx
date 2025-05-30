@@ -44,16 +44,22 @@ const Navbar = () => {
           </Link>
 
           {/* Phone numbers - desktop */}
-          <div className="hidden lg:flex items-center space-x-4 text-sm">
-            <a href="tel:+79043041412" className="flex items-center space-x-1 text-blue-600 hover:text-blue-800 transition-colors">
-              <Phone className="h-4 w-4" />
-              <span>+7(904)304-14-12</span>
-            </a>
-            <span className="text-gray-300">|</span>
-            <a href="tel:+73517769990" className="flex items-center space-x-1 text-blue-600 hover:text-blue-800 transition-colors">
-              <Phone className="h-4 w-4" />
-              <span>+7(351)776-99-90</span>
-            </a>
+          <div className="hidden lg:flex items-center space-x-6">
+            <div className="flex items-center space-x-4">
+              <div className="flex flex-col items-end">
+                <a href="tel:+79043041412" className="flex items-center space-x-2 text-blue-700 hover:text-blue-900 transition-colors font-bold text-lg group">
+                  <Phone className="h-5 w-5 text-blue-600 group-hover:scale-110 transition-transform" />
+                  <span className="tracking-wide">+7 (904) 304-14-12</span>
+                </a>
+                <a href="tel:+73517769990" className="flex items-center space-x-2 text-blue-700 hover:text-blue-900 transition-colors font-bold text-lg group mt-1">
+                  <Phone className="h-5 w-5 text-blue-600 group-hover:scale-110 transition-transform" />
+                  <span className="tracking-wide">+7 (351) 776-99-90</span>
+                </a>
+              </div>
+              <div className="text-xs text-gray-500 text-right leading-tight">
+                <div>Ежедневно с 08:00 до 21:00</div>
+              </div>
+            </div>
           </div>
 
           <div className="hidden md:flex space-x-6 lg:space-x-8">
@@ -84,16 +90,19 @@ const Navbar = () => {
           <div className="md:hidden border-t border-gray-200 bg-white">
             <div className="py-4 space-y-1">
               {/* Phone numbers - mobile */}
-              <div className="px-4 py-2 border-b border-gray-100">
-                <div className="space-y-2">
-                  <a href="tel:+79043041412" className="flex items-center space-x-2 text-blue-600 hover:text-blue-800 transition-colors">
-                    <Phone className="h-4 w-4" />
-                    <span>+7(904)304-14-12</span>
+              <div className="px-4 py-3 border-b border-gray-100 bg-blue-50">
+                <div className="space-y-3">
+                  <a href="tel:+79043041412" className="flex items-center space-x-3 text-blue-700 hover:text-blue-900 transition-colors font-bold text-lg group">
+                    <Phone className="h-5 w-5 text-blue-600 group-hover:scale-110 transition-transform" />
+                    <span className="tracking-wide">+7 (904) 304-14-12</span>
                   </a>
-                  <a href="tel:+73517769990" className="flex items-center space-x-2 text-blue-600 hover:text-blue-800 transition-colors">
-                    <Phone className="h-4 w-4" />
-                    <span>+7(351)776-99-90</span>
+                  <a href="tel:+73517769990" className="flex items-center space-x-3 text-blue-700 hover:text-blue-900 transition-colors font-bold text-lg group">
+                    <Phone className="h-5 w-5 text-blue-600 group-hover:scale-110 transition-transform" />
+                    <span className="tracking-wide">+7 (351) 776-99-90</span>
                   </a>
+                  <div className="text-xs text-gray-600 ml-8">
+                    Ежедневно с 08:00 до 21:00
+                  </div>
                 </div>
               </div>
               

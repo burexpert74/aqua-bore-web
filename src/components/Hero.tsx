@@ -55,18 +55,18 @@ const Hero = () => {
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 mb-8 sm:mb-10 justify-center animate-fade-in">
             <Button 
               onClick={handlePhoneClick}
-              className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 text-lg font-semibold flex items-center justify-center gap-3 hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-xl text-shadow"
+              className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 text-lg font-bold flex items-center justify-center gap-3 hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl text-shadow border-2 border-green-500 hover:border-green-400 hover:brightness-110"
               size="lg"
             >
-              <Phone className="h-5 w-5" />
+              <Phone className="h-6 w-6 animate-pulse" />
               Позвонить сейчас
             </Button>
             <Button 
               onClick={handleTelegramClick}
-              className="bg-blue-500 hover:bg-blue-600 text-white px-8 py-4 text-lg font-semibold flex items-center justify-center gap-3 hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-xl text-shadow"
+              className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 text-lg font-bold flex items-center justify-center gap-3 hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl text-shadow border-2 border-blue-500 hover:border-blue-400 hover:brightness-110"
               size="lg"
             >
-              <MessageCircle className="h-5 w-5" />
+              <MessageCircle className="h-6 w-6" />
               Консультация в Telegram
             </Button>
           </div>
