@@ -39,36 +39,32 @@ function updateSlugsFile(slugs) {
   const endMarker = '/* END SLUGS */';
   const regex = new RegExp(`${startMarker}[\\s\\S]*?${endMarker}`, 's');
 
-  console.log('--- Содержимое файла между маркерами ---');
   const match = content.match(regex);
-  if (match) {
-    console.log(match[0]);
-  } else {
+  if (!match) {
     console.error('❌ Регулярка не нашла текст между маркерами');
     process.exit(1);
   }
 
-  if (!content.includes(startMarker) || !content.includes(endMarker)) {
-    console.error('❌ Маркеры не найдены в getBlogPosts.tsx');
-    process.exit(1);
-  }
+  console.log('--- Содержимое файла между маркерами ---');
+  console.log(match[0]);
 
   const newSlugsString = JSON.stringify(slugs, null, 2);
   const replacement = `${startMarker}\nexport const slugs = ${newSlugsString};\n${endMarker}`;
+
   console.log('--- Новый блок для вставки ---');
   console.log(replacement);
 
   const newContent = content.replace(regex, replacement);
-  if (content === newContent) {
-    console.log('⚠️ Замена не изменила содержимое файла');
-  } else {
-    console.log('✅ Замена прошла успешно');
-  }
 
+  if (newContent === content) {
+    console.log('⚠️ Замена не изменила содержимое файла — пропускаем запись.');
+    return; // Не записываем и не коммитим
+  }
 
   fs.writeFileSync(slugsFilePath, newContent, 'utf-8');
   console.log('✅ Файл getBlogPosts.tsx обновлён!');
 }
+
 
 // 🏁 Запуск
 const slugs = getSlugs();
