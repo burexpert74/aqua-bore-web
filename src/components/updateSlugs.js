@@ -2,7 +2,6 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
-// __dirname аналог для ES модулей:
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -23,22 +22,22 @@ function updateSlugsFile(slugs) {
   const startMarker = '/* START SLUGS */';
   const endMarker = '/* END SLUGS */';
 
-  const regex = new RegExp(`${startMarker}[\\s\\S]*${endMarker}`, 'm');
+  const regex = new RegExp(`${startMarker}[\\s\\S]*?${endMarker}`, 's'); // <-- важно: флаг 's'
 
   const newSlugsString = JSON.stringify(slugs, null, 2);
 
   const replacement = `${startMarker}\nexport const slugs = ${newSlugsString};\n${endMarker}`;
 
   if (!regex.test(content)) {
-    console.error('Markers not found in getBlogPosts.tsx');
+    console.error('❌ Markers not found in getBlogPosts.tsx');
     process.exit(1);
   }
 
   const newContent = content.replace(regex, replacement);
 
   fs.writeFileSync(slugsFilePath, newContent, 'utf-8');
+  console.log('✅ Slugs updated:', slugs);
 }
 
 const slugs = getSlugs();
 updateSlugsFile(slugs);
-console.log('Slugs updated:', slugs);
