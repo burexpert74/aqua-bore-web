@@ -17,11 +17,20 @@ function getFallbackImageForSlug(slug: string): string {
   return fallbackImages[index];
 }
 
+// Улучшенная хэш-функция для более равномерного распределения
 function hashCode(str: string): number {
-  return str.split('').reduce((hash, char) => {
-    return ((hash << 5) - hash) + char.charCodeAt(0);
-  }, 0);
+  let hash = 0;
+  if (str.length === 0) return hash;
+  
+  for (let i = 0; i < str.length; i++) {
+    const char = str.charCodeAt(i);
+    hash = ((hash << 5) - hash) + char;
+    hash = hash & hash; // Преобразуем в 32-битное число
+  }
+  
+  return Math.abs(hash);
 }
+
 
 // ---------- Cached Image Existence Check ----------
 const CACHE_DURATION = 5 * 60 * 1000; // 5 минут
