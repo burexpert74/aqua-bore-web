@@ -2,7 +2,16 @@
 import React, { useState, useEffect } from 'react';
 import { X, Calendar, ExternalLink } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import { getBlogPosts, BlogPost } from './getBlogPosts';
+import { getBlogPosts } from './getBlogPosts';
+
+interface BlogPost {
+  id: number;
+  title: string;
+  excerpt: string;
+  date: string;
+  readTime: string;
+  slug: string;
+}
 
 interface BlogSidebarProps {
   isOpen: boolean;
