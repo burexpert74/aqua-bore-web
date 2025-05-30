@@ -100,12 +100,11 @@ export const ImageWithFallback: React.FC<ImageWithFallbackProps> = ({
   );
 };
 
-// ---------- Blog Data Fetching ----------
-const slugs = [
-  'arenda-yamobura-chelyabinsk-polnoe-rukovodstvo',
-  'arenda-yamobora-chelyabinsk-gid-po-vyboru-i-primeneniyu',
-  'arenda-yamoburov-chelyabinsk-polnyy-gid',
-];
+
+/* START SLUGS */
+export const slugs = [];
+/* END SLUGS */
+
 
 export interface BlogPost {
   id: string | number;
