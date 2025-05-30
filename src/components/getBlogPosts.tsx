@@ -101,9 +101,7 @@ export const ImageWithFallback: React.FC<ImageWithFallbackProps> = ({
 };
 
 
-/* START SLUGS */
-export const slugs = [];
-/* END SLUGS */
+/* START SLUGS */ export const slugs = [];/* END SLUGS */
 
 
 export interface BlogPost {
