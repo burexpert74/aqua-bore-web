@@ -2,42 +2,68 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
+// ⬇️ Правильный __dirname для ES-модуля
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+// Пути
 const blogDir = path.resolve(__dirname, '../../public/blog');
 const slugsFilePath = path.resolve(__dirname, 'getBlogPosts.tsx');
 
+// Получаем список слагов
 function getSlugs() {
+  console.log('📂 Читаем public/blog...');
   const files = fs.readdirSync(blogDir);
-  return files
+  const slugs = files
     .filter(f => f.endsWith('.json'))
     .map(f => f.replace('.json', ''))
     .sort();
+
+  console.log('✅ Найдено slug-файлов:', slugs.length);
+  return slugs;
 }
 
+// Обновляем файл с маркерами
 function updateSlugsFile(slugs) {
-  let content = fs.readFileSync(slugsFilePath, 'utf-8');
+  console.log('📄 Читаем getBlogPosts.tsx:', slugsFilePath);
+  let content;
 
+  try {
+    content = fs.readFileSync(slugsFilePath, 'utf-8');
+  } catch (e) {
+    console.error('❌ Ошибка чтения файла:', e.message);
+    process.exit(1);
+  }
+
+  // Проверка наличия маркеров
   const startMarker = '/* START SLUGS */';
   const endMarker = '/* END SLUGS */';
 
-  const regex = new RegExp(`${startMarker}[\\s\\S]*?${endMarker}`, 's'); // <-- важно: флаг 's'
-
-  const newSlugsString = JSON.stringify(slugs, null, 2);
-
-  const replacement = `${startMarker}\nexport const slugs = ${newSlugsString};\n${endMarker}`;
-
-  if (!regex.test(content)) {
-    console.error('❌ Markers not found in getBlogPosts.tsx');
+  if (!content.includes(startMarker) || !content.includes(endMarker)) {
+    console.error('❌ Маркеры не найдены в getBlogPosts.tsx');
+    console.log('ℹ️ Поиск:', { startMarker, endMarker });
+    console.log('📄 Содержимое файла:\n---\n' + content.slice(0, 500) + '\n...');
     process.exit(1);
   }
+
+  // Регулярка с флагом 's' — включает переносы строк
+  const regex = new RegExp(`${startMarker}[\\s\\S]*?${endMarker}`, 's');
+
+  const newSlugsString = JSON.stringify(slugs, null, 2);
+  const replacement = `${startMarker}\nexport const slugs = ${newSlugsString};\n${endMarker}`;
 
   const newContent = content.replace(regex, replacement);
 
   fs.writeFileSync(slugsFilePath, newContent, 'utf-8');
-  console.log('✅ Slugs updated:', slugs);
+  console.log('✅ Файл getBlogPosts.tsx обновлён!');
+  console.log('🆕 Новые слаги:\n', slugs);
 }
 
-const slugs = getSlugs();
-updateSlugsFile(slugs);
+// Запуск
+try {
+  const slugs = getSlugs();
+  updateSlugsFile(slugs);
+} catch (err) {
+  console.error('❌ Ошибка выполнения скрипта:', err.message);
+  process.exit(1);
+}
