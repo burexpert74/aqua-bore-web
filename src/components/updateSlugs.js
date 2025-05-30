@@ -46,13 +46,13 @@ function updateSlugsFile(slugs) {
 
   const startMarker = '/* START SLUGS */';
   const endMarker = '/* END SLUGS */';
+  const regex = new RegExp(`${startMarker}[\\s\\S]*?${endMarker}`, 's');
 
   if (!content.includes(startMarker) || !content.includes(endMarker)) {
     console.error('❌ Маркеры не найдены в getBlogPosts.tsx');
     process.exit(1);
   }
 
-  const regex = new RegExp(`${startMarker}[\\s\\S]*?${endMarker}`, 's'); // 👈 ключевое исправление
   const newSlugsString = JSON.stringify(slugs, null, 2);
   const replacement = `${startMarker}\nexport const slugs = ${newSlugsString};\n${endMarker}`;
   console.log('--- Новый блок для вставки ---');
