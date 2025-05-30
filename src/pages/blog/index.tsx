@@ -77,7 +77,7 @@ const Blog = () => {
               Блог и полезные статьи
             </h1>
             <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto px-4 sm:px-0">
-              Экспертные советы по бурению скважин, обслуживанию и выбору оборудования
+              Экспертные советы по бурению, обслуживанию и выбору оборудования
             </p>
             <div className="mt-6 w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full"></div>
           </div>
