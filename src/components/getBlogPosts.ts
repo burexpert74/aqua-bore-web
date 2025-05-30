@@ -12,17 +12,17 @@ const fallbackImages = [
 
 let usedFallbackImages: string[] = [];
 
-function getRandomFallbackImage(): string {
-  if (usedFallbackImages.length >= fallbackImages.length) {
-    usedFallbackImages = [];
-  }
-
-  const available = fallbackImages.filter(img => !usedFallbackImages.includes(img));
-  const randomIndex = Math.floor(Math.random() * available.length);
-  const selected = available[randomIndex];
-  usedFallbackImages.push(selected);
-  return selected;
+function getFallbackImageForSlug(slug: string): string {
+  const index = Math.abs(hashCode(slug)) % fallbackImages.length;
+  return fallbackImages[index];
 }
+
+function hashCode(str: string): number {
+  return str.split('').reduce((hash, char) => {
+    return ((hash << 5) - hash) + char.charCodeAt(0);
+  }, 0);
+}
+
 
 // ---------- Cached Image Existence Check ----------
 const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
@@ -125,7 +125,7 @@ export async function getBlogPosts() {
 
         const hasImage = data.image && data.image.trim() !== '';
         const validImage = hasImage && await imageExists(data.image);
-        const image = validImage ? data.image : getRandomFallbackImage();
+        const image = validImage ? data.image : getFallbackImageForSlug(slug);
 
         return {
           id: data.id,
@@ -157,7 +157,7 @@ export async function getBlogPost(slug: string) {
     const hasImage = data.image && data.image.trim() !== '';
     const validImage = hasImage && await imageExists(data.image);
     if (!validImage) {
-      data.image = getRandomFallbackImage();
+      data.image = getFallbackImageForSlug(slug);
     }
 
     return data;
