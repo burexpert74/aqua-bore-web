@@ -8,7 +8,7 @@ const __dirname = path.dirname(__filename);
 
 // Пути
 const blogDir = path.resolve(__dirname, '../../public/blog');
-const slugsFilePath = path.resolve(__dirname, 'getBlogPosts.tsx');
+const slugsFilePath = path.resolve(__dirname, '../../src/components/getBlogPosts.tsx');
 
 // Получаем список slug'ов из .json файлов
 function getSlugs() {
