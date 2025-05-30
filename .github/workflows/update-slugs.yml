@@ -6,6 +6,9 @@ on:
       - main  # или твоя ветка с публикацией статей
     paths:
       - 'public/blog/**'
+      
+permissions:
+  contents: write
 
 jobs:
   update-slugs:
