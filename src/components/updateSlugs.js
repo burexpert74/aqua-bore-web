@@ -45,7 +45,7 @@ function updateSlugsFile(slugs) {
     process.exit(1);
   }
 
-  const regex = new RegExp(`${startMarker}[\\s\\S]*?${endMarker}`, 's');
+  const regex = new RegExp(`${startMarker}[\\s\\S]*?${endMarker}`, 'm');
   const newSlugsString = JSON.stringify(slugs, null, 2);
   const replacement = `${startMarker}\nexport const slugs = ${newSlugsString};\n${endMarker}`;
   const newContent = content.replace(regex, replacement);
