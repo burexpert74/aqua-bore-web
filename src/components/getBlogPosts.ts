@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 
 // ---------- Fallback Images ----------
@@ -9,8 +10,22 @@ const fallbackImages = [
   '/blog/img/fallback-5.jpg',
 ];
 
+// Привязка fallback-изображений к конкретным статьям
+const slugToFallbackMap: Record<string, string> = {
+  'arenda-yamobura-chelyabinsk-polnoe-rukovodstvo': '/blog/img/fallback-1.jpg',
+  'arenda-yamobora-chelyabinsk-gid-po-vyboru-i-primeneniyu': '/blog/img/fallback-2.jpg',
+  'arenda-yamobura-v-chelyabinske-polnyj-gid': '/blog/img/fallback-3.jpg',
+  'arenda-yamoburov-chelyabinsk-polnyy-gid': '/blog/img/fallback-4.jpg',
+};
+
 // Возвращает стабильный fallback-образ по slug
 function getFallbackImageForSlug(slug: string): string {
+  // Если для slug есть специальное изображение, используем его
+  if (slugToFallbackMap[slug]) {
+    return slugToFallbackMap[slug];
+  }
+  
+  // Иначе используем хэш-функцию для стабильного выбора
   const index = Math.abs(hashCode(slug)) % fallbackImages.length;
   return fallbackImages[index];
 }

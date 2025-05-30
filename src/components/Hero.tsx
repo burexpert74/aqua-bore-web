@@ -25,15 +25,6 @@ const Hero = () => {
       {/* Декоративный фон */}
       <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%2393c5fd%22%20fill-opacity%3D%220.08%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%222%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-30"></div>
       
-      {/* Изображение ямобура */}
-      <div className="absolute right-0 top-1/2 transform -translate-y-1/2 opacity-15 hidden lg:block">
-        <img 
-          src="/lovable-uploads/1c898605-8f27-4515-8506-9ed0609f8504.png" 
-          alt="Ямобур" 
-          className="w-96 h-auto"
-        />
-      </div>
-      
       {/* Более мягкие градиентные блобы */}
       <div className="absolute top-0 left-0 w-96 h-96 bg-blue-400 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
       <div className="absolute top-20 right-0 w-80 h-80 bg-indigo-400 rounded-full mix-blend-multiply filter blur-xl opacity-15 animate-pulse animation-delay-2000"></div>
@@ -55,7 +46,7 @@ const Hero = () => {
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 mb-8 sm:mb-10 justify-center animate-fade-in">
             <Button 
               onClick={handlePhoneClick}
-              className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 text-lg font-bold flex items-center justify-center gap-3 hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl text-shadow border-2 border-green-500 hover:border-green-400 hover:brightness-110"
+              className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white px-8 py-4 text-lg font-bold flex items-center justify-center gap-3 hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl text-shadow border-2 border-green-400 hover:border-green-300 hover:brightness-110 rounded-xl"
               size="lg"
             >
               <Phone className="h-6 w-6 animate-pulse" />
@@ -63,7 +54,7 @@ const Hero = () => {
             </Button>
             <Button 
               onClick={handleTelegramClick}
-              className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 text-lg font-bold flex items-center justify-center gap-3 hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl text-shadow border-2 border-blue-500 hover:border-blue-400 hover:brightness-110"
+              className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-8 py-4 text-lg font-bold flex items-center justify-center gap-3 hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl text-shadow border-2 border-blue-400 hover:border-blue-300 hover:brightness-110 rounded-xl"
               size="lg"
             >
               <MessageCircle className="h-6 w-6" />

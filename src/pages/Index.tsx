@@ -38,8 +38,10 @@ const Index = () => {
         <BlogSidebar isOpen={isBlogOpen} onClose={() => setIsBlogOpen(false)} />
       )}
       
-      {/* Blog Toggle */}
-      <BlogToggle onClick={() => setIsBlogOpen(true)} />
+      {/* Blog Toggle - перемещена ниже */}
+      <div className="fixed top-32 left-4 sm:left-6 z-40">
+        <BlogToggle onClick={() => setIsBlogOpen(true)} />
+      </div>
       
       {/* Main content */}
       <div className="w-full relative z-10">
