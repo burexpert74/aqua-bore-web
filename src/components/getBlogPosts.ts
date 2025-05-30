@@ -1,4 +1,3 @@
-// blogUtils.tsx (или index.tsx, если всё в одном)
 import React, { useState } from 'react';
 
 // ---------- Fallback Images ----------
@@ -10,8 +9,7 @@ const fallbackImages = [
   '/blog/img/fallback-5.jpg',
 ];
 
-let usedFallbackImages: string[] = [];
-
+// Возвращает стабильный fallback-образ по slug
 function getFallbackImageForSlug(slug: string): string {
   const index = Math.abs(hashCode(slug)) % fallbackImages.length;
   return fallbackImages[index];
@@ -23,9 +21,8 @@ function hashCode(str: string): number {
   }, 0);
 }
 
-
 // ---------- Cached Image Existence Check ----------
-const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
+const CACHE_DURATION = 5 * 60 * 1000; // 5 минут
 
 interface CacheEntry {
   exists: boolean;
@@ -38,7 +35,7 @@ async function imageExists(url: string): Promise<boolean> {
   const now = Date.now();
   const cached = imageCache.get(url);
 
-  if (cached && now - cached.timestamp < CACHE_DURATION) {
+  if (cached && (now - cached.timestamp) < CACHE_DURATION) {
     return cached.exists;
   }
 
@@ -57,13 +54,15 @@ async function imageExists(url: string): Promise<boolean> {
 interface ImageWithFallbackProps {
   src: string;
   alt: string;
+  slug?: string;               // Добавил slug для выбора fallback по статье
   className?: string;
-  fallbackSrc?: string;
+  fallbackSrc?: string;        // Можно задать кастомный fallback
 }
 
 export const ImageWithFallback: React.FC<ImageWithFallbackProps> = ({
   src,
   alt,
+  slug,
   className = '',
   fallbackSrc,
 }) => {
@@ -73,7 +72,9 @@ export const ImageWithFallback: React.FC<ImageWithFallbackProps> = ({
   const handleError = () => {
     if (!hasError) {
       setHasError(true);
-      setImgSrc(fallbackSrc || getFallbackImageForSlug(slug));
+      // fallbackSrc или стабильный fallback по slug или первый из fallbackImages
+      const fallback = fallbackSrc || (slug ? getFallbackImageForSlug(slug) : fallbackImages[0]);
+      setImgSrc(fallback);
     }
   };
 
@@ -105,7 +106,7 @@ export async function getAvailableSlugs(): Promise<string[]> {
         const res = await fetch(`/blog/${slug}.json`);
         if (res.ok) validSlugs.push(slug);
       } catch {
-        // ignore failed fetch
+        // Игнорируем ошибки
       }
     })
   );
@@ -113,7 +114,17 @@ export async function getAvailableSlugs(): Promise<string[]> {
   return validSlugs;
 }
 
-export async function getBlogPosts() {
+export interface BlogPost {
+  id: string | number;
+  title: string;
+  excerpt: string;
+  image: string;
+  date: string;
+  readTime: string;
+  slug: string;
+}
+
+export async function getBlogPosts(): Promise<BlogPost[]> {
   const slugs = await getAvailableSlugs();
 
   const posts = await Promise.all(
@@ -121,9 +132,10 @@ export async function getBlogPosts() {
       try {
         const res = await fetch(`/blog/${slug}.json`);
         if (!res.ok) return null;
+
         const data = await res.json();
 
-        const hasImage = data.image && data.image.trim() !== '';
+        const hasImage = typeof data.image === 'string' && data.image.trim() !== '';
         const validImage = hasImage && await imageExists(data.image);
         const image = validImage ? data.image : getFallbackImageForSlug(slug);
 
@@ -143,19 +155,22 @@ export async function getBlogPosts() {
     })
   );
 
-  return posts.filter(Boolean).sort(
-    (a, b) => new Date(b!.date).getTime() - new Date(a!.date).getTime()
+  // Фильтруем null и сортируем по дате (новее вперед)
+  return posts.filter((p): p is BlogPost => p !== null).sort(
+    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
   );
 }
 
-export async function getBlogPost(slug: string) {
+export async function getBlogPost(slug: string): Promise<BlogPost> {
   try {
     const res = await fetch(`/blog/${slug}.json`);
     if (!res.ok) throw new Error('Post not found');
+
     const data = await res.json();
 
-    const hasImage = data.image && data.image.trim() !== '';
+    const hasImage = typeof data.image === 'string' && data.image.trim() !== '';
     const validImage = hasImage && await imageExists(data.image);
+
     if (!validImage) {
       data.image = getFallbackImageForSlug(slug);
     }
