@@ -29,6 +29,11 @@ jobs:
       - name: Run update slugs script
         run: node src/components/updateSlugs.js
 
+      - name: Show Git diff
+        run: |
+          git status
+          git diff
+
       - name: Commit and push changes
         run: |
           git config user.name "github-actions[bot]"
