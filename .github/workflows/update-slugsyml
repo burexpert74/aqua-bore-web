@@ -1,0 +1,33 @@
+name: Update Slugs on Push
+
+on:
+  push:
+    branches:
+      - main  # или твоя ветка с публикацией статей
+
+jobs:
+  update-slugs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run update slugs script
+        run: node src/components/updateSlugs.js
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add src/components/getBlogPosts.tsx
+          git diff --cached --quiet || git commit -m "Update slugs list [skip ci]"
+          git push
