@@ -2,28 +2,13 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, Calendar, Clock } from 'lucide-react';
-import { getBlogPost } from '@/components/getBlogPosts';
+import { getBlogPost, BlogPost } from '@/components/getBlogPosts';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
-interface BlogPostData {
-  id: number;
-  title: string;
-  excerpt: string;
-  image: string;
-  date: string;
-  readTime: string;
-  slug: string;
-  meta: {
-    title: string;
-    description: string;
-  };
-  html: string;
-}
-
-const BlogPost = () => {
+const BlogPostPage = () => {
   const { slug } = useParams<{ slug: string }>();
-  const [post, setPost] = useState<BlogPostData | null>(null);
+  const [post, setPost] = useState<BlogPost | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -129,10 +114,12 @@ const BlogPost = () => {
               {post.excerpt}
             </div>
 
-            <div 
-              className="prose prose-lg max-w-none prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900"
-              dangerouslySetInnerHTML={{ __html: post.html }}
-            />
+            {post.html && (
+              <div 
+                className="prose prose-lg max-w-none prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900"
+                dangerouslySetInnerHTML={{ __html: post.html }}
+              />
+            )}
           </div>
         </div>
       </article>
@@ -142,4 +129,4 @@ const BlogPost = () => {
   );
 };
 
-export default BlogPost;
+export default BlogPostPage;

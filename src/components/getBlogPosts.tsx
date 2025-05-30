@@ -41,7 +41,6 @@ function hashCode(str: string): number {
   return Math.abs(hash);
 }
 
-
 // ---------- Cached Image Existence Check ----------
 const CACHE_DURATION = 5 * 60 * 1000; // 5 минут
 
@@ -110,14 +109,20 @@ export const ImageWithFallback: React.FC<ImageWithFallbackProps> = ({
   );
 };
 
+// Унифицированный интерфейс BlogPost
 export interface BlogPost {
-  id: string | number;
+  id: number;
   title: string;
   excerpt: string;
   image: string;
   date: string;
   readTime: string;
   slug: string;
+  meta?: {
+    title: string;
+    description: string;
+  };
+  html?: string;
 }
 
 export async function getBlogPosts(): Promise<BlogPost[]> {
@@ -134,13 +139,15 @@ export async function getBlogPosts(): Promise<BlogPost[]> {
         const image = validImage ? data.image : getFallbackImageForSlug(slug);
 
         return {
-          id: data.id,
+          id: typeof data.id === 'string' ? parseInt(data.id) : data.id,
           title: data.title,
           excerpt: data.excerpt,
           image,
           date: data.date,
           readTime: data.readTime,
           slug: data.slug,
+          meta: data.meta,
+          html: data.html,
         };
       } catch (error) {
         console.error(`Error loading blog post ${slug}:`, error);
@@ -169,7 +176,17 @@ export async function getBlogPost(slug: string): Promise<BlogPost> {
       data.image = getFallbackImageForSlug(slug);
     }
 
-    return data;
+    return {
+      id: typeof data.id === 'string' ? parseInt(data.id) : data.id,
+      title: data.title,
+      excerpt: data.excerpt,
+      image: data.image,
+      date: data.date,
+      readTime: data.readTime,
+      slug: data.slug,
+      meta: data.meta,
+      html: data.html,
+    };
   } catch (error) {
     console.error(`Error loading blog post ${slug}:`, error);
     throw error;
