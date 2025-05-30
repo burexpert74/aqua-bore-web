@@ -104,7 +104,6 @@ export const ImageWithFallback: React.FC<ImageWithFallbackProps> = ({
 const potentialSlugs = [
   'arenda-yamobura-chelyabinsk-polnoe-rukovodstvo',
   'arenda-yamobora-chelyabinsk-gid-po-vyboru-i-primeneniyu',
-  'arenda-yamobura-v-chelyabinske-polnyj-gid',
   'arenda-yamoburov-chelyabinsk-polnyy-gid',
 ];
 
