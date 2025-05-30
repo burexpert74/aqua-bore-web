@@ -73,7 +73,7 @@ export const ImageWithFallback: React.FC<ImageWithFallbackProps> = ({
   const handleError = () => {
     if (!hasError) {
       setHasError(true);
-      setImgSrc(fallbackSrc || getRandomFallbackImage());
+      setImgSrc(fallbackSrc || getFallbackImageForSlug(slug));
     }
   };
 
