@@ -1,9 +1,12 @@
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
-// Путь к папке с блогами
+// __dirname аналог для ES модулей:
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 const blogDir = path.resolve(__dirname, '../../public/blog');
-// Путь к файлу, где будет обновляться массив slugs
 const slugsFilePath = path.resolve(__dirname, 'getBlogPosts.tsx');
 
 function getSlugs() {
@@ -11,7 +14,7 @@ function getSlugs() {
   return files
     .filter(f => f.endsWith('.json'))
     .map(f => f.replace('.json', ''))
-    .sort();  // сортируем для порядка (опционально)
+    .sort();
 }
 
 function updateSlugsFile(slugs) {
