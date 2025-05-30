@@ -37,7 +37,10 @@ function updateSlugsFile(slugs) {
 
   const startMarker = '/* START SLUGS */';
   const endMarker = '/* END SLUGS */';
-  const regex = new RegExp(`${startMarker}[\\s\\S]*?${endMarker}`, 's');
+  const regex = /\/\* START SLUGS \*\/[\s\S]*?\/\* END SLUGS \*\//;
+
+  console.log('--- RAW FILE CONTENT ---');
+  console.log(JSON.stringify(content.slice(0, 500))); // первые 500 символов
 
   const match = content.match(regex);
   if (!match) {
