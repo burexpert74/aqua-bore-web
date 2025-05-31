@@ -31,7 +31,7 @@ const services = [
 
 const ServicesTable = () => {
   const handleTelegramClick = () => {
-    window.open('https://t.me/gpt_noway_bot', '_blank');
+    window.open('https://t.me/@urexpert_bot', '_blank');
   };
 
   return (
