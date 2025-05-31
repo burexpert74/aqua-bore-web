@@ -43,12 +43,6 @@ const Footer = () => {
                 </a>
               </div>
               <div className="flex items-center space-x-3">
-                <Phone className="h-4 w-4 sm:h-5 sm:w-5 text-blue-400 flex-shrink-0" />
-                <a href="tel:+73517769990" className="hover:text-blue-400 transition-colors">
-                  +7(351)776-99-90
-                </a>
-              </div>
-              <div className="flex items-center space-x-3">
                 <Mail className="h-4 w-4 sm:h-5 sm:w-5 text-blue-400 flex-shrink-0" />
                 <span className="break-all">Andron_v_k@mail.ru</span>
               </div>
@@ -58,7 +52,7 @@ const Footer = () => {
               </div>
               <div className="flex items-center space-x-3">
                 <Clock className="h-4 w-4 sm:h-5 sm:w-5 text-blue-400 flex-shrink-0" />
-                <span>24/7</span>
+                <span>Пн-Вс: 06:00-23:00</span>
               </div>
             </div>
           </div>
