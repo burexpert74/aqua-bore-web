@@ -62,10 +62,10 @@ export default {
       keyframes: {
         "pulse-ring": {
             "0%": {
-              boxShadow: "0 0 0 0 rgba(59,130,246,0.5)", // blue-600
+              boxShadow: "0 0 0 0 rgba(59,130,246,0.4)", // blue-600
             },
-            "70%": {
-              boxShadow: "0 0 0 15px rgba(59,130,246,0)",
+            "50%": {
+              boxShadow: "0 0 0 12px rgba(59,130,246,0.1)",
             },
             "100%": {
               boxShadow: "0 0 0 0 rgba(59,130,246,0)",
@@ -105,7 +105,7 @@ export default {
         "accordion-up": "accordion-up 0.2s ease-out",
         "fade-in": "fade-in 0.3s ease-out",
         "scale-in": "scale-in 0.2s ease-out",
-        "pulse-ring": "pulse-ring 2s cubic-bezier(0.66, 0, 0, 1) infinite",
+        "pulse-ring": "pulse-ring 4s cubic-bezier(0.66, 0, 0, 1) infinite",
       },
       animationDelay: {
         '2000': '2s',
