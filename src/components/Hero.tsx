@@ -46,18 +46,18 @@ const Hero = () => {
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 mb-8 sm:mb-10 justify-center animate-fade-in">
             <Button 
               onClick={handlePhoneClick}
-              className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white px-8 py-4 text-2xl font-bold flex items-center justify-center gap-3 hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl text-shadow border-2 border-green-400 hover:border-green-300 hover:brightness-110 rounded-xl"
+              className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white px-8 py-4 text-xl font-bold flex items-center justify-center gap-3 hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl text-shadow border-2 border-green-400 hover:border-green-300 hover:brightness-110 rounded-xl"
               size="lg"
             >
-              <Phone className="h-8 w-8 animate-pulse" />
+              <Phone className="h-10 w-10 animate-pulse" />
               Позвонить сейчас
             </Button>
             <Button 
               onClick={handleTelegramClick}
-              className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-8 py-4 text-2xl font-bold flex items-center justify-center gap-3 hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl text-shadow border-2 border-blue-400 hover:border-blue-300 hover:brightness-110 rounded-xl"
+              className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-8 py-4 text-xl font-bold flex items-center justify-center gap-3 hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl text-shadow border-2 border-blue-400 hover:border-blue-300 hover:brightness-110 rounded-xl"
               size="lg"
             >
-              <MessageCircle className="h-8 w-8" />
+              <MessageCircle className="h-10 w-10" />
               Консультация в Telegram
             </Button>
           </div>
