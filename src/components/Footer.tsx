@@ -50,7 +50,7 @@ const Footer = () => {
               </div>
               <div className="flex items-center space-x-3">
                 <Mail className="h-4 w-4 sm:h-5 sm:w-5 text-blue-400 flex-shrink-0" />
-                <span className="break-all">info@burexpert.ru</span>
+                <span className="break-all">Andron_v_k@mail.ru</span>
               </div>
               <div className="flex items-center space-x-3">
                 <MapPin className="h-4 w-4 sm:h-5 sm:w-5 text-blue-400 flex-shrink-0" />
@@ -58,7 +58,7 @@ const Footer = () => {
               </div>
               <div className="flex items-center space-x-3">
                 <Clock className="h-4 w-4 sm:h-5 sm:w-5 text-blue-400 flex-shrink-0" />
-                <span>Пн-Сб: 8:00-20:00</span>
+                <span>24/7</span>
               </div>
             </div>
           </div>
