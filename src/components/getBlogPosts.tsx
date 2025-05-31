@@ -3,9 +3,6 @@ import React, { useState } from 'react';
 
 /* START SLUGS */
 export const slugs = [
-  "arenda-yamobura-v-chelyabinske-polnyj-gid",
-  "arenda-yamobura-v-chelyabinske-prakticheskoe-rukovodstvo-i-sovety",
-  "arenda-yamoburov-chelyabinsk-effektivnoe-reshenie-dlya-stroitelstva",
   "arenda-yamoburov-v-chelyabinske-polnyy-gid-i-preimushchestva",
   "kak-vybrat-yamobur-dlya-bureniya-fundamenta-sovety-ekspertov",
   "kak-vybrat-yamobur-dlya-nadezhnogo-fundamenta"
