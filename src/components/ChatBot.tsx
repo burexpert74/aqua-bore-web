@@ -15,6 +15,10 @@ const ChatBot = () => {
   return (
     <button
       onClick={handleTelegramClick}
+      style ={{
+        animation: "pulse-ring 6s ease-out infinite",
+        boxShadow: "0 0 0 0 rgba(59,130,246,0.4)",
+      }}
       className={`fixed bottom-4 right-4 sm:bottom-6 sm:right-6
         bg-blue-600 text-white p-3 sm:p-4 rounded-full shadow-xl
         hover:bg-blue-700 hover:scale-105 active:scale-95
@@ -26,6 +30,19 @@ const ChatBot = () => {
     >
       <MessageSquare className="h-5 w-5 sm:h-6 sm:w-6" />
     </button>
+    <style jsx global>{`
+  @keyframes pulse-ring {
+    0% {
+      box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4);
+    }
+    40% {
+      box-shadow: 0 0 0 10px rgba(59, 130, 246, 0.1);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
+    }
+  }
+`}</style>
   );
 };
 
