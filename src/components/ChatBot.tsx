@@ -31,9 +31,7 @@ const ChatBot = () => {
       <MessageSquare className="h-5 w-5 sm:h-6 sm:w-6" />
     </button>
   );
-};
-
-    <style>
+      <style>
       {`
         @keyframes pulse-ring {
           0% {
@@ -48,5 +46,6 @@ const ChatBot = () => {
         }
       `}
     </style>
+};
 
 export default ChatBot;
