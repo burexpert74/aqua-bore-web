@@ -57,7 +57,7 @@ const Navbar = () => {
                 </a>
               </div>
               <div className="text-xs text-gray-500 text-right leading-tight">
-                <div>Ежедневно с 08:00 до 21:00</div>
+                <div>Ежедневно с 06:00 до 23:00</div>
               </div>
             </div>
           </div>
