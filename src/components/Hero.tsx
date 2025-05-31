@@ -49,7 +49,7 @@ const Hero = () => {
               className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white px-8 py-4 text-xl font-bold flex items-center justify-center gap-3 hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl text-shadow border-2 border-green-400 hover:border-green-300 hover:brightness-110 rounded-xl"
               size="lg"
             >
-              <Phone className="h-10 w-10 animate-pulse" />
+              <Phone className="h-10 w-10" />
               Позвонить сейчас
             </Button>
             <Button 
