@@ -105,7 +105,7 @@ export default {
         "accordion-up": "accordion-up 0.2s ease-out",
         "fade-in": "fade-in 0.3s ease-out",
         "scale-in": "scale-in 0.2s ease-out",
-        "pulse-ring": "pulse-ring 4s cubic-bezier(0.66, 0, 0, 1) infinite",
+        "pulse-ring": "pulse-ring 0.4s cubic-bezier(0.66, 0, 0, 1) infinite",
       },
       animationDelay: {
         '2000': '2s',
