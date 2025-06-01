@@ -1,13 +1,26 @@
 
 import React from 'react';
 import { Drill, Phone, Mail, MapPin, Clock } from 'lucide-react';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const Footer = () => {
   const scrollToServices = () => {
-    const servicesSection = document.getElementById('services');
-    if (servicesSection) {
-      servicesSection.scrollIntoView({ behavior: 'smooth' });
-    }
+     if (location.pathname !== '/') {Add commentMore actions
+      navigate('/', { replace: true });
+      // Небольшая задержка для загрузки страницы
+      setTimeout(() => {
+        const servicesSection = document.getElementById('services');
+        if (servicesSection) {
+          servicesSection.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    } else {
+      // Если мы на главной странице, просто скроллим
+      const servicesSection = document.getElementById('services');
+      if (servicesSection) {Add commentMore actions
+        servicesSection.scrollIntoView({ behavior: 'smooth' });
+      }
+     }
   };
 
   return (
