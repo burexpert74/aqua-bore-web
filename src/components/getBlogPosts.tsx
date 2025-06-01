@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 export const slugs = [
   "arenda-yamoburov-v-chelyabinske-polnyy-gid-i-preimushchestva",
   "kak-vybrat-yamobur-dlya-bureniya-fundamenta-sovety-ekspertov",
+  "nadezhny-fundament-tehnologii-bureniya-i-montazh-svay-v-chelyabinske",
   "spectehnika-v-stroitelstve-i-burenii-prakticheskoe-rukovodstvo"
 ];
 /* END SLUGS */
