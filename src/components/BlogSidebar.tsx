@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { Calendar, ExternalLink, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Calendar, ExternalLink } from 'lucide-react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { getBlogPosts } from './getBlogPosts';
 
@@ -21,15 +21,12 @@ const BlogSidebar: React.FC<BlogSidebarProps> = ({ className = '' }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
-  const [isCollapsed, setIsCollapsed] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
 
   // Показываем только на главной странице
   const isHomePage = location.pathname === '/';
 
   useEffect(() => {
     if (isHomePage) {
-      setIsVisible(true);
       const fetchPosts = async () => {
         try {
           const posts = await getBlogPosts();
@@ -40,8 +37,6 @@ const BlogSidebar: React.FC<BlogSidebarProps> = ({ className = '' }) => {
         }
       };
       fetchPosts();
-    } else {
-      setIsVisible(false);
     }
   }, [isHomePage]);
 
@@ -60,35 +55,14 @@ const BlogSidebar: React.FC<BlogSidebarProps> = ({ className = '' }) => {
     navigate(`/blog/${slug}`);
   };
 
-  if (!isVisible) return null;
+  if (!isHomePage) return null;
 
   return (
     <div className={`
-      fixed left-4 top-1/2 transform -translate-y-1/2 z-30
-      transition-all duration-300 ease-in-out
-      ${isCollapsed ? 'w-12' : 'w-80'}
+      fixed left-4 top-1/2 transform -translate-y-1/2 z-30 w-80
       ${className}
     `}>
-      {/* Toggle Button */}
-      <button
-        onClick={() => setIsCollapsed(!isCollapsed)}
-        className="absolute -right-3 top-1/2 transform -translate-y-1/2 z-10
-          bg-blue-600 text-white p-1 rounded-full shadow-lg
-          hover:bg-blue-700 transition-colors"
-      >
-        {isCollapsed ? (
-          <ChevronRight className="h-4 w-4" />
-        ) : (
-          <ChevronLeft className="h-4 w-4" />
-        )}
-      </button>
-
-      {/* Sidebar Content */}
-      <div className={`
-        bg-white/95 backdrop-blur-sm shadow-xl rounded-lg border border-gray-200
-        transition-all duration-300 ease-in-out
-        ${isCollapsed ? 'opacity-0 pointer-events-none' : 'opacity-100'}
-      `}>
+      <div className="bg-white/95 backdrop-blur-sm shadow-xl rounded-lg border border-gray-200">
         <div className="flex flex-col h-full max-h-96">
           {/* Header */}
           <div className="p-4 border-b border-gray-200">

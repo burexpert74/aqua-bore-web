@@ -1,114 +1,5 @@
 
-import React, { useState } from 'react';
-
-/* START SLUGS */
-export const slugs = [
-  "arenda-yamoburov-v-chelyabinske-polnyy-gid-i-preimushchestva",
-  "kak-vybrat-yamobur-dlya-bureniya-fundamenta-sovety-ekspertov",
-  "nadezhny-fundament-tehnologii-bureniya-i-montazh-svay-v-chelyabinske",
-  "spectehnika-v-stroitelstve-i-burenii-prakticheskoe-rukovodstvo"
-];
-/* END SLUGS */
-
-// ---------- Fallback Images ----------
-const fallbackImages = [
-  '/blog/img/fallback-1.jpg',
-  '/blog/img/fallback-2.jpg',
-  '/blog/img/fallback-3.jpg',
-  '/blog/img/fallback-4.jpg',
-  '/blog/img/fallback-5.jpg',
-];
-
-// Возвращает стабильный fallback-образ по slug
-function getFallbackImageForSlug(slug: string): string {  
-  // Иначе используем хэш-функцию для стабильного выбора
-  const index = Math.abs(hashCode(slug)) % fallbackImages.length;
-  return fallbackImages[index];
-}
-
-// Улучшенная хэш-функция для более равномерного распределения
-function hashCode(str: string): number {
-  let hash = 0;
-  if (str.length === 0) return hash;
-  
-  for (let i = 0; i < str.length; i++) {
-    const char = str.charCodeAt(i);
-    hash = ((hash << 5) - hash) + char;
-    hash = hash & hash; // Преобразуем в 32-битное число
-  }
-  
-  return Math.abs(hash);
-}
-
-// ---------- Cached Image Existence Check ----------
-const CACHE_DURATION = 5 * 60 * 1000; // 5 минут
-
-interface CacheEntry {
-  exists: boolean;
-  timestamp: number;
-}
-
-const imageCache = new Map<string, CacheEntry>();
-
-async function imageExists(url: string): Promise<boolean> {
-  const now = Date.now();
-  const cached = imageCache.get(url);
-
-  if (cached && (now - cached.timestamp) < CACHE_DURATION) {
-    return cached.exists;
-  }
-
-  try {
-    const res = await fetch(url, { method: 'HEAD' });
-    const exists = res.ok;
-    imageCache.set(url, { exists, timestamp: now });
-    return exists;
-  } catch {
-    imageCache.set(url, { exists: false, timestamp: now });
-    return false;
-  }
-}
-
-// ---------- React Image Component ----------
-interface ImageWithFallbackProps {
-  src: string;
-  alt: string;
-  slug?: string;               // Добавил slug для выбора fallback по статье
-  className?: string;
-  fallbackSrc?: string;        // Можно задать кастомный fallback
-}
-
-export const ImageWithFallback: React.FC<ImageWithFallbackProps> = ({
-  src,
-  alt,
-  slug,
-  className = '',
-  fallbackSrc,
-}) => {
-  const [imgSrc, setImgSrc] = useState(src);
-  const [hasError, setHasError] = useState(false);
-
-  const handleError = () => {
-    if (!hasError) {
-      setHasError(true);
-      // fallbackSrc или стабильный fallback по slug или первый из fallbackImages
-      const fallback = fallbackSrc || (slug ? getFallbackImageForSlug(slug) : fallbackImages[0]);
-      setImgSrc(fallback);
-    }
-  };
-
-  return (
-    <img
-      src={imgSrc}
-      alt={alt}
-      className={className}
-      onError={handleError}
-      loading="lazy"
-    />
-  );
-};
-
-export interface BlogPost {
+interface BlogPost {
   id: string | number;
   title: string;
   excerpt: string;
@@ -123,60 +14,113 @@ export interface BlogPost {
   html?: string;
 }
 
-export async function getBlogPosts(): Promise<BlogPost[]> {
-  const posts = await Promise.all(
-    slugs.map(async (slug) => {
-      try {
-        const res = await fetch(`/blog/${slug}.json`);
-        if (!res.ok) return null;
+const fallbackImages = [
+  '/blog/img/fallback-1.jpg',
+  '/blog/img/fallback-2.jpg',
+  '/blog/img/fallback-3.jpg',
+  '/blog/img/fallback-4.jpg',
+  '/blog/img/fallback-5.jpg'
+];
 
-        const data = await res.json();
+const getRandomFallbackImage = () => {
+  const randomIndex = Math.floor(Math.random() * fallbackImages.length);
+  return fallbackImages[randomIndex];
+};
 
-        const hasImage = typeof data.image === 'string' && data.image.trim() !== '';
-        const validImage = hasImage && await imageExists(data.image);
-        const image = validImage ? data.image : getFallbackImageForSlug(slug);
-
-        return {
-          id: data.id,
-          title: data.title,
-          excerpt: data.excerpt,
-          image,
-          date: data.date,
-          readTime: data.readTime,
-          slug: data.slug,
-          meta: data.meta,
-          html: data.html,
-        };
-      } catch (error) {
-        console.error(`Error loading blog post ${slug}:`, error);
-        return null;
-      }
-    })
-  );
-
-  // Фильтруем null и сортируем по дате (новее вперед)
-  return posts.filter((p): p is BlogPost => p !== null).sort(
-    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
-  );
-}
-
-export async function getBlogPost(slug: string): Promise<BlogPost> {
+export const getBlogPosts = async (): Promise<BlogPost[]> => {
   try {
-    const res = await fetch(`/blog/${slug}.json`);
-    if (!res.ok) throw new Error('Post not found');
+    console.log('Fetching blog posts...');
+    
+    const blogFiles = [
+      'arenda-yamoburov-v-chelyabinske-polnyy-gid-i-preimushchestva.json',
+      'kak-vybrat-yamobur-dlya-bureniya-fundamenta-sovety-ekspertov.json',
+      'nadezhny-fundament-tehnologii-bureniya-i-montazh-svay-v-chelyabinske.json',
+      'spectehnika-v-stroitelstve-i-burenii-prakticheskoe-rukovodstvo.json'
+    ];
 
-    const data = await res.json();
+    const posts: BlogPost[] = [];
 
-    const hasImage = typeof data.image === 'string' && data.image.trim() !== '';
-    const validImage = hasImage && await imageExists(data.image);
+    for (let i = 0; i < blogFiles.length; i++) {
+      const fileName = blogFiles[i];
+      try {
+        console.log(`Loading blog file: ${fileName}`);
+        const response = await fetch(`/blog/${fileName}`);
+        
+        if (!response.ok) {
+          console.warn(`Failed to fetch ${fileName}: ${response.status}`);
+          continue;
+        }
 
-    if (!validImage) {
-      data.image = getFallbackImageForSlug(slug);
+        const post = await response.json();
+        console.log('Loaded post:', post);
+
+        // Ensure the post has all required fields
+        if (post && post.title && post.excerpt && post.date && post.slug) {
+          const processedPost: BlogPost = {
+            id: post.id || i + 1,
+            title: post.title,
+            excerpt: post.excerpt,
+            image: post.image || getRandomFallbackImage(),
+            date: post.date,
+            readTime: post.readTime || '5 мин чтения',
+            slug: post.slug,
+            meta: post.meta,
+            html: post.html
+          };
+          
+          posts.push(processedPost);
+        } else {
+          console.warn(`Invalid post structure in ${fileName}:`, post);
+        }
+      } catch (error) {
+        console.error(`Error loading ${fileName}:`, error);
+      }
     }
 
-    return data;
+    console.log('Final posts array:', posts);
+    
+    // Sort by date (newest first)
+    posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+    
+    return posts;
   } catch (error) {
-    console.error(`Error loading blog post ${slug}:`, error);
-    throw error;
+    console.error('Error in getBlogPosts:', error);
+    return [];
   }
-}
+};
+
+export const getBlogPost = async (slug: string): Promise<BlogPost | null> => {
+  try {
+    console.log(`Fetching blog post with slug: ${slug}`);
+    
+    const posts = await getBlogPosts();
+    const post = posts.find(p => p.slug === slug);
+    
+    if (!post) {
+      console.error(`Post with slug ${slug} not found`);
+      return null;
+    }
+
+    // If the post doesn't have HTML content, try to load it from the file
+    if (!post.html && post.slug) {
+      try {
+        const fileName = `${post.slug}.json`;
+        const response = await fetch(`/blog/${fileName}`);
+        
+        if (response.ok) {
+          const fullPost = await response.json();
+          if (fullPost.html) {
+            post.html = fullPost.html;
+          }
+        }
+      } catch (error) {
+        console.warn(`Could not load full content for ${slug}:`, error);
+      }
+    }
+
+    return post;
+  } catch (error) {
+    console.error(`Error fetching blog post ${slug}:`, error);
+    return null;
+  }
+};

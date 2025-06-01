@@ -7,18 +7,18 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
 interface BlogPostData {
-  id: number;
+  id: string | number;
   title: string;
   excerpt: string;
   image: string;
   date: string;
   readTime: string;
   slug: string;
-  meta: {
+  meta?: {
     title: string;
     description: string;
   };
-  html: string;
+  html?: string;
 }
 
 const BlogPost = () => {
@@ -129,10 +129,12 @@ const BlogPost = () => {
               {post.excerpt}
             </div>
 
-            <div 
-              className="prose prose-lg max-w-none prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900"
-              dangerouslySetInnerHTML={{ __html: post.html }}
-            />
+            {post.html && (
+              <div 
+                className="prose prose-lg max-w-none prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900"
+                dangerouslySetInnerHTML={{ __html: post.html }}
+              />
+            )}
           </div>
         </div>
       </article>
