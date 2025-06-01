@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';Add commentMore actions
+import React, { useEffect, useState } from 'react';
 import { MessageSquare } from 'lucide-react';
 
 const ChatBot = () => {
