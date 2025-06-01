@@ -4,6 +4,8 @@ import { Drill, Phone, Mail, MapPin, Clock } from 'lucide-react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 const Footer = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
   const scrollToServices = () => {
      if (location.pathname !== '/') {
       navigate('/', { replace: true });
