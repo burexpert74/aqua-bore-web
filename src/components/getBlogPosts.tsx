@@ -40,7 +40,6 @@ function hashCode(str: string): number {
   return Math.abs(hash);
 }
 
-
 // ---------- Cached Image Existence Check ----------
 const CACHE_DURATION = 5 * 60 * 1000; // 5 минут
 
@@ -117,6 +116,11 @@ export interface BlogPost {
   date: string;
   readTime: string;
   slug: string;
+  meta?: {
+    title: string;
+    description: string;
+  };
+  html?: string;
 }
 
 export async function getBlogPosts(): Promise<BlogPost[]> {
@@ -140,6 +144,8 @@ export async function getBlogPosts(): Promise<BlogPost[]> {
           date: data.date,
           readTime: data.readTime,
           slug: data.slug,
+          meta: data.meta,
+          html: data.html,
         };
       } catch (error) {
         console.error(`Error loading blog post ${slug}:`, error);

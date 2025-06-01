@@ -1,11 +1,11 @@
 
 import React, { useState, useEffect } from 'react';
-import { X, Calendar, ExternalLink } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { Calendar, ExternalLink, ChevronLeft, ChevronRight } from 'lucide-react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { getBlogPosts } from './getBlogPosts';
 
 interface BlogPost {
-  id: number;
+  id: string | number;
   title: string;
   excerpt: string;
   date: string;
@@ -14,29 +14,36 @@ interface BlogPost {
 }
 
 interface BlogSidebarProps {
-  isOpen: boolean;
-  onClose: () => void;
+  className?: string;
 }
 
-const BlogSidebar: React.FC<BlogSidebarProps> = ({ isOpen, onClose }) => {
+const BlogSidebar: React.FC<BlogSidebarProps> = ({ className = '' }) => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
+  const [isCollapsed, setIsCollapsed] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+
+  // Показываем только на главной странице
+  const isHomePage = location.pathname === '/';
 
   useEffect(() => {
-    const fetchPosts = async () => {
-      try {
-        const posts = await getBlogPosts();
-        // Берем только первые 3 статьи для сайдбара
-        setBlogPosts(posts.slice(0, 3));
-      } catch (error) {
-        console.error('Error fetching blog posts for sidebar:', error);
-      }
-    };
-
-    if (isOpen) {
+    if (isHomePage) {
+      setIsVisible(true);
+      const fetchPosts = async () => {
+        try {
+          const posts = await getBlogPosts();
+          // Берем только первые 3 статьи для сайдбара
+          setBlogPosts(posts.slice(0, 3));
+        } catch (error) {
+          console.error('Error fetching blog posts for sidebar:', error);
+        }
+      };
       fetchPosts();
+    } else {
+      setIsVisible(false);
     }
-  }, [isOpen]);
+  }, [isHomePage]);
 
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('ru-RU', {
@@ -47,59 +54,66 @@ const BlogSidebar: React.FC<BlogSidebarProps> = ({ isOpen, onClose }) => {
 
   const handleViewAllBlogs = () => {
     navigate('/blog');
-    onClose();
   };
 
   const handlePostClick = (slug: string) => {
     navigate(`/blog/${slug}`);
-    onClose();
   };
 
+  if (!isVisible) return null;
+
   return (
-    <>
-      {/* Overlay */}
-      {isOpen && (
-        <div 
-          className="fixed inset-0 bg-black bg-opacity-50 z-40"
-          onClick={onClose}
-        />
-      )}
-      
-      {/* Sidebar - floating for all screen sizes */}
+    <div className={`
+      fixed left-4 top-1/2 transform -translate-y-1/2 z-30
+      transition-all duration-300 ease-in-out
+      ${isCollapsed ? 'w-12' : 'w-80'}
+      ${className}
+    `}>
+      {/* Toggle Button */}
+      <button
+        onClick={() => setIsCollapsed(!isCollapsed)}
+        className="absolute -right-3 top-1/2 transform -translate-y-1/2 z-10
+          bg-blue-600 text-white p-1 rounded-full shadow-lg
+          hover:bg-blue-700 transition-colors"
+      >
+        {isCollapsed ? (
+          <ChevronRight className="h-4 w-4" />
+        ) : (
+          <ChevronLeft className="h-4 w-4" />
+        )}
+      </button>
+
+      {/* Sidebar Content */}
       <div className={`
-        fixed top-0 left-0 h-full w-80 sm:w-96 bg-white shadow-xl z-50 transform transition-transform duration-300 ease-in-out
-        ${isOpen ? 'translate-x-0' : '-translate-x-full'}
+        bg-white/95 backdrop-blur-sm shadow-xl rounded-lg border border-gray-200
+        transition-all duration-300 ease-in-out
+        ${isCollapsed ? 'opacity-0 pointer-events-none' : 'opacity-100'}
       `}>
-        <div className="flex flex-col h-full">
+        <div className="flex flex-col h-full max-h-96">
           {/* Header */}
-          <div className="flex items-center justify-between p-4 sm:p-6 border-b">
-            <h2 className="text-lg sm:text-xl font-bold text-gray-900">Новости и статьи</h2>
-            <button
-              onClick={onClose}
-              className="p-1 hover:bg-gray-100 rounded-full transition-colors"
-            >
-              <X className="h-5 w-5 text-gray-500" />
-            </button>
+          <div className="p-4 border-b border-gray-200">
+            <h3 className="text-lg font-bold text-gray-900">Статьи блога</h3>
           </div>
 
           {/* Content */}
-          <div className="flex-1 overflow-y-auto p-4 sm:p-6">
-            <div className="space-y-4 sm:space-y-6">
+          <div className="flex-1 overflow-y-auto p-4">
+            <div className="space-y-4">
               {blogPosts.length === 0 ? (
                 <div className="text-center text-gray-500">
-                  <p>Загрузка статей...</p>
+                  <p className="text-sm">Загрузка статей...</p>
                 </div>
               ) : (
                 blogPosts.map((post) => (
                   <article 
                     key={post.id} 
-                    className="border-b border-gray-200 pb-4 sm:pb-6 last:border-b-0 cursor-pointer"
+                    className="border-b border-gray-200 pb-3 last:border-b-0 cursor-pointer group"
                     onClick={() => handlePostClick(post.slug)}
                   >
-                    <h3 className="text-sm sm:text-base font-semibold text-gray-900 mb-2 line-clamp-2 hover:text-blue-600 transition-colors">
+                    <h4 className="text-sm font-semibold text-gray-900 mb-2 line-clamp-2 
+                      group-hover:text-blue-600 transition-colors">
                       {post.title}
-                    </h3>
-                    <p className="text-xs sm:text-sm text-gray-600 mb-3 line-clamp-2">
+                    </h4>
+                    <p className="text-xs text-gray-600 mb-2 line-clamp-2">
                       {post.excerpt}
                     </p>
                     <div className="flex items-center justify-between text-xs text-gray-500">
@@ -116,10 +130,12 @@ const BlogSidebar: React.FC<BlogSidebarProps> = ({ isOpen, onClose }) => {
           </div>
 
           {/* Footer */}
-          <div className="p-4 sm:p-6 border-t">
+          <div className="p-4 border-t border-gray-200">
             <button
               onClick={handleViewAllBlogs}
-              className="w-full flex items-center justify-center space-x-2 bg-blue-600 text-white py-2 sm:py-3 px-4 rounded-lg hover:bg-blue-700 transition-colors text-sm sm:text-base"
+              className="w-full flex items-center justify-center space-x-2 
+                bg-blue-600 text-white py-2 px-3 rounded-lg 
+                hover:bg-blue-700 transition-colors text-sm"
             >
               <span>Все статьи</span>
               <ExternalLink className="h-4 w-4" />
@@ -127,7 +143,7 @@ const BlogSidebar: React.FC<BlogSidebarProps> = ({ isOpen, onClose }) => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
