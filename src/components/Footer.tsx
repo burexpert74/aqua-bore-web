@@ -5,7 +5,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 
 const Footer = () => {
   const scrollToServices = () => {
-     if (location.pathname !== '/') {Add commentMore actions
+     if (location.pathname !== '/') {
       navigate('/', { replace: true });
       // Небольшая задержка для загрузки страницы
       setTimeout(() => {
@@ -17,7 +17,7 @@ const Footer = () => {
     } else {
       // Если мы на главной странице, просто скроллим
       const servicesSection = document.getElementById('services');
-      if (servicesSection) {Add commentMore actions
+      if (servicesSection) {
         servicesSection.scrollIntoView({ behavior: 'smooth' });
       }
      }
