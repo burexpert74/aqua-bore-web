@@ -1,7 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';Add commentMore actions
 import { MessageSquare } from 'lucide-react';
 
-@@ -16,15 +17,30 @@ const ChatBot = () => {
+const ChatBot = () => {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const handleTelegramClick = () => {
+    window.open('https://t.me/burexpert_bot', '_blank');
+  };
+
+  return (
     <button
       onClick={handleTelegramClick}
       className={`fixed bottom-4 right-4 sm:bottom-6 sm:right-6
