@@ -9,7 +9,7 @@ const ChatBot = () => {
   }, []);
 
   const handleTelegramClick = () => {
-    window.open('https://t.me/burexpert_bot', '_blank');
+    window.open('https://t.me/burexert_bot', '_blank');
   };
 
   return (

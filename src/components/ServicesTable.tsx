@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 
@@ -31,7 +30,7 @@ const services = [
 
 const ServicesTable = () => {
   const handleTelegramClick = () => {
-    window.open('https://t.me/burexpert_bot', '_blank');
+    window.open('https://t.me/burexert_bot', '_blank');
   };
 
   return (

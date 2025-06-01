@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { ArrowDown, Phone, MessageCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -17,7 +16,7 @@ const Hero = () => {
   };
 
   const handleTelegramClick = () => {
-    window.open('https://t.me/burexpert_bot', '_blank');
+    window.open('https://t.me/burexert_bot', '_blank');
   };
 
   return (
