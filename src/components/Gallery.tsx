@@ -92,7 +92,7 @@ const Gallery = () => {
         </div>
 
         <Dialog open={!!selectedSpecs} onOpenChange={() => setSelectedSpecs(null)}>
-          <DialogContent className="max-w-md">
+          <DialogContent className="max-w-md bg-white border border-gray-200">
             <DialogHeader>
               <DialogTitle className="text-xl font-bold text-gray-900">
                 {selectedSpecs?.title}

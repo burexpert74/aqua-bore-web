@@ -78,13 +78,12 @@ const ServicesTable = () => {
               </div>
               
               <div className="p-4 sm:p-6 pt-0 mt-auto">
-                <Button 
+                <button 
                   onClick={handleTelegramClick}
-                  className="w-full bg-blue-600 hover:bg-blue-700 text-sm sm:text-base py-2 sm:py-3" 
-                  variant="default"
+                  className="w-full bg-blue-600 hover:bg-blue-700 text-white text-sm sm:text-base py-2 sm:py-3 px-4 rounded-lg font-medium transition-colors duration-200"
                 >
                   Заказать консультацию
-                </Button>
+                </button>
               </div>
             </div>
           ))}
@@ -95,14 +94,12 @@ const ServicesTable = () => {
           <p className="text-blue-100 mb-4 sm:mb-6 text-sm sm:text-base">
             Свяжитесь с нашими специалистами в Telegram для получения подробной консультации и расчета стоимости работ
           </p>
-          <Button 
+          <button 
             onClick={handleTelegramClick}
-            className="bg-white text-blue-900 hover:bg-blue-50 text-sm sm:text-base px-6 sm:px-8 py-2 sm:py-3" 
-            variant="outline"
-            size="lg"
+            className="bg-white text-blue-900 hover:bg-blue-50 text-sm sm:text-base px-6 sm:px-8 py-2 sm:py-3 rounded-lg font-medium transition-colors duration-200"
           >
             Написать в Telegram
-          </Button>
+          </button>
         </div>
       </div>
     </section>
