@@ -6,7 +6,8 @@ export const slugs = [
   "arenda-yamoburov-v-chelyabinske-polnyy-gid-i-preimushchestva",
   "kak-vybrat-yamobur-dlya-bureniya-fundamenta-sovety-ekspertov",
   "kak-vybrat-yamobur-dlya-kachestvennogo-bureniya-fundamenta",
-  "kak-vybrat-yamobur-dlya-nadezhnogo-fundamenta"
+  "kak-vybrat-yamobur-dlya-nadezhnogo-fundamenta",
+  "spectehnika-v-stroitelstve-i-burenii-prakticheskoe-rukovodstvo"
 ];
 /* END SLUGS */
 
