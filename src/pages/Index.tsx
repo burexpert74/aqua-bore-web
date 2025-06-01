@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import Gallery from '@/components/Gallery';
@@ -7,8 +7,11 @@ import ServicesTable from '@/components/ServicesTable';
 import ChatBot from '@/components/ChatBot';
 import Footer from '@/components/Footer';
 import BlogSidebar from '@/components/BlogSidebar';
+import BlogToggle from '@/components/BlogToggle';
 
 const Index = () => {
+  const [isBlogOpen, setIsBlogOpen] = useState(false);
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 relative">
       {/* Улучшенный декоративный фон для всей страницы */}
@@ -30,8 +33,15 @@ const Index = () => {
       <div className="fixed bottom-1/4 left-1/3 w-72 h-72 bg-pink-200 rounded-full mix-blend-multiply filter blur-3xl opacity-15 animate-pulse animation-delay-4000 pointer-events-none"></div>
       <div className="fixed top-1/2 right-1/4 w-64 h-64 bg-yellow-200 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse animation-delay-6000 pointer-events-none"></div>
 
-      {/* Blog Sidebar - теперь всегда виден на главной странице */}
-      <BlogSidebar />
+      {/* Blog Sidebar - floating for both mobile and desktop */}
+      {isBlogOpen && (
+        <BlogSidebar isOpen={isBlogOpen} onClose={() => setIsBlogOpen(false)} />
+      )}
+      
+      {/* Blog Toggle - опущена ниже для лучшего визуального баланса */}
+      <div className="fixed top-24 sm:top-28 left-4 sm:left-6 z-40">
+        <BlogToggle onClick={() => setIsBlogOpen(true)} />
+      </div>
       
       {/* Main content */}
       <div className="w-full relative z-10">
