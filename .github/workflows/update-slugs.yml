@@ -42,6 +42,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add src/components/getBlogPosts.tsx
+          git add src/components/slugs.json
           git add public/sitemap.xml
           git diff --cached --quiet || git commit -m "Update slugs list [skip ci]"
           git push
