@@ -7,14 +7,6 @@
       ],
       "destination": "https://www.burexert.com/:path*",
       "permanent": true
-    },
-    {
-      "source": "/:path*",
-      "has": [
-        { "type": "scheme", "value": "http" }
-      ],
-      "destination": "https://www.burexert.com/:path*",
-      "permanent": true
     }
   ],
   "rewrites": [
