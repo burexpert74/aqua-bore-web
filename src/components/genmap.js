@@ -1,11 +1,16 @@
-import slugs from '../../src/components/slugs.json' assert { type: 'json' };
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-// Пути
+const slugsJsonPath = path.resolve(__dirname, './slugs.json');  // путь к json с массивом slug'ов
 const sitemapPath = path.resolve(__dirname, '../../public/sitemap.xml');
 const baseUrl = 'https://www.burexert.com';
+
+// Читаем и парсим JSON с массивом slug'ов
+const slugs = JSON.parse(fs.readFileSync(slugsJsonPath, 'utf-8'));
 
 const urls = slugs.map(slug => `
   <url>
