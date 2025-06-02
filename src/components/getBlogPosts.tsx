@@ -17,6 +17,22 @@ const fallbackImages = [
   '/blog/img/fallback-3.jpg',
   '/blog/img/fallback-4.jpg',
   '/blog/img/fallback-5.jpg',
+  '/blog/img/fallback-6.jpg',
+  '/blog/img/fallback-7.jpg',
+  '/blog/img/fallback-8.jpg',
+  '/blog/img/fallback-9.jpg',
+  '/blog/img/fallback-10.jpg',
+  '/blog/img/fallback-11.jpg',
+  '/blog/img/fallback-12.jpg',
+  '/blog/img/fallback-13.jpg',
+  '/blog/img/fallback-14.jpg',
+  '/blog/img/fallback-15.jpg',
+  '/blog/img/fallback-16.jpg',
+  '/blog/img/fallback-17.jpg',
+  '/blog/img/fallback-18.jpg',
+  '/blog/img/fallback-19.jpg',
+  '/blog/img/fallback-20.jpg',
+  '/blog/img/fallback-21.jpg'
 ];
 
 // Возвращает стабильный fallback-образ по slug
