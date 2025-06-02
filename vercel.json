@@ -1,9 +1,14 @@
 {
   "redirects": [
     {
-      "source": "/(.*)",
-      "has": [{ "type": "host", "value": "burexert.com" }],
-      "destination": "https://www.burexert.com/:1",
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "burexert.com"
+        }
+      ],
+      "destination": "https://www.burexert.com/:path*",
       "permanent": true
     }
   ]
