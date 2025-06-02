@@ -29,6 +29,9 @@ jobs:
       - name: Run update slugs script
         run: node src/components/updateSlugs.js
 
+      - name: Run gen sitemap script
+        run: node src/components/genmap.js
+
       - name: Show Git diff
         run: |
           git status
@@ -39,5 +42,6 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add src/components/getBlogPosts.tsx
+          git add public/sitemap.xml
           git diff --cached --quiet || git commit -m "Update slugs list [skip ci]"
           git push
