@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 
 /* START SLUGS */
@@ -35,27 +34,27 @@ const fallbackImages = [
   '/blog/img/fallback-21.jpg'
 ];
 
-// Возвращает стабильный fallback-образ по slug
-function getFallbackImageForSlug(slug: string): string {  
-  // Иначе используем хэш-функцию для стабильного выбора
-  const index = Math.abs(hashCode(slug)) % fallbackImages.length;
-  return fallbackImages[index];
+// Последовательная ротация с привязкой к slug
+let currentImageIndex = 0;
+const slugToImageMap = new Map<string, string>();
+
+function getNextFallbackImage(): string {
+  const image = fallbackImages[currentImageIndex];
+  currentImageIndex = (currentImageIndex + 1) % fallbackImages.length;
+  return image;
 }
 
-// Улучшенная хэш-функция для более равномерного распределения
-function hashCode(str: string): number {
-  let hash = 0;
-  if (str.length === 0) return hash;
-  
-  for (let i = 0; i < str.length; i++) {
-    const char = str.charCodeAt(i);
-    hash = ((hash << 5) - hash) + char;
-    hash = hash & hash; // Преобразуем в 32-битное число
+function getFallbackImageForSlug(slug: string): string {
+  // Если уже назначили изображение этому slug - возвращаем то же
+  if (slugToImageMap.has(slug)) {
+    return slugToImageMap.get(slug)!;
   }
   
-  return Math.abs(hash);
+  // Назначаем следующее по порядку
+  const image = getNextFallbackImage();
+  slugToImageMap.set(slug, image);
+  return image;
 }
-
 
 // ---------- Cached Image Existence Check ----------
 const CACHE_DURATION = 5 * 60 * 1000; // 5 минут
