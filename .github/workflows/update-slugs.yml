@@ -29,6 +29,15 @@ jobs:
       - name: Run update slugs script
         run: node src/components/updateSlugs.js
 
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add src/components/getBlogPosts.tsx
+          git add src/components/slugs.json
+          git diff --cached --quiet || git commit -m "Update slugs list [skip ci]"
+          git push
+
       - name: Run gen sitemap script
         run: node src/components/genmap.js
 
@@ -41,8 +50,6 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add src/components/getBlogPosts.tsx
-          git add src/components/slugs.json
           git add public/sitemap.xml
           git diff --cached --quiet || git commit -m "Update slugs list [skip ci]"
           git push
