@@ -1,4 +1,4 @@
-import { slugs } from '../../src/components/getBlogPosts.tsx';
+import slugs from '../../src/components/slugs.json' assert { type: 'json' };
 import fs from 'fs';
 import path from 'path';
 
