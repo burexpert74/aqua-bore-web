@@ -64,6 +64,11 @@ function updateSlugsFile(slugs) {
     return; // Не записываем и не коммитим
   }
 
+  const slugsJsonPath = path.resolve(__dirname, '../../src/components/slugs.json');
+  fs.writeFileSync(slugsJsonPath, JSON.stringify(slugs, null, 2));
+  console.log('✅ slugs.json обновлён!');
+
+
   fs.writeFileSync(slugsFilePath, newContent, 'utf-8');
   console.log('✅ Файл getBlogPosts.tsx обновлён!');
 }
