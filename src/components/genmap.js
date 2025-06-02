@@ -26,9 +26,7 @@ const urls = slugs.map(slug => `
 // Статические страницы
 const staticPages = [
   { url: '', priority: '1.0', changefreq: 'weekly' },     // Главная
-  { url: '/blog', priority: '0.9', changefreq: 'daily' }, // Блог
-  { url: '/services', priority: '0.8', changefreq: 'monthly' },
-  { url: '/contact', priority: '0.6', changefreq: 'yearly' }
+  { url: '/blog', priority: '0.9', changefreq: 'daily' }  // Блог
 ];
 
 const staticUrls = staticPages.map(page => `
