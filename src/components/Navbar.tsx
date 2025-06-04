@@ -92,10 +92,6 @@ const Navbar = () => {
                     <Phone className="h-5 w-5 text-blue-600 group-hover:scale-110 transition-transform" />
                     <span className="tracking-wide">+7 (904) 304-14-12</span>
                   </a>
-                  <a href="tel:+73517769990" className="flex items-center space-x-3 text-blue-700 hover:text-blue-900 transition-colors font-bold text-lg group">
-                    <Phone className="h-5 w-5 text-blue-600 group-hover:scale-110 transition-transform" />
-                    <span className="tracking-wide">+7 (351) 776-99-90</span>
-                  </a>
                   <div className="text-xs text-gray-600 ml-8">
                     Ежедневно с 08:00 до 21:00
                   </div>
