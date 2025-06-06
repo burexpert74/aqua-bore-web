@@ -3,63 +3,70 @@
 
   <url>
     <loc>https://www.burexert.com</loc>
-    <lastmod>2025-06-05</lastmod>
+    <lastmod>2025-06-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
   <url>
     <loc>https://www.burexert.com/blog</loc>
-    <lastmod>2025-06-05</lastmod>
+    <lastmod>2025-06-06</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
 
 <url>
 <loc>https://www.burexert.com/blog/effektivnoe-primenenie-spectehniki-v-stroitelstve-i-burenii</loc>
-<lastmod>2025-06-05</lastmod>
+<lastmod>2025-06-06</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.8</priority>
 </url>
 
 <url>
 <loc>https://www.burexert.com/blog/effektivnye-tehnologii-bureniya-yam-i-montazha-stolbov</loc>
-<lastmod>2025-06-05</lastmod>
+<lastmod>2025-06-06</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.8</priority>
 </url>
 
 <url>
 <loc>https://www.burexert.com/blog/kak-vybrat-yamobur-dlya-bureniya-fundamenta-sovety-ekspertov</loc>
-<lastmod>2025-06-05</lastmod>
+<lastmod>2025-06-06</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.8</priority>
+</url>
+
+<url>
+<loc>https://www.burexert.com/blog/montazh-fundamentov-na-svajnyh-i-stolbchatyh-osnovaniyah</loc>
+<lastmod>2025-06-06</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.8</priority>
 </url>
 
 <url>
 <loc>https://www.burexert.com/blog/nadezhny-fundament-tehnologii-bureniya-i-montazh-svay-v-chelyabinske</loc>
-<lastmod>2025-06-05</lastmod>
+<lastmod>2025-06-06</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.8</priority>
 </url>
 
 <url>
 <loc>https://www.burexert.com/blog/sovremennye-tehnologii-bureniya-fundamentov-i-montazha-svay</loc>
-<lastmod>2025-06-05</lastmod>
+<lastmod>2025-06-06</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.8</priority>
 </url>
 
 <url>
 <loc>https://www.burexert.com/blog/spectehnika-v-stroitelstve-i-burenii-prakticheskoe-rukovodstvo</loc>
-<lastmod>2025-06-05</lastmod>
+<lastmod>2025-06-06</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.8</priority>
 </url>
 
 <url>
 <loc>https://www.burexert.com/blog/tehnologii-bureniya-i-montazha-fundamentov-ekspertnyj-vzglyad-bureksperta</loc>
-<lastmod>2025-06-05</lastmod>
+<lastmod>2025-06-06</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.8</priority>
 </url>
