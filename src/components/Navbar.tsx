@@ -35,32 +35,23 @@ const Navbar = () => {
     }
   };
 
-  const handlePhoneClick = () => {
-    window.location.href = 'tel:+79043041412';
-  };
-
   return (
     <nav className="bg-white shadow-lg sticky top-0 z-50">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="flex justify-between items-center py-3 sm:py-4">
           <Link to="/" className="flex items-center space-x-2" onClick={() => setIsOpen(false)}>
-            <span className="text-xl sm:text-2xl font-bold text-gradient font-display">БурЭксперт</span>
+            <span className="text-xl sm:text-2xl font-bold text-gray-900">БурЭксперт</span>
           </Link>
 
           {/* Phone CTA - desktop */}
-          <div className="hidden lg:flex items-center space-x-6">
-            <div className="flex items-center space-x-4">
-              <div className="text-right">
-                <div className="text-xs text-gray-500 leading-tight mb-1">
-                  Работаем ежедневно 06:00-23:00
-                </div>
-                <button 
-                  onClick={handlePhoneClick}
-                  className="btn-phone text-lg font-bold tracking-wide"
-                >
-                  <Phone className="h-5 w-5 mr-2" />
-                  +7 (904) 304-14-12
-                </button>
+          <div className="flex flex-col items-end">
+                <a href="tel:+79043041412" className="flex items-center space-x-2 text-blue-700 hover:text-blue-900 transition-colors font-bold text-lg group">
+                  <Phone className="h-5 w-5 text-blue-600 group-hover:scale-110 transition-transform" />
+                  <span className="tracking-wide">+7 (904) 304-14-12</span>
+                </a>
+              </div>
+              <div className="text-xs text-gray-500 text-right leading-tight">
+                <div>Ежедневно с 06:00 до 23:00</div>
               </div>
             </div>
           </div>
@@ -96,15 +87,12 @@ const Navbar = () => {
               {/* Phone CTA - mobile */}
               <div className="px-4 py-4 border-b border-gray-100 bg-gradient-to-r from-primary-50 to-accent-orange-50">
                 <div className="space-y-3">
-                  <button 
-                    onClick={handlePhoneClick}
-                    className="btn-phone w-full text-lg font-bold tracking-wide justify-center"
-                  >
-                    <Phone className="h-5 w-5 mr-2" />
-                    +7 (904) 304-14-12
-                  </button>
-                  <div className="text-xs text-gray-600 text-center">
-                    Работаем ежедневно 06:00-23:00
+                  <a href="tel:+79043041412" className="flex items-center space-x-3 text-blue-700 hover:text-blue-900 transition-colors font-bold text-lg group">
+                    <Phone className="h-5 w-5 text-blue-600 group-hover:scale-110 transition-transform" />
+                    <span className="tracking-wide">+7 (904) 304-14-12</span>
+                  </a>
+                  <div className="text-xs text-gray-600 ml-8">
+                    Ежедневно с 08:00 до 21:00
                   </div>
                 </div>
               </div>
