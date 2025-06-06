@@ -1,19 +1,11 @@
-
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, Calendar, Clock } from 'lucide-react';
-import { getBlogPost } from '@/components/getBlogPosts';
+import { getBlogPost, BlogPost } from '@/components/getBlogPosts';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
-interface BlogPostData {
-  id: number;
-  title: string;
-  excerpt: string;
-  image: string;
-  date: string;
-  readTime: string;
-  slug: string;
+interface BlogPostData extends BlogPost {
   meta: {
     title: string;
     description: string;
@@ -34,7 +26,16 @@ const BlogPost = () => {
       try {
         setLoading(true);
         const postData = await getBlogPost(slug);
-        setPost(postData);
+        // Добавляем недостающие поля если их нет
+        const fullPostData: BlogPostData = {
+          ...postData,
+          meta: postData.meta || {
+            title: postData.title,
+            description: postData.excerpt
+          },
+          html: postData.html || `<div class="prose"><p>${postData.excerpt}</p></div>`
+        };
+        setPost(fullPostData);
       } catch (err) {
         setError('Статья не найдена');
         console.error('Error fetching blog post:', err);
