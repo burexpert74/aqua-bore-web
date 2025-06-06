@@ -39,14 +39,14 @@ const Footer = () => {
           {/* Company Info */}
           <div className="md:col-span-2 lg:col-span-1">
             <div className="flex items-center space-x-2 mb-3 sm:mb-4">
-              <span className="text-xl md:text-2xl font-bold text-gradient font-display">БурЭксперт</span>
+              <span className="text-xl md:text-2xl font-bold">БурЭксперт</span>
             </div>
             <p className="text-gray-300 mb-4 sm:mb-6 max-w-md text-sm md:text-base leading-relaxed">
-              Профессиональное бурение ям и монтаж свай. Собственный автопарк, индивидуальный подход к каждому клиенту.
+              Собственный автопарк, индивидуальный подход.
             </p>
-            <div className="bg-gradient-to-r from-primary-900/50 to-accent-orange-900/50 p-4 md:p-5 rounded-xl border border-primary-700/30">
-              <p className="text-sm md:text-base font-semibold text-primary-300 mb-2">
-                🏗️ Работаем по всей Челябинской области
+            <div className="bg-gray-800 p-3 md:p-4 rounded-lg">
+              <p className="text-sm md:text-base font-medium text-blue-400 mb-1">
+                Работаем в Челябинской области
               </p>
               <p className="text-xs md:text-sm text-gray-300 leading-relaxed">
                 Возможен выезд за пределы региона по дополнительной плате
@@ -56,19 +56,13 @@ const Footer = () => {
 
           {/* Contact Info - Enhanced */}
           <div>
-            <h3 className="text-lg md:text-xl font-bold mb-4 md:mb-6 font-display">Контакты</h3>
-            <div className="space-y-4 md:space-y-5 text-sm md:text-base">
-              <div className="bg-gradient-to-r from-green-600 to-green-700 p-4 rounded-xl">
-                <button 
-                  onClick={handlePhoneClick}
-                  className="flex items-center space-x-3 w-full text-left group hover:scale-105 transition-transform"
-                >
-                  <Phone className="h-5 w-5 md:h-6 md:w-6 text-green-200 flex-shrink-0 group-hover:animate-bounce" />
-                  <div>
-                    <div className="font-bold text-lg md:text-xl text-white">+7(904)304-14-12</div>
-                    <div className="text-green-200 text-xs md:text-sm">Нажмите для звонка</div>
-                  </div>
-                </button>
+            <h3 className="text-lg md:text-xl font-bold mb-3 md:mb-4">Контакты</h3>
+            <div className="space-y-2 md:space-y-3 text-sm md:text-base">
+              <div className="flex items-center space-x-3">
+                <Phone className="h-4 w-4 md:h-5 md:w-5 text-blue-400 flex-shrink-0" />
+                <a href="tel:+79043041412" className="hover:text-blue-400 active:text-blue-300 transition-colors touch-manipulation">
+                  +7(904)304-14-12
+                </a>
               </div>
               
               <div className="flex items-center space-x-3">
@@ -107,7 +101,7 @@ const Footer = () => {
                   onClick={scrollToServices}
                   className="hover:text-accent-orange-400 active:text-accent-orange-300 transition-colors text-left w-full touch-manipulation leading-relaxed group"
                 >
-                  <span className="group-hover:translate-x-1 transition-transform inline-block">🔸 Бурение ям разного диаметра</span>
+                  <span className="group-hover:translate-x-1 transition-transform inline-block">Бурение ям разного диаметра</span>
                 </button>
               </li>
               <li>
@@ -115,7 +109,7 @@ const Footer = () => {
                   onClick={scrollToServices}
                   className="hover:text-accent-orange-400 active:text-accent-orange-300 transition-colors text-left w-full touch-manipulation leading-relaxed group"
                 >
-                  <span className="group-hover:translate-x-1 transition-transform inline-block">🔸 Монтаж винтовых свай</span>
+                  <span className="group-hover:translate-x-1 transition-transform inline-block">Монтаж винтовых свай</span>
                 </button>
               </li>
               <li>
@@ -123,7 +117,7 @@ const Footer = () => {
                   onClick={scrollToServices}
                   className="hover:text-accent-orange-400 active:text-accent-orange-300 transition-colors text-left w-full touch-manipulation leading-relaxed group"
                 >
-                  <span className="group-hover:translate-x-1 transition-transform inline-block">🔸 Монтаж опор ЛЭП</span>
+                  <span className="group-hover:translate-x-1 transition-transform inline-block">Монтаж опор ЛЭП</span>
                 </button>
               </li>
               <li>
@@ -131,26 +125,18 @@ const Footer = () => {
                   onClick={scrollToServices}
                   className="hover:text-accent-orange-400 active:text-accent-orange-300 transition-colors text-left w-full touch-manipulation leading-relaxed group"
                 >
-                  <span className="group-hover:translate-x-1 transition-transform inline-block">🔸 Аренда ямобура с оператором</span>
+                  <span className="group-hover:translate-x-1 transition-transform inline-block">Демонтаж опор ЛЭП</span>
                 </button>
               </li>
             </ul>
             
-            <div className="mt-6">
-              <button 
-                onClick={scrollToServices}
-                className="btn-primary w-full"
-              >
-                Узнать цены
-              </button>
-            </div>
           </div>
         </div>
 
         <div className="border-t border-gray-700 mt-6 sm:mt-8 md:mt-12 pt-4 sm:pt-6 md:pt-8">
           <div className="text-center">
             <p className="text-gray-400 text-sm md:text-base">
-              © 2025 БурЭксперт. Профессиональное бурение в Челябинске.
+              © 2025 БурЭксперт.
             </p>
           </div>
         </div>
