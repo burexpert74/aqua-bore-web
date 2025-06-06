@@ -51,19 +51,19 @@ const ServicesTable = () => {
             <div key={index} className="bg-white rounded-lg md:rounded-xl shadow-md md:shadow-lg overflow-hidden border-t-4 border-blue-600 flex flex-col h-full transform transition-transform duration-200 hover:scale-[1.02] active:scale-[0.98]">
               <div className="p-3 sm:p-4 md:p-6">
                 <div className="flex justify-between items-start mb-3 md:mb-4 lg:mb-6">
-                  <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 leading-tight pr-2">{service.type}</h3>
+                  <h3 className="text-lg sm:text-xl md:text-xl lg:text-2xl font-bold text-gray-900 leading-tight pr-2">{service.type}</h3>
                 </div>
 
                 <div className={`grid ${service.depth ? 'grid-cols-2' : 'grid-cols-1'} gap-2 sm:gap-3 md:gap-4 mb-3 md:mb-4 lg:mb-6`}>
                   {service.depth && (
                     <div className="bg-gray-50 p-2 sm:p-3 md:p-4 rounded-md md:rounded-lg text-center">
-                      <div className="text-gray-500 text-xs md:text-sm mb-1">Глубина</div>
-                      <div className="text-sm sm:text-base md:text-lg lg:text-xl font-semibold text-gray-900">{service.depth}</div>
+                      <div className="text-gray-500 text-sm md:text-sm mb-1">Глубина</div>
+                      <div className="text-base sm:text-lg md:text-lg lg:text-xl font-semibold text-gray-900">{service.depth}</div>
                     </div>
                   )}
                   <div className="bg-blue-50 p-2 sm:p-3 md:p-4 rounded-md md:rounded-lg text-center">
-                    <div className="text-gray-500 text-xs md:text-sm mb-1">Стоимость</div>
-                    <div className="text-sm sm:text-base md:text-lg lg:text-xl font-semibold text-blue-600">{service.price}</div>
+                    <div className="text-gray-500 text-sm md:text-sm mb-1">Стоимость</div>
+                    <div className="text-base sm:text-lg md:text-lg lg:text-xl font-semibold text-blue-600">{service.price}</div>
                   </div>
                 </div>
 
@@ -71,7 +71,7 @@ const ServicesTable = () => {
                   {service.features.map((feature, idx) => (
                     <li key={idx} className="flex items-start">
                       <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-blue-500 rounded-full mr-2 mt-1.5 sm:mt-2 flex-shrink-0"></div>
-                      <span className="text-xs sm:text-sm md:text-base text-gray-700 leading-relaxed">{feature}</span>
+                      <span className="text-sm sm:text-base md:text-base text-gray-700 leading-relaxed">{feature}</span>
                     </li>
                   ))}
                 </ul>
@@ -80,7 +80,7 @@ const ServicesTable = () => {
               <div className="p-3 sm:p-4 md:p-6 pt-0 mt-auto">
                 <Button 
                   onClick={handleTelegramClick}
-                  className="w-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-xs sm:text-sm md:text-base py-2.5 sm:py-3 md:py-3 transition-all duration-200 font-medium" 
+                  className="w-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-sm sm:text-base md:text-base py-2.5 sm:py-3 md:py-3 transition-all duration-200 font-medium" 
                   variant="default"
                 >
                   Заказать консультацию
@@ -91,13 +91,13 @@ const ServicesTable = () => {
         </div>
 
         <div className="mt-6 sm:mt-8 md:mt-12 bg-blue-900 text-white rounded-lg md:rounded-xl p-4 sm:p-6 md:p-8 text-center max-w-5xl mx-auto shadow-lg md:shadow-xl">
-          <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 md:mb-4 leading-tight">Есть вопросы по услугам?</h3>
-          <p className="text-blue-100 mb-3 sm:mb-4 md:mb-6 text-sm md:text-base leading-relaxed px-2">
+          <h3 className="text-xl sm:text-2xl md:text-2xl font-bold mb-2 sm:mb-3 md:mb-4 leading-tight">Есть вопросы по услугам?</h3>
+          <p className="text-blue-100 mb-3 sm:mb-4 md:mb-6 text-base md:text-base leading-relaxed px-2">
             Свяжитесь с нашими специалистами в Telegram для получения подробной консультации и расчета стоимости работ
           </p>
           <Button 
             onClick={handleTelegramClick}
-            className="bg-white text-blue-900 hover:bg-blue-50 active:bg-blue-100 text-sm md:text-base px-4 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-3 transition-all duration-200 font-medium" 
+            className="bg-white text-blue-900 hover:bg-blue-50 active:bg-blue-100 text-base md:text-base px-4 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-3 transition-all duration-200 font-medium" 
             variant="outline"
             size="lg"
           >
