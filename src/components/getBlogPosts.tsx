@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 
 /* START SLUGS */
 export const slugs = [
-  "effektivnoe-primenenie-spectehniki-v-stroitelstve-i-burenii",
   "effektivnye-tehnologii-bureniya-yam-i-montazha-stolbov",
   "kak-vybrat-yamobur-dlya-bureniya-fundamenta-sovety-ekspertov",
   "montazh-fundamentov-na-svajnyh-i-stolbchatyh-osnovaniyah",
