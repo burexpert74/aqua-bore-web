@@ -36,19 +36,12 @@
     --radius: 0.5rem;
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
@@ -98,6 +91,35 @@
 
   body {
     @apply bg-background text-foreground;
+    /* Оптимизация для мобильных устройств */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    /* Предотвращение горизонтального скролла */
+    overflow-x: hidden;
+  }
+
+  /* Улучшенная прокрутка для iOS */
+  * {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Оптимизация касаний */
+  button, a, [role="button"] {
+    touch-action: manipulation;
+  }
+
+  /* Улучшение производительности для анимаций */
+  .animate-pulse,
+  .animate-bounce,
+  .animate-spin {
+    will-change: transform;
+  }
+
+  /* Адаптивные изображения */
+  img {
+    max-width: 100%;
+    height: auto;
   }
 }
 
@@ -108,5 +130,53 @@
   
   .text-shadow-lg {
     text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+  }
+
+  /* Утилиты для мобильной оптимизации */
+  .touch-manipulation {
+    touch-action: manipulation;
+  }
+
+  .line-clamp-2 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+
+  .line-clamp-3 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+  }
+
+  /* Оптимизация отступов для мобильных */
+  @media (max-width: 640px) {
+    .container {
+      padding-left: 0.75rem;
+      padding-right: 0.75rem;
+    }
+  }
+
+  /* Улучшение производительности скролла */
+  .scroll-smooth {
+    scroll-behavior: smooth;
+  }
+
+  /* Оптимизация для пользователей с медленными устройствами */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-pulse,
+    .animate-bounce,
+    .animate-spin {
+      animation: none;
+    }
+    
+    .transition-all,
+    .transition-transform,
+    .transition-colors,
+    .transition-opacity {
+      transition: none;
+    }
   }
 }

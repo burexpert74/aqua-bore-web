@@ -58,9 +58,10 @@ const BlogPost = () => {
     return (
       <div className="min-h-screen bg-gray-50">
         <Navbar />
-        <div className="container mx-auto px-4 sm:px-6 py-8 sm:py-12">
+        <div className="container mx-auto px-3 sm:px-4 md:px-6 py-6 sm:py-8 md:py-12">
           <div className="text-center">
-            <p className="text-lg text-gray-600">Загрузка статьи...</p>
+            <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mb-4"></div>
+            <p className="text-base md:text-lg text-gray-600">Загрузка статьи...</p>
           </div>
         </div>
         <Footer />
@@ -72,12 +73,12 @@ const BlogPost = () => {
     return (
       <div className="min-h-screen bg-gray-50">
         <Navbar />
-        <div className="container mx-auto px-4 sm:px-6 py-8 sm:py-12">
+        <div className="container mx-auto px-3 sm:px-4 md:px-6 py-6 sm:py-8 md:py-12">
           <div className="text-center">
-            <p className="text-lg text-red-600">{error || 'Статья не найдена'}</p>
+            <p className="text-base md:text-lg text-red-600 mb-4">{error || 'Статья не найдена'}</p>
             <Link 
               to="/blog" 
-              className="inline-flex items-center mt-4 text-blue-600 hover:text-blue-800 transition-colors"
+              className="inline-flex items-center text-blue-600 hover:text-blue-800 active:text-blue-900 transition-colors touch-manipulation"
             >
               <ArrowLeft className="h-4 w-4 mr-2" />
               Вернуться к блогу
@@ -93,44 +94,45 @@ const BlogPost = () => {
     <div className="min-h-screen bg-gray-50">
       <Navbar />
       
-      <article className="container mx-auto px-4 sm:px-6 py-8 sm:py-12 max-w-4xl">
+      <article className="container mx-auto px-3 sm:px-4 md:px-6 py-6 sm:py-8 md:py-12 max-w-4xl">
         <Link 
           to="/blog" 
-          className="inline-flex items-center mb-6 text-blue-600 hover:text-blue-800 transition-colors"
+          className="inline-flex items-center mb-4 sm:mb-6 text-blue-600 hover:text-blue-800 active:text-blue-900 transition-colors touch-manipulation"
         >
           <ArrowLeft className="h-4 w-4 mr-2" />
           Вернуться к блогу
         </Link>
 
-        <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+        <div className="bg-white rounded-lg md:rounded-xl shadow-lg overflow-hidden">
           <img
             src={post.image}
             alt={post.title}
-            className="w-full h-64 sm:h-80 object-cover"
+            className="w-full h-48 sm:h-56 md:h-64 lg:h-80 object-cover"
+            loading="eager"
           />
           
-          <div className="p-6 sm:p-8">
-            <div className="flex items-center space-x-4 text-sm text-gray-500 mb-4">
-              <div className="flex items-center space-x-2">
-                <Calendar className="h-4 w-4" />
+          <div className="p-4 sm:p-6 md:p-8">
+            <div className="flex items-center space-x-3 sm:space-x-4 text-xs sm:text-sm text-gray-500 mb-3 sm:mb-4">
+              <div className="flex items-center space-x-1 sm:space-x-2">
+                <Calendar className="h-3 w-3 sm:h-4 sm:w-4 flex-shrink-0" />
                 <span>{formatDate(post.date)}</span>
               </div>
-              <div className="flex items-center space-x-2">
-                <Clock className="h-4 w-4" />
+              <div className="flex items-center space-x-1 sm:space-x-2">
+                <Clock className="h-3 w-3 sm:h-4 sm:w-4 flex-shrink-0" />
                 <span>{post.readTime}</span>
               </div>
             </div>
 
-            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
+            <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 sm:mb-6 leading-tight">
               {post.title}
             </h1>
 
-            <div className="text-lg text-gray-600 mb-8">
+            <div className="text-base sm:text-lg text-gray-600 mb-6 sm:mb-8 leading-relaxed">
               {post.excerpt}
             </div>
 
             <div 
-              className="prose prose-lg max-w-none prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900"
+              className="prose prose-sm sm:prose prose-lg max-w-none prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900 prose-headings:leading-tight prose-p:leading-relaxed"
               dangerouslySetInnerHTML={{ __html: post.html }}
             />
           </div>

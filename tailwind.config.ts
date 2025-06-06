@@ -13,8 +13,17 @@ export default {
   theme: {
     container: {
       center: true,
-      padding: "2rem",
+      padding: {
+        DEFAULT: "0.75rem",
+        sm: "1rem",
+        md: "1.5rem",
+        lg: "2rem",
+      },
       screens: {
+        sm: "640px",
+        md: "768px",
+        lg: "1024px",
+        xl: "1280px",
         "2xl": "1400px",
       },
     },
@@ -100,7 +109,24 @@ export default {
         '3000': '3s', 
         '4000': '4s',
         '6000': '6s',
-      }
+      },
+      spacing: {
+        '18': '4.5rem',
+        '88': '22rem',
+      },
+      fontSize: {
+        'xs': ['0.75rem', { lineHeight: '1.25' }],
+        'sm': ['0.875rem', { lineHeight: '1.4' }],
+        'base': ['1rem', { lineHeight: '1.5' }],
+        'lg': ['1.125rem', { lineHeight: '1.6' }],
+        'xl': ['1.25rem', { lineHeight: '1.6' }],
+        '2xl': ['1.5rem', { lineHeight: '1.4' }],
+        '3xl': ['1.875rem', { lineHeight: '1.3' }],
+        '4xl': ['2.25rem', { lineHeight: '1.2' }],
+      },
+      screens: {
+        'xs': '475px',
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],
@@ -109,5 +135,7 @@ export default {
     'animation-delay-3000',
     'animation-delay-4000', 
     'animation-delay-6000',
+    'line-clamp-2',
+    'line-clamp-3',
   ]
 } satisfies Config;
