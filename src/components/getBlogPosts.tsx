@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 export const slugs = [
   "effektivnye-tehnologii-bureniya-yam-i-montazha-stolbov",
   "innovacionnye-metody-bureniya-i-montazha-fundamentov-vybor-spectehniki",
-  "kak-vybrat-idealnyy-yamobur-dlya-slozhnyh-gruntov",
   "montazh-fundamentov-na-svajnyh-i-stolbchatyh-osnovaniyah",
   "montazh-svajnyh-i-stolbchatyh-fundamentov-tehnicheskie-sekrety-i-luchshie-praktiki",
   "nadezhny-fundament-tehnologii-bureniya-i-montazh-svay-v-chelyabinske",
