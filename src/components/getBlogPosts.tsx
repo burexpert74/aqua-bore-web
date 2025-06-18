@@ -116,6 +116,7 @@ export async function getBlogPosts() {
       return {
         ...data,
         slug,
+        image: isValidImageUrl(data.image) ? data.image : getFallbackImageForSlug(slug),
       };
     })
   );
