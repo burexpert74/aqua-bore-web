@@ -79,8 +79,11 @@ export const ImageWithFallback = ({
 }) => {
   const [imgSrc, setImgSrc] = useState(src);
 
-  const handleError = () => {
-    setImgSrc(fallbackSrc || (slug ? getFallbackImageForSlug(slug) : fallbackImages[0]));
+  const handleError = (e) => {
+    // предотвращаем зацикливание onError
+    if (e.target.src !== (fallbackSrc || getFallbackImageForSlug(slug))) {
+      setImgSrc(fallbackSrc || getFallbackImageForSlug(slug));
+    }
   };
 
   return (
