@@ -37,64 +37,48 @@ const fallbackImages = [
   '/blog/img/fallback-21.jpg'
 ];
 
-// Последовательная ротация с привязкой к slug
-let currentImageIndex = 0;
+// Стабильная привязка slug к fallback-изображению
 const slugToImageMap = new Map<string, string>();
 
-function getNextFallbackImage(): string {
-  const image = fallbackImages[currentImageIndex];
-  currentImageIndex = (currentImageIndex + 1) % fallbackImages.length;
-  return image;
-}
-
 function getFallbackImageForSlug(slug: string): string {
-  // Если уже назначили изображение этому slug - возвращаем то же
   if (slugToImageMap.has(slug)) {
     return slugToImageMap.get(slug)!;
   }
   
-  // Назначаем следующее по порядку
-  const image = getNextFallbackImage();
+  // Используем хеш от slug для стабильного выбора изображения
+  const hash = slug.split('').reduce((acc, char) => {
+    return ((acc << 5) - acc + char.charCodeAt(0)) & 0xffffffff;
+  }, 0);
+  
+  const imageIndex = Math.abs(hash) % fallbackImages.length;
+  const image = fallbackImages[imageIndex];
   slugToImageMap.set(slug, image);
   return image;
 }
 
-// ---------- Cached Image Existence Check ----------
-const CACHE_DURATION = 5 * 60 * 1000; // 5 минут
-
-interface CacheEntry {
-  exists: boolean;
-  timestamp: number;
-}
-
-const imageCache = new Map<string, CacheEntry>();
-
-async function imageExists(url: string): Promise<boolean> {
-  const now = Date.now();
-  const cached = imageCache.get(url);
-
-  if (cached && (now - cached.timestamp) < CACHE_DURATION) {
-    return cached.exists;
-  }
-
-  try {
-    const res = await fetch(url, { method: 'HEAD' });
-    const exists = res.ok;
-    imageCache.set(url, { exists, timestamp: now });
-    return exists;
-  } catch {
-    imageCache.set(url, { exists: false, timestamp: now });
+// ---------- Utility Functions ----------
+function isValidImageUrl(url: string): boolean {
+  if (!url || typeof url !== 'string' || url.trim() === '') {
     return false;
   }
+  
+  // Проверяем, что это похоже на URL изображения
+  const imageExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.webp', '.svg'];
+  const lowerUrl = url.toLowerCase();
+  
+  return imageExtensions.some(ext => lowerUrl.includes(ext)) || 
+         lowerUrl.startsWith('data:image/') ||
+         lowerUrl.includes('/image/') ||
+         lowerUrl.includes('/img/');
 }
 
 // ---------- React Image Component ----------
 interface ImageWithFallbackProps {
   src: string;
   alt: string;
-  slug?: string;               // Добавил slug для выбора fallback по статье
+  slug?: string;
   className?: string;
-  fallbackSrc?: string;        // Можно задать кастомный fallback
+  fallbackSrc?: string;
 }
 
 export const ImageWithFallback: React.FC<ImageWithFallbackProps> = ({
@@ -104,13 +88,18 @@ export const ImageWithFallback: React.FC<ImageWithFallbackProps> = ({
   className = '',
   fallbackSrc,
 }) => {
-  const [imgSrc, setImgSrc] = useState(src);
+  // Сразу определяем, какое изображение использовать
+  const shouldUseFallback = !isValidImageUrl(src);
+  const initialSrc = shouldUseFallback 
+    ? (fallbackSrc || (slug ? getFallbackImageForSlug(slug) : fallbackImages[0]))
+    : src;
+    
+  const [imgSrc, setImgSrc] = useState(initialSrc);
   const [hasError, setHasError] = useState(false);
 
   const handleError = () => {
     if (!hasError) {
       setHasError(true);
-      // fallbackSrc или стабильный fallback по slug или первый из fallbackImages
       const fallback = fallbackSrc || (slug ? getFallbackImageForSlug(slug) : fallbackImages[0]);
       setImgSrc(fallback);
     }
@@ -142,55 +131,97 @@ export async function getBlogPosts(): Promise<BlogPost[]> {
     slugs.map(async (slug) => {
       try {
         const res = await fetch(`/blog/${slug}.json`);
-        if (!res.ok) return null;
+        if (!res.ok) {
+          // Возвращаем пост с fallback-данными если JSON не найден
+          return {
+            id: slug,
+            title: `Статья ${slug}`,
+            excerpt: 'Описание статьи недоступно',
+            image: getFallbackImageForSlug(slug),
+            date: new Date().toISOString().split('T')[0],
+            readTime: '5 мин',
+            slug: slug,
+          };
+        }
 
         const data = await res.json();
 
-        const hasImage = typeof data.image === 'string' && data.image.trim() !== '';
-        const validImage = hasImage && await imageExists(data.image);
-        // ИСПРАВЛЕНИЕ: используем fallback если изображение невалидно
-        const image = (hasImage && validImage) ? data.image : getFallbackImageForSlug(slug);
+        // Сразу используем fallback если изображение невалидно
+        const image = isValidImageUrl(data.image) 
+          ? data.image 
+          : getFallbackImageForSlug(slug);
 
         return {
-          id: data.id,
-          title: data.title,
-          excerpt: data.excerpt,
+          id: data.id || slug,
+          title: data.title || `Статья ${slug}`,
+          excerpt: data.excerpt || 'Описание статьи недоступно',
           image,
-          date: data.date,
-          readTime: data.readTime,
-          slug: data.slug,
+          date: data.date || new Date().toISOString().split('T')[0],
+          readTime: data.readTime || '5 мин',
+          slug: data.slug || slug,
         };
       } catch (error) {
         console.error(`Error loading blog post ${slug}:`, error);
-        return null;
+        // Возвращаем fallback-пост вместо null
+        return {
+          id: slug,
+          title: `Статья ${slug}`,
+          excerpt: 'Описание статьи недоступно',
+          image: getFallbackImageForSlug(slug),
+          date: new Date().toISOString().split('T')[0],
+          readTime: '5 мин',
+          slug: slug,
+        };
       }
     })
   );
 
-  return posts.filter((p): p is BlogPost => p !== null).sort(
-    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
-  );
+  return posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 }
 
 export async function getBlogPost(slug: string): Promise<BlogPost> {
   try {
     const res = await fetch(`/blog/${slug}.json`);
-    if (!res.ok) throw new Error('Post not found');
+    if (!res.ok) {
+      // Возвращаем fallback-пост вместо ошибки
+      return {
+        id: slug,
+        title: `Статья ${slug}`,
+        excerpt: 'Описание статьи недоступно',
+        image: getFallbackImageForSlug(slug),
+        date: new Date().toISOString().split('T')[0],
+        readTime: '5 мин',
+        slug: slug,
+      };
+    }
 
     const data = await res.json();
 
-    const hasImage = typeof data.image === 'string' && data.image.trim() !== '';
-    const validImage = hasImage && await imageExists(data.image);
-    const image = (hasImage && validImage) ? data.image : getFallbackImageForSlug(slug);
+    const image = isValidImageUrl(data.image) 
+      ? data.image 
+      : getFallbackImageForSlug(slug);
     
     return {
-      ...data,
+      id: data.id || slug,
+      title: data.title || `Статья ${slug}`,
+      excerpt: data.excerpt || 'Описание статьи недоступно',
       image,
+      date: data.date || new Date().toISOString().split('T')[0],
+      readTime: data.readTime || '5 мин',
+      slug: data.slug || slug,
     };
 
   } catch (error) {
     console.error(`Error loading blog post ${slug}:`, error);
-    throw error;
+    // Возвращаем fallback-пост вместо выброса ошибки
+    return {
+      id: slug,
+      title: `Статья ${slug}`,
+      excerpt: 'Описание статьи недоступно',
+      image: getFallbackImageForSlug(slug),
+      date: new Date().toISOString().split('T')[0],
+      readTime: '5 мин',
+      slug: slug,
+    };
   }
 }
-
