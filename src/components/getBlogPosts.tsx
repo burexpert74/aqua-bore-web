@@ -148,7 +148,7 @@ export async function getBlogPosts(): Promise<BlogPost[]> {
 
         const hasImage = typeof data.image === 'string' && data.image.trim() !== '';
         const validImage = hasImage && await imageExists(data.image);
-        const image = validImage ? data.image : getFallbackImageForSlug(slug);
+        const image = hasImage ? data.image : getFallbackImageForSlug(slug);
 
         return {
           id: data.id,
@@ -181,14 +181,16 @@ export async function getBlogPost(slug: string): Promise<BlogPost> {
 
     const hasImage = typeof data.image === 'string' && data.image.trim() !== '';
     const validImage = hasImage && await imageExists(data.image);
+    const image = (hasImage && validImage) ? data.image : getFallbackImageForSlug(slug);
+    
+    return {
+      ...data,
+      image,
+    };
 
-    if (!validImage) {
-      data.image = getFallbackImageForSlug(slug);
-    }
-
-    return data;
   } catch (error) {
     console.error(`Error loading blog post ${slug}:`, error);
     throw error;
   }
 }
+
