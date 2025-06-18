@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 
 /* START SLUGS */
 export const slugs = [
-  "effektivnye-tehnologii-bureniya-yam-i-montazha-stolbov",
   "innovacionnye-metody-bureniya-i-montazha-fundamentov-vybor-spectehniki",
   "montazh-fundamentov-na-svajnyh-i-stolbchatyh-osnovaniyah",
   "montazh-svajnyh-i-stolbchatyh-fundamentov-tehnicheskie-sekrety-i-luchshie-praktiki",
