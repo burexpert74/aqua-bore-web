@@ -116,7 +116,7 @@ export async function getBlogPosts() {
       return {
         ...data,
         slug,
-        image: isValidImageUrl(data.image) ? data.image : getFallbackImageForSlug(slug),
+        image: getFallbackImageForSlug(slug),
       };
     })
   );
@@ -129,5 +129,5 @@ export async function getBlogPost(slug) {
   const res = await fetch(`/blog/${slug}.json`);
   if (!res.ok) throw new Error('Post not found');
   const data = await res.json();
-  return { ...data, slug };
+  return { ...data, slug, image: getFallbackImageForSlug(slug), };
 }
