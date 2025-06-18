@@ -6,7 +6,6 @@ export const slugs = [
   "innovacionnye-metody-bureniya-i-montazha-fundamentov-vybor-spectehniki",
   "kak-pravilno-podgotovit-uchastok-k-bureniyu-yamoburom",
   "kak-pravilno-vybrat-yamobur-dlya-nadjozhnogo-fundamenta",
-  "kak-vybrat-idealnyy-yamobur-dlya-nadezhnogo-fundamenta",
   "kak-vybrat-idealnyy-yamobur-dlya-slozhnyh-gruntov",
   "montazh-fundamentov-na-svajnyh-i-stolbchatyh-osnovaniyah",
   "montazh-svajnyh-i-stolbchatyh-fundamentov-tehnicheskie-sekrety-i-luchshie-praktiki",
