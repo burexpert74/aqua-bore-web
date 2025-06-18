@@ -33,8 +33,8 @@ const fallbackImages = [
   '/blog/img/fallback-17.jpg',
   '/blog/img/fallback-18.jpg',
   '/blog/img/fallback-19.jpg',
-  '/blog/img/fallback-20.jpg',
-  '/blog/img/fallback-21.jpg'
+  '/blog/img/fallback-20.png',
+  '/blog/img/fallback-21.png'
 ];
 
 // Стабильная привязка slug к fallback-изображению
