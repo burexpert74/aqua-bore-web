@@ -8,9 +8,6 @@ import ChatBot from '@/components/ChatBot';
 import Footer from '@/components/Footer';
 import BlogSidebar from '@/components/BlogSidebar';
 import BlogToggle from '@/components/BlogToggle';
-import { inject } from '@vercel/analytics';
-
-inject();
 
 const Index = () => {
   const [isBlogOpen, setIsBlogOpen] = useState(false);
