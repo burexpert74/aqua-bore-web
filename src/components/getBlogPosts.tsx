@@ -148,7 +148,8 @@ export async function getBlogPosts(): Promise<BlogPost[]> {
 
         const hasImage = typeof data.image === 'string' && data.image.trim() !== '';
         const validImage = hasImage && await imageExists(data.image);
-        const image = hasImage ? data.image : getFallbackImageForSlug(slug);
+        // ИСПРАВЛЕНИЕ: используем fallback если изображение невалидно
+        const image = (hasImage && validImage) ? data.image : getFallbackImageForSlug(slug);
 
         return {
           id: data.id,
@@ -166,7 +167,6 @@ export async function getBlogPosts(): Promise<BlogPost[]> {
     })
   );
 
-  // Фильтруем null и сортируем по дате (новее вперед)
   return posts.filter((p): p is BlogPost => p !== null).sort(
     (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
   );
