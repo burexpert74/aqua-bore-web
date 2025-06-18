@@ -8,7 +8,6 @@ export const slugs = [
   "kak-pravilno-vybrat-yamobur-dlya-nadjozhnogo-fundamenta",
   "kak-vybrat-idealnyy-yamobur-dlya-nadezhnogo-fundamenta",
   "kak-vybrat-idealnyy-yamobur-dlya-slozhnyh-gruntov",
-  "kak-vybrat-yamobur-dlya-bureniya-fundamenta-sovety-ekspertov",
   "montazh-fundamentov-na-svajnyh-i-stolbchatyh-osnovaniyah",
   "montazh-svajnyh-i-stolbchatyh-fundamentov-tehnicheskie-sekrety-i-luchshie-praktiki",
   "nadezhny-fundament-tehnologii-bureniya-i-montazh-svay-v-chelyabinske",
