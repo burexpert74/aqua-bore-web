@@ -10,6 +10,7 @@ export const slugs = [
   "praktichnaya-spectehnika-dlya-stroitelstva-i-zemlyanyh-rabot",
   "sovremennye-tehnologii-montazha-fundamentov-i-bureniya-yam-pod-zabory",
   "spectehnika-v-stroitelstve-i-burenii-prakticheskoe-rukovodstvo",
+  "top-5-tehnologiy-bureniya-i-montazha-svay-dlya-stroitelstva",
   "yamobury-tekhnicheskie-tonkosti-i-top-5-resheniy-chelyabinsk"
 ];
 /* END SLUGS */
