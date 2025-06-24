@@ -12,6 +12,7 @@ export const slugs = [
   "spectehnika-v-stroitelstve-i-burenii-prakticheskoe-rukovodstvo",
   "tehnologii-bureniya-i-montazh-fundamentov-polnyy-gid-ot-burekspert",
   "top-5-tehnologiy-bureniya-i-montazha-svay-dlya-stroitelstva",
+  "yamobury-burilno-kranovaya-tekhnika-prakticheskie-keysy-i-sovety",
   "yamobury-tekhnicheskie-tonkosti-i-top-5-resheniy-chelyabinsk"
 ];
 /* END SLUGS */
