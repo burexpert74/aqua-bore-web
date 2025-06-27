@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 /* START SLUGS */
 export const slugs = [
   "effektivnoe-burenie-yamoburom-sekrety-professionalov",
+  "innovacii-v-burenii-fundamentov-yamoburami-v-uralskom-regione",
   "innovacionnye-metody-bureniya-i-montazha-fundamentov-vybor-spectehniki",
   "luchshie-tehnicheskie-resheniya-dlya-bureniya-i-montazha-svaj-v-chelyabinske",
   "montazh-fundamentov-na-svajnyh-i-stolbchatyh-osnovaniyah",
