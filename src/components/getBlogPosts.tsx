@@ -9,6 +9,7 @@ export const slugs = [
   "montazh-fundamentov-na-svajnyh-i-stolbchatyh-osnovaniyah",
   "montazh-svajnyh-i-stolbchatyh-fundamentov-tehnicheskie-sekrety-i-luchshie-praktiki",
   "nadezhny-fundament-tehnologii-bureniya-i-montazh-svay-v-chelyabinske",
+  "prakticheskie-keysy-bureniya-i-montazha-fundamentov-chelyabinsk",
   "praktichnaya-spectehnika-dlya-stroitelstva-i-zemlyanyh-rabot",
   "sekrety-professionalnogo-bureniya-yamobur-ot-burekspert",
   "sovremennye-tehnologii-bureniya-i-montazha-fundamentov",
