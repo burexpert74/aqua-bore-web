@@ -6,6 +6,7 @@ export const slugs = [
   "innovacii-v-burenii-fundamentov-yamoburami-v-uralskom-regione",
   "innovacionnye-metody-bureniya-i-montazha-fundamentov-vybor-spectehniki",
   "kak-pravilno-vybrat-yamu-dlya-fundamenta-s-pomoshchyu-yamobura",
+  "kak-vybrat-idealnyy-yamobur-dlya-fundamenta",
   "luchshie-tehnicheskie-resheniya-dlya-bureniya-i-montazha-svaj-v-chelyabinske",
   "montazh-fundamentov-na-svajnyh-i-stolbchatyh-osnovaniyah",
   "montazh-svajnyh-i-stolbchatyh-fundamentov-tehnicheskie-sekrety-i-luchshie-praktiki",
