@@ -8,6 +8,7 @@ export const slugs = [
   "kak-burenie-i-montazh-fundamentov-menyayut-stroitelstvo-v-chelyabinske",
   "kak-pravilno-vybrat-yamu-dlya-fundamenta-s-pomoshchyu-yamobura",
   "kak-vybrat-idealnyy-yamobur-dlya-fundamenta",
+  "kak-vybrat-idealnyy-yamobur-dlya-nadezhnogo-fundamenta",
   "luchshie-tehnicheskie-resheniya-dlya-bureniya-i-montazha-svaj-v-chelyabinske",
   "montazh-fundamentov-na-svajah-i-stolbah-tehnologii-i-praktika",
   "montazh-fundamentov-na-svajnyh-i-stolbchatyh-osnovaniyah",
