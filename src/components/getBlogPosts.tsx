@@ -30,6 +30,7 @@ export const slugs = [
   "spectehnika-v-stroitelstve-i-burenii-prakticheskoe-rukovodstvo",
   "tehnologii-bureniya-i-montazh-fundamentov-polnyy-gid-ot-burekspert",
   "tonkosti-burilno-kranovoy-tekhniki-dlya-montazha-fundamentov-v-chelyabinske",
+  "tonkosti-burilno-kranovoy-tekhniki-dlya-slozhnyh-usloviy",
   "tonkosti-burilno-kranovoy-tekhniki-dlya-uspeshnyh-zemnuh-rabot",
   "top-5-innovacij-dlya-bureniya-i-montazha-svaj-v-chelyabinske",
   "top-5-innovacij-dlya-bureniya-svajnyh-fundamentov-v-chelyabinske",
