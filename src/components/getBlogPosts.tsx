@@ -36,6 +36,7 @@ export const slugs = [
   "sovremennye-tehnologii-montazha-fundamentov-i-bureniya-yam-pod-zabory",
   "spectehnika-v-stroitelstve-i-burenii-prakticheskoe-rukovodstvo",
   "tehnologii-bureniya-i-montazh-fundamentov-polnyy-gid-ot-burekspert",
+  "tehnologii-montazha-fundamentov-na-svajah-i-stolbah-v-chelyabinske",
   "tonkosti-burilno-kranovoy-tekhniki-dlya-montazha-fundamentov-v-chelyabinske",
   "tonkosti-burilno-kranovoy-tekhniki-dlya-slozhnyh-usloviy",
   "tonkosti-burilno-kranovoy-tekhniki-dlya-uspeshnyh-zemnuh-rabot",
