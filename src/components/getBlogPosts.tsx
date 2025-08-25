@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 /* START SLUGS */
 export const slugs = [
   "burilno-kranovaya-tekhnika-dlya-montazha-fundamentov-v-slozhnyh-usloviyah",
+  "burilno-kranovaya-tekhnika-dlya-slozhnyh-fundamentov-osobennosti-i-praktika",
   "effektivnoe-burenie-yamobur-sekrety-professionalov",
   "effektivnoe-burenie-yamoburom-sekrety-professionalov",
   "effektivnye-metody-bureniya-yam-pod-zabory-i-stolby",
