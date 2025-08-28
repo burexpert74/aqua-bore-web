@@ -48,6 +48,7 @@ export const slugs = [
   "sovremennaya-spectehnika-dlya-stroitelstva-i-zemlyanyh-rabot-v-chelyabinske",
   "sovremennye-resheniya-montazha-fundamentov-i-bureniya-yam-v-chelyabinske",
   "sovremennye-tehnologii-bureniya-i-montazha-fundamentov",
+  "sovremennye-tehnologii-bureniya-i-montazha-fundamentov-v-chelyabinske",
   "sovremennye-tehnologii-bureniya-i-montazha-fundamentov-v-uralskom-regione",
   "sovremennye-tehnologii-bureniya-yamoburom-dlya-nadezhnogo-fundamenta",
   "sovremennye-tehnologii-montazha-fundamentov-i-bureniya-yam-pod-zabory",
