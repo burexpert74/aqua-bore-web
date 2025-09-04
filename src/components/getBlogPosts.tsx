@@ -22,6 +22,7 @@ export const slugs = [
   "innovacionnye-tehnologii-bureniya-i-montazha-fundamentov-so-svayami",
   "innovacionnye-tehnologii-bureniya-i-montazha-fundamentov-v-urale",
   "innovacionnye-tehnologii-bureniya-i-montazha-fundamentov-yamoburami",
+  "innovacionnye-tehnologii-bureniya-yamoburom-dlya-nadezhnogo-fundamenta",
   "kak-burenie-i-montazh-fundamentov-menyayut-stroitelstvo-v-chelyabinske",
   "kak-pravilno-vybrat-yamobur-dlya-nadezhnogo-fundamenta",
   "kak-pravilno-vybrat-yamu-dlya-fundamenta-s-pomoshchyu-yamobura",
