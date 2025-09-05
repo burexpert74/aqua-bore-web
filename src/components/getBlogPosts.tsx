@@ -75,6 +75,7 @@ export const slugs = [
   "top-5-innovacionnyh-reshenij-dlya-bureniya-v-slozhnyh-usloviyah",
   "top-5-innovacionnyh-reshenij-dlya-nadezhnogo-montazha-fundamentov-na-urale",
   "top-5-innovacionnyh-tehnologij-dlya-effektivnogo-bureniya-i-montazha-fundamentov",
+  "top-5-innovations-for-precise-drilling-and-foundation-installation-chelyabinsk",
   "top-5-tehnologiy-bureniya-i-montazha-svay-dlya-stroitelstva",
   "umnoe-burenie-yamoburom-sekrety-tochnogo-fundamenta",
   "yamobury-burilno-kranovaya-tekhnika-prakticheskie-keysy-i-sovety",
