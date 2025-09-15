@@ -51,6 +51,7 @@ export const slugs = [
   "sekrety-tochnogo-bureniya-yam-s-pomoshhyu-yamobura-ot-burekspert",
   "sekrety-tochnogo-montazha-fundamentov-s-yamoburami-ot-burekspert",
   "sovremennaya-spectehnika-dlya-stroitelstva-i-zemlyanyh-rabot-v-chelyabinske",
+  "sovremennaya-spectehnika-dlya-stroitelstva-klyuchevye-resheniya-i-praktika",
   "sovremennaya-spectehnika-dlya-strojki-i-zemlyanyh-rabot-klyuchevye-resheniya",
   "sovremennye-resheniya-montazha-fundamentov-i-bureniya-yam-v-chelyabinske",
   "sovremennye-tehnologii-bureniya-i-montazha-fundamentov",
