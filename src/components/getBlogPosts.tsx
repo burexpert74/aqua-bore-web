@@ -71,6 +71,7 @@ export const slugs = [
   "tehnologii-montazha-fundamentov-na-svajah-i-stolbah-v-chelyabinske",
   "tekhnologii-bureniya-i-montazha-fundamentov-yamoburami-chelyabinsk",
   "tekhnologii-montazha-svajnyh-i-stolbchatyh-fundamentov-opyt-i-resheniya",
+  "tochnye-tehnologii-bureniya-i-montazha-fundamentov-chelyabinsk",
   "tonkosti-burilno-kranovoy-tekhniki-dlya-montazha-fundamentov-v-chelyabinske",
   "tonkosti-burilno-kranovoy-tekhniki-dlya-slozhnyh-usloviy",
   "tonkosti-burilno-kranovoy-tekhniki-dlya-uspeshnyh-zemnuh-rabot",
