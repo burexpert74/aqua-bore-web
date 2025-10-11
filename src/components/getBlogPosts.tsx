@@ -15,6 +15,7 @@ export const slugs = [
   "effektivnyy-montazh-fundamentov-svajami-i-stolbami-chelyabinsk",
   "idealnyy-vybor-yamobura-dlya-nadezhnogo-fundamenta",
   "innovacii-i-luchshie-praktiki-bureniya-i-montazha-fundamentov-s-yamoburami",
+  "innovacii-i-opyt-sovremennye-tehnologii-bureniya-i-montazha-svaj-chelyabinsk",
   "innovacii-i-sekrety-montazha-svajnyh-fundamentov-prakticheskij-gid",
   "innovacii-i-tehnologii-bureniya-yam-pod-zabory-v-chelyabinske",
   "innovacii-tehnicheskie-resheniya-spectehnika-stroyka-chelyabinsk",
