@@ -86,6 +86,7 @@ export const slugs = [
   "sovremennye-tehnologii-montazha-svayno-stolbchatyh-fundamentov-chelyabinsk",
   "sovremennye-tekhnologii-bureniya-yamoburom-dlya-nadezhnogo-fundamenta",
   "sovremennye-tekhnologii-bureniya-yamoburom-profi-obzor",
+  "sovremennyj-montazh-fundamentov-na-svajah-i-stolbah-prakticheskie-keysy-i-sovety",
   "sovremennyj-montazh-svajno-stolbchatyh-fundamentov-tehnologii-i-praktika",
   "spectehnika-v-stroitelstve-i-burenii-prakticheskoe-rukovodstvo",
   "tehnologii-bureniya-i-montazh-fundamentov-polnyy-gid-ot-burekspert",
