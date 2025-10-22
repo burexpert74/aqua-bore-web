@@ -103,6 +103,7 @@ export const slugs = [
   "tonkosti-burilno-kranovoy-tekhniki-dlya-uspeshnyh-zemnuh-rabot",
   "tonkosti-burilno-kranovoy-tekhniki-top-5-effektivnyh-resheniy",
   "tonkosti-burilno-kranovoy-tekhniki-top-5-resheniy-dlya-slozhnyh-zemlyanyh-rabot",
+  "tonkosti-vybora-yamobura-dlya-nadezhnogo-fundamenta",
   "top-5-innovacij-dlya-bureniya-i-montazha-svaj-v-chelyabinske",
   "top-5-innovacij-dlya-bureniya-svajnyh-fundamentov-v-chelyabinske",
   "top-5-innovacij-dlya-effektivnogo-bureniya-svaj-v-chelyabinske",
