@@ -34,6 +34,7 @@ export const slugs = [
   "innovacionnye-tehnologii-bureniya-yamoburom-dlya-nadezhnogo-fundamenta",
   "kak-burenie-i-montazh-fundamentov-menyayut-stroitelstvo-v-chelyabinske",
   "kak-burilno-kranovaya-tekhnika-menyaet-stroitelstvo-slozhnyh-fundamentov",
+  "kak-effektivno-montirovat-fundamenty-na-svayah-i-stolbah",
   "kak-pravilno-vybrat-yamobur-dlya-nadezhnogo-fundamenta",
   "kak-pravilno-vybrat-yamu-dlya-fundamenta-s-pomoshchyu-yamobura",
   "kak-pravilno-vybrat-yamu-dlya-fundamenta-s-pomoshhyu-yamobura",
