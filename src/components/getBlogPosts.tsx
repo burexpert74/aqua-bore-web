@@ -70,6 +70,7 @@ export const slugs = [
   "praktichnaya-spectehnika-dlya-stroitelstva-i-zemlyanyh-rabot",
   "preimushchestva-professionalnogo-bureniya-yamoburov-dlya-fundamenta",
   "professionalnoe-burenie-yamoburami-dlya-tochnyh-fundamentov-chelyabinsk",
+  "professionalnoe-burenie-yamoburom-sekrety-i-tehnologii",
   "professionalnoe-burenie-yamoburom-sekrety-tochnogo-fundamenta",
   "pyat-innovacij-dlya-effektivnogo-bureniya-i-montazha-svaj-v-chelyabinske",
   "sekrety-effektivnogo-bureniya-yam-pod-zabory-i-stolby",
