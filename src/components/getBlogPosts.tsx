@@ -10,6 +10,7 @@ export const slugs = [
   "burilno-kranovaya-tekhnika-dlya-fundamentov-v-slozhnyh-usloviyah-urala",
   "burilno-kranovaya-tekhnika-dlya-montazha-fundamentov-v-slozhnyh-usloviyah",
   "burilno-kranovaya-tekhnika-dlya-slozhnyh-fundamentov-osobennosti-i-praktika",
+  "burilno-kranovaya-tekhnika-dlya-zemleroynyh-rabot-v-chelyabinske",
   "effektivnoe-burenie-yamobur-sekrety-professionalov",
   "effektivnoe-burenie-yamoburom-sekrety-professionalov",
   "effektivnye-metody-bureniya-yam-pod-zabory-i-stolby",
