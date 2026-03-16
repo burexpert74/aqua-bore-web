@@ -16,6 +16,7 @@ export const slugs = [
   "effektivnye-metody-bureniya-yam-pod-zabory-i-stolby",
   "effektivnye-tehnologii-montazha-svaynyh-fundamentov-chelyabinsk",
   "effektivnye-tekhnologii-bureniya-yamoburom-dlya-fundamenta",
+  "effektivnyy-montazh-fundamentov-na-svayah-i-stolbah-tehnologii-praktika",
   "effektivnyy-montazh-fundamentov-svajami-i-stolbami-chelyabinsk",
   "idealnyy-vybor-yamobura-dlya-nadezhnogo-fundamenta",
   "innovacii-i-luchshie-praktiki-bureniya-i-montazha-fundamentov-s-yamoburami",
