@@ -56,6 +56,7 @@ export const slugs = [
   "kompleksnyy-vzglyad-na-burenie-i-montazh-fundamentov-yamoburami",
   "luchshaya-tehnika-bureniya-yamoburom-dlya-nadezhnogo-fundamenta",
   "luchshie-tehnicheskie-resheniya-dlya-bureniya-i-montazha-svaj-v-chelyabinske",
+  "luchshie-tehnologii-montazha-fundamentov-na-svajah-i-stolbah",
   "montazh-fundamentov-i-burenie-svaj-innovacii-chelyabinsk",
   "montazh-fundamentov-i-burenie-svaj-tehnologii-i-opyt-v-chelyabinske",
   "montazh-fundamentov-na-svajah-i-stolbah-sovremennyj-podhod",
