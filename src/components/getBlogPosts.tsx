@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 export const slugs = [
   "5-innovacionnyh-reshenij-dlya-burenia-i-montazha-svay-chelyabinsk",
   "5-innovacionnyh-reshenij-dlya-tochnogo-bureniya-yam-v-chelyabinske",
+  "5-innovacionnyh-tehnologij-montazha-svajnyh-fundamentov-chelyabinsk",
   "5-klyuchevyh-reshenij-burilno-kranovaya-tehnika-zemlyanye-raboty",
   "5-peredovyh-reshenij-dlya-bureniya-i-montazha-fundamentov-v-chelyabinske",
   "5-sovremennyh-reshenij-dlya-tochnogo-bureniya-i-montazha-fundamentov-chelyabinsk",
