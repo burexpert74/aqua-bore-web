@@ -81,6 +81,7 @@ export const slugs = [
   "prakticheskie-keysy-bureniya-i-montazha-fundamentov-chelyabinsk",
   "prakticheskie-keysy-burilno-kranovoj-tekhniki-v-chelyabinske",
   "praktichnaya-spectehnika-dlya-stroitelstva-i-zemlyanyh-rabot",
+  "praktichnye-metody-bureniya-yam-pod-zabory-i-stolby",
   "preimushchestva-professionalnogo-bureniya-yamoburov-dlya-fundamenta",
   "professionalnoe-burenie-yamoburami-dlya-tochnyh-fundamentov-chelyabinsk",
   "professionalnoe-burenie-yamoburom-sekrety-i-tehnologii",
