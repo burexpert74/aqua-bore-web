@@ -71,6 +71,7 @@ export const slugs = [
   "montazh-fundamentov-na-svajnyh-i-stolbchatyh-osnovaniyah",
   "montazh-fundamentov-na-svayah-innovacii-i-praktika-chelyabinsk",
   "montazh-fundamentov-na-svyah-i-stolbah-tehnologii-praktika",
+  "montazh-fundamentov-so-svayami-i-stolbami-innovacionnye-tehnologii-i-opyt",
   "montazh-fundamentov-so-svayami-i-stolbami-tehnologii-i-opyt",
   "montazh-svajnyh-i-stolbchatyh-fundamentov-tehnicheskie-sekrety-i-luchshie-praktiki",
   "montazh-svajnyh-i-stolbchatyh-fundamentov-tehnologii-i-praktika",
