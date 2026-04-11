@@ -129,6 +129,7 @@ export const slugs = [
   "sovremennyj-montazh-svajno-stolbchatyh-fundamentov-tehnologii-i-praktika",
   "sovremennyj-montazh-svajnyh-i-stolbchatyh-fundamentov-sekrety-i-praktika",
   "spectehnika-v-stroitelstve-i-burenii-prakticheskoe-rukovodstvo",
+  "tayny-yamoburov-kak-tehnika-vliyaet-na-skorost-i-kachestvo-bureniya",
   "technicheskie-osobennosti-burilno-kranovoy-spectehniki",
   "tehnicheskie-osobennosti-burilno-kranovoj-tehniki-dlya-nadezhnyh-fundamentov",
   "tehnicheskie-osobennosti-burilno-kranovoy-tekhniki-v-chelyabinske",
