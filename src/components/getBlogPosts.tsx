@@ -91,6 +91,7 @@ export const slugs = [
   "prakticheskie-kejsy-burenia-yam-pod-zabory-opyt-i-resheniya",
   "prakticheskie-kejsy-bureniya-i-montazha-svajno-stolbchatyh-fundamentov",
   "prakticheskie-kejsy-bureniya-yam-pod-zabory-vyzovy-i-resheniya",
+  "prakticheskie-keysy-burenia-yam-pod-zabory-i-stolby-chelyabinsk",
   "prakticheskie-keysy-bureniya-i-montazha-fundamentov-chelyabinsk",
   "prakticheskie-keysy-burilno-kranovoj-tekhniki-v-chelyabinske",
   "praktichnaya-spectehnika-dlya-stroitelstva-i-zemlyanyh-rabot",
