@@ -54,6 +54,7 @@ export const slugs = [
   "kak-burilno-kranovaya-tekhnika-menyaet-stroitelstvo-slozhnyh-fundamentov",
   "kak-burit-yamy-pod-zabory-i-stolby-proverennye-tekhniki-i-sovety",
   "kak-effektivno-montirovat-fundamenty-na-svayah-i-stolbah",
+  "kak-obespechit-idealnoe-burenie-yam-pod-zabory-i-stolby-v-chelyabinske",
   "kak-pravilno-vybrat-yamobur-dlya-nadezhnogo-fundamenta",
   "kak-pravilno-vybrat-yamu-dlya-fundamenta-s-pomoshchyu-yamobura",
   "kak-pravilno-vybrat-yamu-dlya-fundamenta-s-pomoshhyu-yamobura",
