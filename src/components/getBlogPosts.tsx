@@ -105,6 +105,7 @@ export const slugs = [
   "professionalnoe-burenie-yamoburom-sekrety-tochnogo-fundamenta",
   "pyat-innovacij-dlya-effektivnogo-bureniya-i-montazha-svaj-v-chelyabinske",
   "sekrety-effektivnogo-bureniya-yam-pod-zabory-i-stolby",
+  "sekrety-effektivnogo-bureniya-yamoburom-ot-burekspert",
   "sekrety-effektivnogo-bureniya-yamoburov-ot-burekspert",
   "sekrety-effektivnogo-bureniya-yamoburovm-dlya-nadezhnogo-fundamenta",
   "sekrety-montazha-fundamentov-na-svajah-i-stolbah-prakticheskij-gid",
