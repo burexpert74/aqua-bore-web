@@ -159,6 +159,7 @@ export const slugs = [
   "technicheskie-osobennosti-burilno-kranovoy-spectehniki",
   "technologii-bureniya-yamoburov-dlya-nadezhnogo-fundamenta",
   "tehnicheskie-osobennosti-burilno-kranovoj-tehniki-dlya-nadezhnyh-fundamentov",
+  "tehnicheskie-osobennosti-burilno-kranovoj-tehniki-dlya-tochnogo-bureniya",
   "tehnicheskie-osobennosti-burilno-kranovoy-tekhniki-v-chelyabinske",
   "tehnologii-bureniya-i-montazh-fundamentov-polnyy-gid-ot-burekspert",
   "tehnologii-bureniya-yam-pod-zabory-i-stolby-prakticheskie-sovety",
