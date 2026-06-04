@@ -194,6 +194,7 @@ export const slugs = [
   "top-5-tehnologiy-bureniya-i-montazha-svay-dlya-stroitelstva",
   "top-5-tehnologiy-bureniya-i-montazha-svay-v-chelyabinske",
   "top-5-tehnologiy-bureniya-i-montazha-svaynyh-fundamentov-v-urale",
+  "top-5-tehnologiy-montazha-stolbchatyh-fundamentov-na-gruntah-urala",
   "umnoe-burenie-yamoburom-sekrety-tochnogo-fundamenta",
   "umnyj-montazh-fundamentov-sekrety-tochnogo-bureniya-i-montazha-svaj",
   "yamobury-burilno-kranovaya-tekhnika-prakticheskie-keysy-i-sovety",
