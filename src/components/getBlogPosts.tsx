@@ -10,6 +10,7 @@ export const slugs = [
   "5-peredovyh-reshenij-dlya-bureniya-i-montazha-fundamentov-v-chelyabinske",
   "5-proverennyh-reshenij-dlya-bureniya-yam-pod-zabory-v-chelyabinske",
   "5-sovremennyh-reshenij-dlya-tochnogo-bureniya-i-montazha-fundamentov-chelyabinsk",
+  "burilno-kranovaya-tehnika-5-innovacionnyh-reshenij-slozhnye-fundamenty",
   "burilno-kranovaya-tehnika-dlya-slozhnyh-uslovij-stroitelstva",
   "burilno-kranovaya-tehnika-moshch-i-tochnost-v-slozhnyh-zemlyanyh-rabotah-chelyabinsk",
   "burilno-kranovaya-tehnika-sekrety-nadezhnogo-fundamenta-na-urale",
