@@ -35,6 +35,7 @@ export const slugs = [
   "innovacii-i-opyt-sovremennye-tehnologii-bureniya-i-montazha-svaj-chelyabinsk",
   "innovacii-i-sekrety-montazha-svajnyh-fundamentov-prakticheskij-gid",
   "innovacii-i-tehnicheskie-osobennosti-montazha-fundamentov-na-svajah",
+  "innovacii-i-tehnologii-bureniya-fundamentov-chelyabinsk",
   "innovacii-i-tehnologii-bureniya-yam-pod-zabory-v-chelyabinske",
   "innovacii-i-texnicheskie-nyuansy-montazha-fundamentov-na-svajah",
   "innovacii-tehnicheskie-resheniya-spectehnika-stroyka-chelyabinsk",
